@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRouter from './routes/user.routes';
+import agencyRouter from './routes/agency.routes';
+import imageRouter from './routes/image.routes';
 
 
 
@@ -19,12 +21,12 @@ connection.once('open', ()=>{
 
 const router = express.Router();
 router.use('/users', userRouter)
+router.use('/agency', agencyRouter)
+router.use('/image', imageRouter)
 
 const path = require('path')
 router.use('/uploads', express.static(path.join('./src/uploads')))
-//app.use('/uploads', express.static('uploads'));
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
+
 
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

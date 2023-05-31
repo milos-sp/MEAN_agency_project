@@ -1,7 +1,9 @@
+<div id="forma">
 <label for="username">Korisničko ime: </label>
 <input type="text" name="username" [(ngModel)]="username"><br/>
 <label for="password">Lozinka: </label>
 <input type="password" name="password" [(ngModel)]="password"><br/>
 <button (click)="login()">Login</button>
 <br/>
-<p style="color: red">{{message}}</p>
+<p class="error_message">{{message}}</p>
+</div>

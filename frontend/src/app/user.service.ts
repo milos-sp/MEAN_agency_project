@@ -50,4 +50,8 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/users/addDefaultImage`, data)
   }
+
+  getAllAgencies(){
+    return this.http.get(`${this.uri}/agency/getAllAgencies`)
+  }
 }

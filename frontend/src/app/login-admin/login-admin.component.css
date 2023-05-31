@@ -1,0 +1,40 @@
+.error_message{
+    color: red;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+  
+button {
+    background-color: rgb(223, 151, 16);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+
+}
+  
+button:hover {
+    opacity: 0.8;
+}
+
+
+#forma{
+    width: 50%;
+    padding: 120px;
+    margin: auto;
+    border: 2px solid burlywood;
+}
+
+label{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
