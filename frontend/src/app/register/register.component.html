@@ -1,0 +1,47 @@
+<label for="username">Korisničko ime: </label>
+<input type="text" name="username" [(ngModel)]="username"><br/>
+<label for="password">Lozinka: </label>
+<input type="password" name="password" [(ngModel)]="password"><br/>
+<label for="password2">Potvrdite lozinku: </label>
+<input type="password" name="password2" [(ngModel)]="password2"><br/>
+<label for="email">Email: </label>
+<input type="text" name="email" [(ngModel)]="email"><br/>
+<label for="telephone">Broj telefona: </label>
+<input type="text" name="telephone" [(ngModel)]="telephone"><br/>
+Registrujete se kao:
+<label for="klijent">Klijent </label>
+<input type="radio" value="klijent" name="klijent" [(ngModel)]="type">&nbsp;
+<label for="agencija">Agencija</label>
+<input type="radio" value="agencija" name="agencija" [(ngModel)]="type">
+<br/>
+<div id="klijent" *ngIf="type=='klijent'">
+    <label for="firstname">Ime: </label>
+    <input type="text" name="firstname" [(ngModel)]="firstname"><br/> 
+    <label for="lastname">Prezime: </label>
+    <input type="text" name="lastname" [(ngModel)]="lastname"><br/>
+</div>
+<div id="agencija" *ngIf="type=='agencija'">
+    <label for="agency">Ime agencije: </label>
+    <input type="text" name="agency" [(ngModel)]="agency"><br/>
+    <label for="agencyID">Matični broj agencije: </label>
+    <input type="text" name="agencyID" [(ngModel)]="agencyID"><br/>
+    <label for="country">Država: </label>
+    <input type="text" name="country" [(ngModel)]="address.country"><br/>
+    <label for="city">Grad: </label>
+    <input type="text" name="city" [(ngModel)]="address.city"><br/>
+    <label for="street">Ulica: </label>
+    <input type="text" name="street" [(ngModel)]="address.street"><br/>
+    <label for="strn">Broj ulice: </label>
+    <input type="text" name="strn" [(ngModel)]="address.street_n"><br/>
+    <label for="desc">Opis agencije: </label>
+    <textarea name="desc" cols="30" rows="10" [(ngModel)]="description"></textarea>
+</div>
+<div>
+    <label for="avatar">Izaberite profilnu sliku: </label>
+    <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)"><br/>
+    <button (click)="submitImage()" *ngIf="selectedImage">Potvrdi</button>
+    <!--<img src="../../assets/avatar_default.png">--> <img src="http://127.0.0.1:4000/uploads/avatar1.png" *ngIf="selectedImage">
+    <img src="http://127.0.0.1:4000/uploads/avatar_default.png" *ngIf="!selectedImage">
+</div>
+<button (click)="register()">Registracija</button>
+<p style="color: red">{{message}}</p>

@@ -1,10 +1,61 @@
 import express from 'express';
 import { UserController } from '../controllers/user.controller';
+import multer from 'multer';
 
 const userRouter = express.Router();
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'src/uploads/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, file.originalname);
+    }
+  });
+  
+  const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpg' || file.mimetype === 'image/png') { //samo jpg i png
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
+
+  const upload = multer({
+    storage: storage,
+    fileFilter: fileFilter
+  });
+
 userRouter.route('/login').post(
     (req, res)=> new UserController().login(req, res)
+)
+
+userRouter.route('/register').post(
+    (req, res)=> new UserController().register(req, res)
+)
+
+userRouter.route('/getUsers').get(
+    (req, res)=> new UserController().getUsers(req, res)
+)
+
+userRouter.route('/:username/uploadAvatarImage').post(upload.single('avatar_image'), (req, res, next)=>{
+    new UserController().uploadAvatarImage(req, res, next)
+    /*if(req.file){
+        console.log(req.file.originalname)
+        UserModel.findOne({'username': req.params.username}, (err, user)=>{
+            if(err){
+                next(err)
+            }
+            user['image'] = req.file.originalname;
+            user.save().subscribe(resp=>{
+                res.json({'message': 'Slika dodata'})
+            })
+        })
+    }*/
+})
+
+userRouter.route('/addDefaulltImage').post(
+    (req, res)=> new UserController().addDefaultImage(req, res)
 )
 
 export default userRouter;

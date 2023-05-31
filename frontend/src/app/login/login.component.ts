@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit {
     }
     this.userService.login(this.username, this.password).subscribe((user: User)=>{
       if(user != null){
-        //sessionStorage
+        sessionStorage.setItem('username', user.username)
         if(user.type == 'klijent'){
           this.router.navigate(['client'])
         }else if(user.type == 'agencija'){
           this.router.navigate(['agency'])
+        }else{
+          this.message = "Nepostojeće korisničko ime ili pogrešna lozinka"
         }
       }else{
         this.message = "Nepostojeće korisničko ime ili pogrešna lozinka"
