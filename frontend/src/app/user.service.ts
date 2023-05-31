@@ -54,4 +54,12 @@ export class UserService {
   getAllAgencies(){
     return this.http.get(`${this.uri}/agency/getAllAgencies`)
   }
+
+  searchAgencies(agency, address){
+    const data = {
+      agency: agency,
+      address: address
+    }
+    return this.http.post(`${this.uri}/agency/searchAgencies`, data)
+  }
 }

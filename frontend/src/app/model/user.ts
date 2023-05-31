@@ -12,4 +12,5 @@ export class User{
     agencyID: number;
     description: string;
     type: string;
+    address_string: string;
 }

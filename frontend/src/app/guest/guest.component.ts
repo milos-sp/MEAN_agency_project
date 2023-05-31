@@ -19,6 +19,9 @@ export class GuestComponent implements OnInit {
   agencies: Array<User>;
   images: Array<Image>;
   imagesMap: Map<String, String> = new Map<String, String>();
+  //za pretragu
+  agency: string = "";
+  address: string = "";
 
   ngOnInit(): void {
     this.userService.getAllAgencies().subscribe((data: User[])=>{
@@ -29,11 +32,13 @@ export class GuestComponent implements OnInit {
       this.images.forEach(element => {
         this.imagesMap.set(element['username'], element['imageUrl'])
       });
-      // this.images.forEach(element => {
-      //   console.log(this.imagesMap.get(element['username']))
-      // });
     })
-    
+  }
+
+  search(){
+    this.userService.searchAgencies(this.agency, this.address).subscribe((data: User[])=>{
+      this.agencies = data;
+    })
   }
 
 }

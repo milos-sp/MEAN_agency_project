@@ -51,6 +51,9 @@ let User = new Schema({
                 type: String
             }
         }
+    },
+    address_string: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('UserModel', User, 'users');

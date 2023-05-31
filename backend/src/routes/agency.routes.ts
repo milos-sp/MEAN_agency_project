@@ -7,4 +7,8 @@ agencyRouter.route('/getAllAgencies').get(
     (req, res)=> new AgencyController().getAllAgencies(req, res)
 )
 
+agencyRouter.route('/searchAgencies').post(
+    (req, res)=> new AgencyController().searchAgencies(req, res)
+)
+
 export default agencyRouter;

@@ -48,6 +48,9 @@ let User = new Schema({
                 type: String
             }
         }
+    },
+    address_string: {
+        type: String
     }
 })
 

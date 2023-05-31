@@ -1,0 +1,48 @@
+th, td{
+    border: 1px salmon solid;
+    font-family: monospace;
+}
+
+table{
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;   
+}
+
+#empty{
+    border-top: none;
+    border-left: none;
+    background-color: rgb(215, 251, 251);
+}
+
+th{
+    font-weight: bold;
+    color: azure;
+    background-color: rgb(51, 51, 51);
+}
+
+.search{
+    border-color: rgb(215, 251, 251);
+    padding-top: 50px;
+}
+
+button{
+  background-color: burlywood;
+  color: rgb(215, 251, 251);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+input{
+    width: 80%;
+}

@@ -48,6 +48,9 @@ let PendingUser = new Schema({
                 type: String
             }
         }
+    },
+    address_string: {
+        type: String
     }
 })
 
