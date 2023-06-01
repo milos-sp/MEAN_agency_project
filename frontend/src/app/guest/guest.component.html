@@ -1,13 +1,13 @@
 <h2>Agencije</h2>
 <table>
     <tr>
-        <th id="empty"></th>
+        <th id="empty"><button class="button-sort" (click)="sort('asc')">⇑</button><button class="button-sort" (click)="sort('desc')">⇓</button></th>
         <th>Naziv</th>
         <th>Opis</th>
     </tr>
     <tr *ngFor="let agency of agencies">
         <td><img src="{{imagesMap.get(agency.username)}}" width="50px" height="50px"></td>
-        <td>{{agency.agency}}</td>
+        <td><a routerLink="/agencies/{{agency.username}}">{{agency.agency}}</a></td>
         <td>{{agency.description}}</td>
     </tr>
 </table>
@@ -16,6 +16,6 @@
         <td class="search">Pretraga: </td>
         <td class="search"><input type="text" placeholder="Naziv" [(ngModel)]="agency"></td>
         <td class="search"><input type="text" placeholder="Adresa" [(ngModel)]="address"></td>
-        <td class="search" (click)="search()"><button>Pretraga</button></td>
+        <td class="search" (click)="search()"><button class="button-search">Pretraga</button></td>
     </tr>
 </table>

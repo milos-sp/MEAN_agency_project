@@ -6,10 +6,17 @@ export class ImageController{
     getImages = (req: express.Request, res: express.Response)=>{
         
         ImageModel.find({}, (err, images)=>{
-            let imageMap = new Map<String, String>();
+            //let imageMap = new Map<String, String>();
             if(err) console.log(err)
             else res.json(images)
         })
 
+    }
+
+    getImageByUsername = (req: express.Request, res: express.Response)=>{
+        ImageModel.findOne({'username': req.body.username}, (err, image)=>{
+            if(err) console.log(err)
+            else res.json(image)
+        })
     }
 }

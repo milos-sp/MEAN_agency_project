@@ -9,11 +9,19 @@ class ImageController {
     constructor() {
         this.getImages = (req, res) => {
             image_1.default.find({}, (err, images) => {
-                let imageMap = new Map();
+                //let imageMap = new Map<String, String>();
                 if (err)
                     console.log(err);
                 else
                     res.json(images);
+            });
+        };
+        this.getImageByUsername = (req, res) => {
+            image_1.default.findOne({ 'username': req.body.username }, (err, image) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(image);
             });
         };
     }

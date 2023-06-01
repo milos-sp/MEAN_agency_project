@@ -1,0 +1,39 @@
+<div class="menu" *ngIf="user.type=='klijent'">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <a href="#">Objekti</a>
+    <a href="#">Agencije</a>
+    <a href="#">Poslovi</a>
+</div>
+<div class="menu" *ngIf="user.type=='agencija'">
+    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <a href="#">Radnici</a>
+    <a href="#">Poslovi</a>
+</div>
+<h1>Moj profil</h1>
+<div class="image-div">
+<img src="{{image.imageUrl}}" height="100px" width="100px">
+</div>
+<div class="data" *ngIf="user.type=='klijent'">
+    <label for="firstname">Ime: </label>
+    <input type="text" name="firstname" id="firstname" [(ngModel)]="user.firstname" value="{{user.firstname}}"><br/> 
+    <label for="lastname">Prezime: </label>
+    <input type="text" name="lastname" id="lastname" [(ngModel)]="user.lastname" value="{{user.lastname}}"><br/>
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
+    <label for="telephone">Broj telefona: </label>
+    <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
+</div>
+<div class="data" *ngIf="user.type=='agencija'">
+    <label for="agency">Naziv agencije: </label>
+    <input type="text" name="agency" id="agency" [(ngModel)]="user.agency" value="{{user.agency}}"><br/> 
+    <label for="address">Adresa: </label>
+    <input type="text" name="address" id="address" [(ngModel)]="user.address_string" value="{{user.address_string}}"><br/>
+    <label for="description">Opis: </label>
+    <input type="text" name="description" id="description" [(ngModel)]="user.description" value="{{user.description}}"><br/>
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
+    <label for="telephone">Broj telefona: </label>
+    <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
+</div>

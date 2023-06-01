@@ -38,20 +38,12 @@ userRouter.route('/getUsers').get(
     (req, res)=> new UserController().getUsers(req, res)
 )
 
+userRouter.route('/getUserByUsername').post(
+  (req, res)=> new UserController().getUserByUsername(req, res)
+)
+
 userRouter.route('/:username/uploadAvatarImage').post(upload.single('avatar_image'), (req, res, next)=>{
     new UserController().uploadAvatarImage(req, res, next)
-    /*if(req.file){
-        console.log(req.file.originalname)
-        UserModel.findOne({'username': req.params.username}, (err, user)=>{
-            if(err){
-                next(err)
-            }
-            user['image'] = req.file.originalname;
-            user.save().subscribe(resp=>{
-                res.json({'message': 'Slika dodata'})
-            })
-        })
-    }*/
 })
 
 userRouter.route('/addDefaulltImage').post(

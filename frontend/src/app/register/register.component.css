@@ -2,3 +2,51 @@ img{
     width: 100px;
     height: 100px;
 }
+
+h2{
+    display: flex;
+    justify-content: center;
+}
+
+#register-btn {
+    background-color: rgb(223, 151, 16);
+    color: rgb(215, 251, 251);
+    padding: 14px 15px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+#upload-btn{
+    background-color: rgb(223, 151, 16);
+    color: rgb(215, 251, 251);
+    cursor: pointer;
+    border: none;
+    
+}
+
+#avatar{
+    margin-right: 0;
+}
+
+.forma{
+    width: 50%;
+    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input[type=text], input[type=password], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #d9d7d7;
+    box-sizing: border-box;
+}

@@ -13,7 +13,6 @@ export class AgencyController{
     searchAgencies = (req: express.Request, res: express.Response)=>{
         let agency = req.body.agency;
         let address = req.body.address;
-        console.log(address)
 
         UserModel.find({'type': 'agencija', 'agency': {$regex: agency}, 'address_string': {$regex: address}}, (err, agencies)=>{
             if(err) console.log(err)

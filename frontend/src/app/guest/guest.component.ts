@@ -41,4 +41,12 @@ export class GuestComponent implements OnInit {
     })
   }
 
+  sort(type: string){
+    if(type=='asc'){
+      this.agencies.sort((a, b)=> (a.agency > b.agency)?1:((b.agency > a.agency)?-1:0))
+    }else{
+      this.agencies.sort((a, b)=> (a.agency < b.agency)?1:((b.agency < a.agency)?-1:0))
+    }
+  }
+
 }

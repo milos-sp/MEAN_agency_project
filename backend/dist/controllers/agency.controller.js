@@ -18,7 +18,6 @@ class AgencyController {
         this.searchAgencies = (req, res) => {
             let agency = req.body.agency;
             let address = req.body.address;
-            console.log(address);
             user_1.default.find({ 'type': 'agencija', 'agency': { $regex: agency }, 'address_string': { $regex: address } }, (err, agencies) => {
                 if (err)
                     console.log(err);

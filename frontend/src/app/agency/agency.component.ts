@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from '../model/address';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agency',
@@ -8,13 +9,15 @@ import { Address } from '../model/address';
 })
 export class AgencyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activeRouter: ActivatedRoute) { }
 
   address: Address;
   country: string;
+  name: string;
 
   ngOnInit(): void {
     //this.country = sessionStorage.getItem('country')
+    
   }
 
 }

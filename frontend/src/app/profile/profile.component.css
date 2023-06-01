@@ -1,0 +1,33 @@
+.image-div{
+    float: left;
+    width: 15%;
+    display: block;
+    border: 1px dashed blue;
+    margin-right: 5%;
+}
+
+img{
+    margin: auto;
+    display: block;
+}
+
+.data{
+    border: 1px solid green;
+    float: left;
+    display: block;
+    width: 50%;
+}
+
+input{
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+label{
+    display: inline-block;
+    text-align: right;
+}

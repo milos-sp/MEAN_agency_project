@@ -19,7 +19,7 @@ export class UserService {
   }
 
   register(username, password, email, telephone, type, firstname, lastname, agency, address, agencyID, description){
-    const data = {
+    const data = { //dodati address_string
       username: username,
       password: password,
       email: email,
@@ -37,6 +37,13 @@ export class UserService {
 
   getUsers(){
     return this.http.get(`${this.uri}/users/getUsers`)
+  }
+
+  getUserByUsername(username){
+    const data = {
+      username: username
+    }
+    return this.http.post(`${this.uri}/users/getUserByUsername`, data)
   }
 
   uploadAvatarImage(image, username){

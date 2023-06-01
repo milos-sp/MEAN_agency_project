@@ -7,4 +7,8 @@ imageRouter.route('/getImages').get(
     (req, res)=> new ImageController().getImages(req, res)
 )
 
+imageRouter.route('/getImageByUsername').post(
+    (req, res)=> new ImageController().getImageByUsername(req, res)
+)
+
 export default imageRouter;

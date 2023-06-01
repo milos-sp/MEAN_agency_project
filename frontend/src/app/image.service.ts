@@ -13,4 +13,8 @@ export class ImageService {
   getImages(){
     return this.http.get(`${this.uri}/image/getImages`)
   }
+
+  getImageByUsername(username){
+    return this.http.post(`${this.uri}/image/getImageByUsername`, {username: username})
+  }
 }

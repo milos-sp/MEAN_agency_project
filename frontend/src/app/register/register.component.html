@@ -1,3 +1,5 @@
+<div class="forma">
+<h2>Forma za registraciju</h2>
 <label for="username">Korisničko ime: </label>
 <input type="text" name="username" [(ngModel)]="username"><br/>
 <label for="password">Lozinka: </label>
@@ -14,6 +16,13 @@ Registrujete se kao:
 <label for="agencija">Agencija</label>
 <input type="radio" value="agencija" name="agencija" [(ngModel)]="type">
 <br/>
+<div>
+    <label for="avatar">Izaberite profilnu sliku: </label>
+    <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)">
+    <button id="upload-btn" (click)="submitImage()" *ngIf="selectedImage">Potvrdi</button>
+    <!-- <img src="http://127.0.0.1:4000/uploads/avatar1.png" *ngIf="selectedImage"> -->
+    <!-- <img src="http://127.0.0.1:4000/uploads/avatar_default.png" *ngIf="!selectedImage"> -->
+</div><br/>
 <div id="klijent" *ngIf="type=='klijent'">
     <label for="firstname">Ime: </label>
     <input type="text" name="firstname" [(ngModel)]="firstname"><br/> 
@@ -36,12 +45,6 @@ Registrujete se kao:
     <label for="desc">Opis agencije: </label>
     <textarea name="desc" cols="30" rows="10" [(ngModel)]="description"></textarea>
 </div>
-<div>
-    <label for="avatar">Izaberite profilnu sliku: </label>
-    <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)"><br/>
-    <button (click)="submitImage()" *ngIf="selectedImage">Potvrdi</button>
-    <!--<img src="../../assets/avatar_default.png">--> <img src="http://127.0.0.1:4000/uploads/avatar1.png" *ngIf="selectedImage">
-    <img src="http://127.0.0.1:4000/uploads/avatar_default.png" *ngIf="!selectedImage">
+<button id="register-btn" (click)="register()">Registracija</button>
 </div>
-<button (click)="register()">Registracija</button>
 <p style="color: red">{{message}}</p>

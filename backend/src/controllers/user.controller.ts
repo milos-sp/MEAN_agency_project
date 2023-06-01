@@ -36,6 +36,14 @@ export class UserController{
         })
     }
 
+    getUserByUsername = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+        UserModel.findOne({'username': username}, (err, user)=>{
+            if(err) console.log(err)
+            else res.json(user)
+        })
+    }
+
     uploadAvatarImage = (req: express.Request, res: express.Response, next: express.NextFunction)=>{
         if(req.file){
             /*console.log(req.file.originalname)

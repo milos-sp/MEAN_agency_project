@@ -12,6 +12,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { RegisterComponent } from './register/register.component';
 import { GuestComponent } from './guest/guest.component';
+import { AgencyGuestComponent } from './agency-guest/agency-guest.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { GuestComponent } from './guest/guest.component';
     AdminComponent,
     LoginAdminComponent,
     RegisterComponent,
-    GuestComponent
+    GuestComponent,
+    AgencyGuestComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,15 @@ class UserController {
                     res.json(users);
             });
         };
+        this.getUserByUsername = (req, res) => {
+            let username = req.body.username;
+            user_1.default.findOne({ 'username': username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(user);
+            });
+        };
         this.uploadAvatarImage = (req, res, next) => {
             if (req.file) {
                 /*console.log(req.file.originalname)
