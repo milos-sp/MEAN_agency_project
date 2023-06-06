@@ -1,7 +1,13 @@
 <div class="menu" *ngIf="user.type=='klijent'">
     <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
     <a routerLink="/profile">Profil</a>
-    <a href="#">Objekti</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a href="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
     <a href="#">Agencije</a>
     <a href="#">Poslovi</a>
 </div>

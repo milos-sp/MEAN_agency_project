@@ -18,7 +18,7 @@ export class UserService {
     return this.http.post(`${this.uri}/users/login`, data)
   }
 
-  register(username, password, email, telephone, type, firstname, lastname, agency, address, agencyID, description){
+  register(username, password, email, telephone, type, firstname, lastname, agency, address, agencyID, description, address_string){
     const data = { //dodati address_string
       username: username,
       password: password,
@@ -30,7 +30,8 @@ export class UserService {
       agency: agency,
       address: address,
       agencyID: agencyID,
-      description: description
+      description: description,
+      address_string: address_string
     }
     return this.http.post(`${this.uri}/users/register`, data)
   }

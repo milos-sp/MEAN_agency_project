@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   //za agenciju
   agency: string = null;
   address: Address = new Address();
+  address_string: string;
   agencyID: number = null;
   description: string = null;
   //za upload slike
@@ -64,8 +65,9 @@ export class RegisterComponent implements OnInit {
       this.message = "Lozinke se ne poklapaju";
       return;
     }
+    this.address_string = this.address.country + ' ' + this.address.city + ' ' + this.address.street + ' ' + this.address.street_n;
     this.userService.register(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
-      this.agency, this.address, this.agencyID, this.description).subscribe(resp=>{
+      this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
         if(!this.selectedImage){
           this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
         }

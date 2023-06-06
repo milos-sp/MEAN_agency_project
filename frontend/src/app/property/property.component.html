@@ -1,0 +1,33 @@
+<div class="menu">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a href="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a href="#">Agencije</a>
+    <a href="#">Poslovi</a>
+</div>
+<div>
+    <h2>Moji objekti</h2>
+    <table>
+        <tr>
+            <th>Tip</th>
+            <th>Adresa</th>
+            <th>Broj prostorija</th>
+            <th>Kvadratura</th>
+        </tr>
+        <tr *ngFor="let property of properties">
+            <td>{{property.type}}</td>
+            <td>{{property.address}}</td>
+            <td>{{property.rooms}}</td>
+            <td>{{property.area}}</td>
+            <td><button id="sketch" (click)="showSketch(property)">Skica</button></td>
+            <td style="border: none;" (click)="delete(property)"><button id="delete-button">X</button></td>
+        </tr>
+    </table>
+</div>
+<canvas #canvas width="500" height="300" style="border: 1px solid black"></canvas>

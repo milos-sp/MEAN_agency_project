@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { GuestComponent } from './guest/guest.component';
 import { AgencyGuestComponent } from './agency-guest/agency-guest.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PropertyComponent } from './property/property.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "guest", component: GuestComponent},
   {path: "profile", component: ProfileComponent},
-  {path: "agency", component: AgencyComponent}
+  {path: "agency", component: AgencyComponent},
+  {path: "property", component: PropertyComponent},
+  {path: "add-property", component: AddPropertyComponent}
 ];
 
 @NgModule({

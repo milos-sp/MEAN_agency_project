@@ -1,0 +1,34 @@
+<div class="menu">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a href="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a href="#">Agencije</a>
+    <a href="#">Poslovi</a>
+</div>
+<div>
+    <p>Dodavanje objekta: </p>
+    <label for="type">Tip objekta: </label>
+    <select id="type" [(ngModel)]="type">
+        <option value="kuća">Kuća</option>
+        <option value="stan">Stan</option>
+    </select>
+    <label for="address">Adresa: </label>
+    <input type="text" id="address" [(ngModel)]="address">
+    <label for="area">Kvadratura: </label>
+    <input type="text" id="area" [(ngModel)]="area">
+    <label for="rooms">Broj prostorija: </label>
+    <input type="text" id="rooms" (input)="roomsChanged($event)" [(ngModel)]="rooms">
+    <button (click)="addProperty()">Dodaj</button>
+</div>
+<canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
+<div>
+    <p>Dodavanje objekta preko JSON fajla: </p>
+    <input type="file" (change)="fileChanged($event)">
+    <button (click)="addPropertyJSON()">Dodaj</button>
+</div>

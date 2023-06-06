@@ -1,0 +1,44 @@
+th, td{
+    border: 1px salmon solid;
+    font-family: monospace;
+}
+
+table{
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;   
+}
+
+canvas{
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+#sketch{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+#sketch:hover{
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+#delete-button{
+    float: left;
+    border: none;
+    background-color: salmon;
+}
+
+#delete-button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}

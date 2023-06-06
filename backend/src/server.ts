@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import userRouter from './routes/user.routes';
 import agencyRouter from './routes/agency.routes';
 import imageRouter from './routes/image.routes';
+import propertyRouter from './routes/property.routes';
 
 
 
@@ -23,6 +24,7 @@ const router = express.Router();
 router.use('/users', userRouter)
 router.use('/agency', agencyRouter)
 router.use('/image', imageRouter)
+router.use('/properties', propertyRouter)
 
 const path = require('path')
 router.use('/uploads', express.static(path.join('./src/uploads')))
