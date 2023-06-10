@@ -1,3 +1,20 @@
+<div class="menu" *ngIf="client==null">
+    <a routerLink="/" style="font-weight: bold; width: 20%;">Početna strana</a>
+</div>
+<div class="menu" *ngIf="client!=null">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a href="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a href="/guest">Agencije</a>
+    <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
 <h2>Agencije</h2>
 <table>
     <tr>

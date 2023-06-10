@@ -1,0 +1,27 @@
+<div class="menu">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a routerLink="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a routerLink="/guest">Agencije</a>
+    <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="data">
+    <h1>Zahtev za saradnju</h1>
+    <label for="property">Objekat: </label>
+    <select name="property" id="property" [(ngModel)]="property_id">
+        <option *ngFor="let property of properties" value="{{property._id}}">{{property.type + ' ' + property.address}}</option>
+    </select><br/>
+    <label for="date_start">Datum početka: </label>
+    <input type="text" name="date_start" id="date_start" [(ngModel)]="date_start" placeholder="yyyy-mm-dd"><br/>
+    <label for="date_end">Datum kraja: </label>
+    <input type="text" name="date_end" id="date_end" [(ngModel)]="date_end" placeholder="yyyy-mm-dd"><br/>
+    <button (click)="sendRequest()">Pošalji zahtev</button>
+    <p class="error">{{message}}</p>
+</div>

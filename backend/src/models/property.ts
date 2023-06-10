@@ -26,6 +26,9 @@ let Property = new Schema({
     },
     id: {
         type: Number
+    },
+    _id: {
+        type: mongoose.Types.ObjectId
     }
 })
 

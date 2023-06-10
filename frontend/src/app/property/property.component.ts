@@ -44,7 +44,7 @@ export class PropertyComponent implements OnInit {
   }
 
   delete(property: Property){
-    this.propertyService.deleteProperty(property.id).subscribe((resp=>{
+    this.propertyService.deleteProperty(property._id).subscribe((resp=>{
       alert(resp['message'])
     }))
     window.location.reload()

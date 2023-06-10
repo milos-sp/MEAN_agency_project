@@ -81,3 +81,8 @@ footer{
     background-color: orange;
     color: rgb(13, 13, 13);
 }
+
+.clear{
+    clear: both;
+    height: 80px;
+}

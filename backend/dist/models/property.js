@@ -29,6 +29,9 @@ let Property = new Schema({
     },
     id: {
         type: Number
+    },
+    _id: {
+        type: mongoose_1.default.Types.ObjectId
     }
 });
 exports.default = mongoose_1.default.model('PropertyModel', Property, 'properties');

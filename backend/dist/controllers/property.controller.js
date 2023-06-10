@@ -25,7 +25,7 @@ class PropertyController {
             });
         };
         this.deleteProperty = (req, res) => {
-            property_1.default.deleteOne({ 'id': req.body.id }, (err, resp) => {
+            property_1.default.deleteOne({ '_id': req.body.id }, (err, resp) => {
                 if (err)
                     res.json({ 'message': 'Nije uspelo brisanje objekta' });
                 else

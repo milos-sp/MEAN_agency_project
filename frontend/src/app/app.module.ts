@@ -16,6 +16,8 @@ import { AgencyGuestComponent } from './agency-guest/agency-guest.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PropertyComponent } from './property/property.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RequestComponent } from './request/request.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AddPropertyComponent } from './add-property/add-property.component';
     AgencyGuestComponent,
     ProfileComponent,
     PropertyComponent,
-    AddPropertyComponent
+    AddPropertyComponent,
+    LogoutComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,

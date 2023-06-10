@@ -22,6 +22,7 @@ export class GuestComponent implements OnInit {
   //za pretragu
   agency: string = "";
   address: string = "";
+  client: string;
 
   ngOnInit(): void {
     this.userService.getAllAgencies().subscribe((data: User[])=>{
@@ -33,6 +34,7 @@ export class GuestComponent implements OnInit {
         this.imagesMap.set(element['username'], element['imageUrl'])
       });
     })
+    this.client = sessionStorage.getItem('username');
   }
 
   search(){

@@ -18,7 +18,7 @@ export class PropertyController{
     }
 
     deleteProperty = (req: express.Request, res: express.Response)=>{
-        PropertyModel.deleteOne({'id': req.body.id}, (err, resp)=>{
+        PropertyModel.deleteOne({'_id': req.body.id}, (err, resp)=>{
             if(err) res.json({'message': 'Nije uspelo brisanje objekta'})
             else res.json({'message': 'Uspelo je brisanje objekta'})
         })

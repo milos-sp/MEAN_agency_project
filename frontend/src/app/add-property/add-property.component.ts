@@ -20,6 +20,7 @@ export class AddPropertyComponent implements OnInit {
   property: Property;
   layout: Rectangle[] = [];
   doors: Rectangle[] = [];
+  message: string = null;
   //za skicu
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
   private ctx: CanvasRenderingContext2D;
@@ -108,6 +109,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   fileChanged(event){
+    this.message = null;
     const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.file = event.target.files[0]
@@ -129,13 +131,83 @@ export class AddPropertyComponent implements OnInit {
   }
 
   addPropertyJSON(){
+    this.message = null;
     if(!this.propertyJSON){
       alert('Morate prvo uneti JSON fajl')
+      this.message = 'Morate prvo uneti JSON fajl';
+      return;
     }
+    if(this.propertyJSON.rooms == 1){
+      //samo provera za vrata
+      this.doors.forEach(elem => {
+        if(elem.x < this.layout[0].x || elem.x > this.layout[0].x + this.layout[0].width - 10 ||
+          (elem.y != this.layout[0].y && elem.y != this.layout[0].y + this.layout[0].height - 10)){
+            this.message = 'Dimenzije skice nisu ispravne';
+            return;
+        }
+      });
+    }else{
+      //provera i za vrata i za zidove
+      let wallB: boolean = false;
+      for (let index = 0; index < this.layout.length; index++) {
+        let elem = this.layout[index]
+        for (let index1 = 0; index1 < this.layout.length; index1++) {
+          if(index == index1) continue;
+          let elem1 = this.layout[index1]
+          if(this.overlapping(elem, elem1)){
+            wallB = true;
+            break;
+          }
+          if(!this.touching(elem, elem1)){
+            wallB = true;
+          }else{
+            wallB = false;
+            break;
+          }
+          
+        }
+        if(wallB){
+          this.message = 'Koordinate zidova nisu ispravne';
+          return;
+        }
+      }
+      //za vrata
+      let doorB: boolean = false;
+      for (let index = 0; index < this.doors.length; index++) {
+        let elem = this.doors[index]
+        for (let index1 = 0; index1 < this.layout.length; index1++) {
+          let elem1 = this.layout[index1]
+          if(elem.x < elem1.x || elem.x > elem1.x + elem1.width - 10 ||
+            (elem.y != elem1.y && elem.y != elem1.y + elem1.height - 10)){
+              doorB = true;
+          }else{
+            doorB = false;
+            break;
+          }
+        }
+        if(doorB){
+          this.message = 'Pozicije vrata nisu ispravne';
+          return;
+        }
+      }
+    }
+    
     this.propertyJSON.id = this.property.id + 1;
     this.propertyService.addProperty(this.propertyJSON).subscribe((resp=>{
       alert(resp['message'])
     }))
-    window.location.reload()
+    window.location.reload() 
+  }
+
+  touching(r1: Rectangle, r2: Rectangle):boolean{
+    if(r1.x > r2.x + r2.width || r2.x > r1.x + r1.width) return false;
+    if(r1.y > r2.y + r2.height || r2.y > r1.y + r1.height) return false;
+    return true;
+  }
+
+  overlapping(r1: Rectangle, r2: Rectangle):boolean{
+    if(r1.x >= r2.x + r2.width || r2.x >= r1.x + r1.width) return false;
+    if(r1.y >= r2.y + r2.height || r2.y >= r1.y + r1.height) return false;
+    return true;
   }
 }

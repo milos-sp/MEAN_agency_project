@@ -11,6 +11,8 @@ import { AgencyGuestComponent } from './agency-guest/agency-guest.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PropertyComponent } from './property/property.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RequestComponent } from './request/request.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path: "profile", component: ProfileComponent},
   {path: "agency", component: AgencyComponent},
   {path: "property", component: PropertyComponent},
-  {path: "add-property", component: AddPropertyComponent}
+  {path: "add-property", component: AddPropertyComponent},
+  {path: "logout", component: LogoutComponent},
+  {path: "request", component: RequestComponent}
 ];
 
 @NgModule({

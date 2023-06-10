@@ -5,6 +5,8 @@ import userRouter from './routes/user.routes';
 import agencyRouter from './routes/agency.routes';
 import imageRouter from './routes/image.routes';
 import propertyRouter from './routes/property.routes';
+import commentRouter from './routes/comment.routes';
+import requestRouter from './routes/request.routes';
 
 
 
@@ -25,6 +27,8 @@ router.use('/users', userRouter)
 router.use('/agency', agencyRouter)
 router.use('/image', imageRouter)
 router.use('/properties', propertyRouter)
+router.use('/comments', commentRouter)
+router.use('/requests', requestRouter)
 
 const path = require('path')
 router.use('/uploads', express.static(path.join('./src/uploads')))

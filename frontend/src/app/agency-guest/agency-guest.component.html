@@ -1,1 +1,33 @@
-<p>agency-guest {{name}} works!</p>
+<div class="menu" *ngIf="client==null">
+    <a routerLink="/" style="font-weight: bold; width: 20%;">Početna strana</a>
+    <a routerLink="/guest" style="font-weight: bold; width: 10%;">Agencije</a>
+</div>
+<div class="menu" *ngIf="client!=null">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a href="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a routerLink="/guest">Agencije</a>
+    <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<h1>{{agency.agency}}</h1>
+<div class="request" *ngIf="client!=null">
+    <a routerLink="/request">Zahtev za saradnju</a>
+</div>
+<div class="all-comments">
+<h2>Svi komentari</h2>
+<ul *ngFor="let comment of comments">
+    <li><article class="cmnt">
+        <h2 *ngIf="client==null">Anoniman</h2>
+        <h2 *ngIf="client!=null">{{comment.username}}</h2>
+        <p>Ocena: {{comment.rating}}</p>
+        <p>Komentar: {{comment.comment}}</p>
+    </article></li>
+</ul>
+</div>

@@ -5,11 +5,12 @@
         <button class="drop-button">Objekti</button>
         <div class="dropdown-list">
             <a routerLink="/property">Moji objekti</a>
-            <a href="/add-property">Dodavanje objekata</a>
+            <a routerLink="/add-property">Dodavanje objekata</a>
         </div>
     </div>
-    <a href="#">Agencije</a>
+    <a routerLink="/guest">Agencije</a>
     <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
 <div>
     <p>Dodavanje objekta: </p>
@@ -31,4 +32,5 @@
     <p>Dodavanje objekta preko JSON fajla: </p>
     <input type="file" (change)="fileChanged($event)">
     <button (click)="addPropertyJSON()">Dodaj</button>
+    <p style="color: red">{{message}}</p>
 </div>

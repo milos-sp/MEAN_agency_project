@@ -9,4 +9,5 @@ export class Property{
     layout: Rectangle[];
     doors: Rectangle[];
     id: number;
+    _id: string;
 }

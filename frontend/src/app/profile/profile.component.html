@@ -8,14 +8,16 @@
             <a href="/add-property">Dodavanje objekata</a>
         </div>
     </div>
-    <a href="#">Agencije</a>
+    <a href="/guest">Agencije</a>
     <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
 <div class="menu" *ngIf="user.type=='agencija'">
     <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
     <a routerLink="/profile">Profil</a>
     <a href="#">Radnici</a>
     <a href="#">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
 <h1>Moj profil</h1>
 <div class="image-div">
