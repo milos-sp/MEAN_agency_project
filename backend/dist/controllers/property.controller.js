@@ -37,6 +37,15 @@ class PropertyController {
             property_1.default.insertMany(property);
             res.json({ 'message': 'Uspelo je dodavanje objekta' });
         };
+        this.getPropertyById = (req, res) => {
+            let id = req.body.id;
+            property_1.default.findOne({ '_id': id }, (err, property) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(property);
+            });
+        };
     }
 }
 exports.PropertyController = PropertyController;

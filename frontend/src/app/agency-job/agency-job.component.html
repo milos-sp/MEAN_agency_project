@@ -1,0 +1,24 @@
+<div class="menu">
+    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <a href="#">Radnici</a>
+    <a routerLink="/agency-job">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="req">
+    <h2>Zahtevi za saradnju</h2>
+<table border="2" *ngIf="myRequests.length>0">
+<tr>
+    <th>Klijent</th>
+    <th>Email</th>
+    <th>Objekat</th>
+</tr>
+<tr *ngFor="let r of myRequests">
+    <td *ngIf="r.status==0">{{userMap.get(r.client_username)}}</td>
+    <td *ngIf="r.status==0">{{emailMap.get(r.client_username)}}</td>
+    <td *ngIf="r.status==0">{{propertyMap.get(r.property_id)}}</td>
+    <td><input type="text" [(ngModel)]="offer">&nbsp;<button (click)="sendOffer(r)">Ponuda</button></td>
+    <td><button (click)="reject(r)">Odbij</button></td>
+</tr>
+</table>
+</div>

@@ -19,4 +19,8 @@ propertyRouter.route('/addProperty').post(
     (req, res)=> new PropertyController().addProperty(req, res)
 )
 
+propertyRouter.route('/getPropertyById').post(
+    (req, res)=> new PropertyController().getPropertyById(req, res)
+)
+
 export default propertyRouter;

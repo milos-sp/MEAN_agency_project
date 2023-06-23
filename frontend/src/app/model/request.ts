@@ -3,4 +3,8 @@ export class Request{
     date_start: string;
     date_end: string;
     agency_username: string;
+    client_username: string;
+    status: number;
+    _id: string;
+    offer: number;
 }

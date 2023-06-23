@@ -29,4 +29,12 @@ export class PropertyController{
         PropertyModel.insertMany(property)
         res.json({'message': 'Uspelo je dodavanje objekta'})
     }
+
+    getPropertyById = (req: express.Request, res: express.Response)=>{
+        let id = req.body.id;
+        PropertyModel.findOne({'_id': id}, (err, property)=>{
+            if(err) console.log(err)
+            else res.json(property)
+        })
+    }
 }

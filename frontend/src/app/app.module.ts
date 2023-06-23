@@ -18,6 +18,8 @@ import { PropertyComponent } from './property/property.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RequestComponent } from './request/request.component';
+import { AgencyJobComponent } from './agency-job/agency-job.component';
+import { ClientJobComponent } from './client-job/client-job.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RequestComponent } from './request/request.component';
     PropertyComponent,
     AddPropertyComponent,
     LogoutComponent,
-    RequestComponent
+    RequestComponent,
+    AgencyJobComponent,
+    ClientJobComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { PropertyComponent } from './property/property.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RequestComponent } from './request/request.component';
+import { AgencyJobComponent } from './agency-job/agency-job.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: "property", component: PropertyComponent},
   {path: "add-property", component: AddPropertyComponent},
   {path: "logout", component: LogoutComponent},
-  {path: "request", component: RequestComponent}
+  {path: "request", component: RequestComponent},
+  {path: "agency-job", component: AgencyJobComponent}
 ];
 
 @NgModule({

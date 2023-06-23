@@ -36,6 +36,7 @@ export class RequestComponent implements OnInit {
     req.date_end = this.date_end;
     req.property_id = this.property_id;
     req.agency_username = sessionStorage.getItem('agency_username');
+    req.client_username = sessionStorage.getItem('username');
 
     this.requestService.addRequest(req).subscribe((resp=>{
       this.message = resp['message'];

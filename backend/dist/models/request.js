@@ -17,6 +17,18 @@ let Request = new Schema({
     },
     agency_username: {
         type: String
+    },
+    client_username: {
+        type: String
+    },
+    status: {
+        type: Number
+    },
+    _id: {
+        type: mongoose_1.default.Types.ObjectId
+    },
+    offer: {
+        type: Number
     }
 });
 exports.default = mongoose_1.default.model('RequestModel', Request, 'requests');
