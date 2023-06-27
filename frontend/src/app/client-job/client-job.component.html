@@ -1,1 +1,62 @@
-<p>client-job works!</p>
+<div class="menu">
+    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <div class="dropdown">
+        <button class="drop-button">Objekti</button>
+        <div class="dropdown-list">
+            <a routerLink="/property">Moji objekti</a>
+            <a routerLink="/add-property">Dodavanje objekata</a>
+        </div>
+    </div>
+    <a routerLink="/guest">Agencije</a>
+    <a routerLink="/client-job">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div>
+    <button (click)="changeContent(1)">Aktivni poslovi</button><br/>
+    <button (click)="changeContent(2)">Završeni poslovi</button><br/>
+    <button (click)="changeContent(3)">Zahtevi za saradnju</button>
+</div>
+<div class="content" *ngIf="content == 1">
+    <h2>Aktivni poslovi</h2>
+<table border="2">
+    <tr>
+        <th>Agencija</th>
+        <th>Objekat</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+    </tr>
+    <tr *ngFor="let r of myRequests">
+        <td *ngIf="r.active">{{r.agency_username}}</td>
+        <td *ngIf="r.active">{{propertyMap.get(r.property_id)}}</td>
+        <td *ngIf="r.active">{{r.date_start}}</td>
+        <td *ngIf="r.active">{{r.date_end}}</td>
+        <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
+    </tr>
+</table>
+
+</div>
+<div class="content" *ngIf="content == 2">
+
+</div>
+<div class="content" *ngIf="content == 3">
+<table border="2">
+    <tr>
+        <th>Agencija</th>
+        <th>Objekat</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+    </tr>
+    <tr *ngFor="let r of myRequests" [class.rejected]="r.status==2" [class.accepted]="r.status==1">
+        <td *ngIf="!r.active">{{r.agency_username}}</td>
+        <td *ngIf="!r.active">{{propertyMap.get(r.property_id)}}</td>
+        <td *ngIf="!r.active">{{r.date_start}}</td>
+        <td *ngIf="!r.active">{{r.date_end}}</td>
+        <td *ngIf="r.status==1 && !r.active">Ponuda: {{r.offer}}</td>
+        <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)">Prihvati</button><button (click)="rejectOffer(r)">Odbij</button></td>
+    </tr>
+</table>
+</div>
+<div>
+<canvas #canvas width="500px" height="300px" [ngStyle]="{'border': content!=3?'1px solid black':'none'}"></canvas>
+</div>

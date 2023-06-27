@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RequestService } from '../request.service';
 import { Request } from '../model/request';
 import { UserService } from '../user.service';
@@ -22,6 +22,9 @@ export class AgencyJobComponent implements OnInit {
   //
   offer: number = null;
   message: string = null;
+  //za skicu
+  @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
+  private ctx: CanvasRenderingContext2D;
 
   ngOnInit(): void {
     let user = new User()
@@ -57,6 +60,30 @@ export class AgencyJobComponent implements OnInit {
     this.requestService.sendOffer(request._id, this.offer).subscribe((resp=>{
       window.location.reload()
     }))
+  }
+
+  showSketch(r: Request){
+    let property = new Property();
+    const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
+    this.ctx = canvas.getContext('2d');
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.propertyService.getPropertyById(r.property_id).subscribe((data: Property)=>{
+      property = data;
+      this.ctx.strokeStyle = "black";
+      //iscrtavanje na canvasu
+      for (let i = 0; i < r.rooms_colors.length; i++) {
+        const color = r.rooms_colors[i];
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(property.layout[i].x, property.layout[i].y, property.layout[i].width, property.layout[i].height);
+      }
+      property.layout.forEach(element => {
+        this.ctx.strokeRect(element.x, element.y, element.width, element.height)
+      })
+      this.ctx.fillStyle = "brown";
+      property.doors.forEach(elem=>{
+        this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height)
+      })
+    })
   }
 
 }

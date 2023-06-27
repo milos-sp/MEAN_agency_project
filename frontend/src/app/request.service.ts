@@ -21,6 +21,10 @@ export class RequestService {
     return this.http.post(`${this.uri}/requests/getRequestsA`, {agency_username: agency})
   }
 
+  getRequestsC(client){
+    return this.http.post(`${this.uri}/requests/getRequestsC`, {client_username: client})
+  }
+
   reject(id){
     return this.http.post(`${this.uri}/requests/reject`, {id: id})
   }
@@ -31,5 +35,13 @@ export class RequestService {
       offer: offer
     }
     return this.http.post(`${this.uri}/requests/sendOffer`, data)
+  }
+
+  rejectOffer(id){
+    return this.http.post(`${this.uri}/requests/rejectOffer`, {id: id})
+  }
+
+  acceptOffer(id){
+    return this.http.post(`${this.uri}/requests/acceptOffer`, {id: id})
   }
 }

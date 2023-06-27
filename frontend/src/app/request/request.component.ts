@@ -31,6 +31,10 @@ export class RequestComponent implements OnInit {
       this.message = 'Unesite oba datuma';
       return;
     }
+    if(new Date(this.date_start) > new Date(this.date_end)){
+      this.message = 'Datum pocetka je posle datuma kraja';
+      return;
+    }
     let req = new Request();
     req.date_start = this.date_start;
     req.date_end = this.date_end;

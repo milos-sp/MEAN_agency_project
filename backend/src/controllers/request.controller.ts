@@ -17,6 +17,14 @@ export class RequestController{
         })
     }
 
+    getRequestsC = (req: express.Request, res: express.Response)=>{
+        let client_username = req.body.client_username;
+        RequestModel.find({'client_username': client_username}, (err, requests)=>{
+            if(err) console.log(err)
+            else res.json(requests)
+        })
+    }
+
     reject = (req: express.Request, res: express.Response)=>{
         let id = req.body.id;
         RequestModel.updateOne({'_id': id}, {$set: {'status': 2}}, (err, resp)=>{
@@ -29,6 +37,22 @@ export class RequestController{
         let id = req.body.id;
         let offer = req.body.offer;
         RequestModel.updateOne({'_id': id}, {$set: {'offer': offer, 'status': 1}}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'OK'})
+        })
+    }
+
+    rejectOffer = (req: express.Request, res: express.Response)=>{
+        let id = req.body.id;
+        RequestModel.deleteOne({'_id': id}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'OK'})
+        })
+    }
+
+    acceptOffer = (req: express.Request, res: express.Response)=>{
+        let id = req.body.id;
+        RequestModel.updateOne({'_id': id}, {$set: {'active': true}}, (err, resp)=>{
             if(err) console.log(err)
             else res.json({'message': 'OK'})
         })

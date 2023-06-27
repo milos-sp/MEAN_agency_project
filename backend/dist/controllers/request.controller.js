@@ -21,6 +21,15 @@ class RequestController {
                     res.json(requests);
             });
         };
+        this.getRequestsC = (req, res) => {
+            let client_username = req.body.client_username;
+            request_1.default.find({ 'client_username': client_username }, (err, requests) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(requests);
+            });
+        };
         this.reject = (req, res) => {
             let id = req.body.id;
             request_1.default.updateOne({ '_id': id }, { $set: { 'status': 2 } }, (err, resp) => {
@@ -34,6 +43,24 @@ class RequestController {
             let id = req.body.id;
             let offer = req.body.offer;
             request_1.default.updateOne({ '_id': id }, { $set: { 'offer': offer, 'status': 1 } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'OK' });
+            });
+        };
+        this.rejectOffer = (req, res) => {
+            let id = req.body.id;
+            request_1.default.deleteOne({ '_id': id }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'OK' });
+            });
+        };
+        this.acceptOffer = (req, res) => {
+            let id = req.body.id;
+            request_1.default.updateOne({ '_id': id }, { $set: { 'active': true } }, (err, resp) => {
                 if (err)
                     console.log(err);
                 else

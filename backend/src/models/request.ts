@@ -26,6 +26,12 @@ let Request = new Schema({
     },
     offer: {
         type: Number
+    },
+    active: {
+        type: Boolean
+    },
+    rooms_colors: {
+        type: Array
     }
 })
 

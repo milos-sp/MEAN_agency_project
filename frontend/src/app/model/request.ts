@@ -7,4 +7,6 @@ export class Request{
     status: number;
     _id: string;
     offer: number;
+    active: boolean;
+    rooms_colors: string[];
 }

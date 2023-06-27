@@ -17,8 +17,26 @@
     <td *ngIf="r.status==0">{{userMap.get(r.client_username)}}</td>
     <td *ngIf="r.status==0">{{emailMap.get(r.client_username)}}</td>
     <td *ngIf="r.status==0">{{propertyMap.get(r.property_id)}}</td>
-    <td><input type="text" [(ngModel)]="offer">&nbsp;<button (click)="sendOffer(r)">Ponuda</button></td>
-    <td><button (click)="reject(r)">Odbij</button></td>
+    <td *ngIf="r.status==0"><input type="text" [(ngModel)]="offer">&nbsp;<button (click)="sendOffer(r)">Ponuda</button></td>
+    <td *ngIf="r.status==0"><button (click)="reject(r)">Odbij</button></td>
 </tr>
 </table>
+<p class="error">{{message}}</p>
+</div>
+<div class="job">
+<h2>Aktivni poslovi</h2>
+<table border="2">
+    <tr>
+        <th>Klijent</th>
+        <th>Email</th>
+        <th>Objekat</th>
+    </tr>
+    <tr *ngFor="let r of myRequests">
+        <td *ngIf="r.active">{{userMap.get(r.client_username)}}</td>
+        <td *ngIf="r.active">{{emailMap.get(r.client_username)}}</td>
+        <td *ngIf="r.active">{{propertyMap.get(r.property_id)}}</td>
+        <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
+    </tr>
+</table>
+<canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
 </div>

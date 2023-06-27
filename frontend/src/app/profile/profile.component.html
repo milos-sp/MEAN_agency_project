@@ -9,14 +9,14 @@
         </div>
     </div>
     <a href="/guest">Agencije</a>
-    <a href="#">Poslovi</a>
+    <a routerLink="/client-job">Poslovi</a>
     <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
 <div class="menu" *ngIf="user.type=='agencija'">
     <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
     <a routerLink="/profile">Profil</a>
     <a href="#">Radnici</a>
-    <a href="#">Poslovi</a>
+    <a routerLink="/agency-job">Poslovi</a>
     <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
 <h1>Moj profil</h1>

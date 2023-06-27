@@ -29,6 +29,12 @@ let Request = new Schema({
     },
     offer: {
         type: Number
+    },
+    active: {
+        type: Boolean
+    },
+    rooms_colors: {
+        type: Array
     }
 });
 exports.default = mongoose_1.default.model('RequestModel', Request, 'requests');
