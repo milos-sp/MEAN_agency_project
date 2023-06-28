@@ -31,7 +31,8 @@ export class UserService {
       address: address,
       agencyID: agencyID,
       description: description,
-      address_string: address_string
+      address_string: address_string,
+      workers_number: 0
     }
     return this.http.post(`${this.uri}/users/register`, data)
   }

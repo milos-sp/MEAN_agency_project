@@ -31,4 +31,8 @@ requestRouter.route('/acceptOffer').post(
     (req, res)=> new RequestController().acceptOffer(req, res)
 )
 
+requestRouter.route('/startJob').post(
+    (req, res)=> new RequestController().startJob(req, res)
+)
+
 export default requestRouter;

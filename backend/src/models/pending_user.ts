@@ -51,6 +51,9 @@ let PendingUser = new Schema({
     },
     address_string: {
         type: String
+    },
+    workers_number: {
+        type: Number
     }
 })
 

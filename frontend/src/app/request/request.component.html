@@ -15,8 +15,8 @@
 <div class="data">
     <h1>Zahtev za saradnju</h1>
     <label for="property">Objekat: </label>
-    <select name="property" id="property" [(ngModel)]="property_id">
-        <option *ngFor="let property of properties" value="{{property._id}}">{{property.type + ' ' + property.address}}</option>
+    <select name="property" id="property" [(ngModel)]="index">
+        <option *ngFor="let property of properties; let i = index" value="{{i}}">{{property.type + ' ' + property.address}}</option>
     </select><br/>
     <label for="date_start">Datum početka: </label>
     <input type="text" name="date_start" id="date_start" [(ngModel)]="date_start" placeholder="yyyy-mm-dd"><br/>

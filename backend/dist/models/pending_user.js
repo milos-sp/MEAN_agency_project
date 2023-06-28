@@ -54,6 +54,9 @@ let PendingUser = new Schema({
     },
     address_string: {
         type: String
+    },
+    workers_number: {
+        type: Number
     }
 });
 exports.default = mongoose_1.default.model('PendingUserModel', PendingUser, 'pending_users');

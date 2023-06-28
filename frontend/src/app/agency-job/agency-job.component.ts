@@ -5,6 +5,8 @@ import { UserService } from '../user.service';
 import { User } from '../model/user';
 import { Property } from '../model/property';
 import { PropertyService } from '../property.service';
+import { WorkerService } from '../worker.service';
+import { Worker } from '../model/worker';
 
 @Component({
   selector: 'app-agency-job',
@@ -13,15 +15,23 @@ import { PropertyService } from '../property.service';
 })
 export class AgencyJobComponent implements OnInit {
 
-  constructor(private requestService: RequestService, private userService: UserService, private propertyService: PropertyService) { }
+  constructor(private requestService: RequestService, private userService: UserService, private propertyService: PropertyService, 
+    private workerService: WorkerService) { }
 
+  agency: User = new User();
   myRequests: Request[] = [];
+  myWorkers: Worker[] = [];
   userMap = new Map<string, string>();
   emailMap = new Map<string, string>();
   propertyMap = new Map<string, string>();
   //
   offer: number = null;
   message: string = null;
+  message2: string = null;
+  message3: string = null;
+  selectedRequest: Request = null;
+  selectedWorker: string = null;
+  selectedRoom: number = null;
   //za skicu
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
   private ctx: CanvasRenderingContext2D;
@@ -29,6 +39,9 @@ export class AgencyJobComponent implements OnInit {
   ngOnInit(): void {
     let user = new User()
     let property = new Property()
+    this.userService.getUserByUsername(sessionStorage.getItem('username')).subscribe((user: User)=>{
+      this.agency = user
+    })
     this.requestService.getRequestsA(sessionStorage.getItem('username')).subscribe((data: Request[])=>{
       this.myRequests = data
       this.myRequests.forEach(el => {
@@ -42,6 +55,9 @@ export class AgencyJobComponent implements OnInit {
           this.propertyMap.set(el.property_id, 'Adresa: ' + property.address + ', kvadratura: ' + property.area + ', broj soba: ' + property.rooms)
         })
       });
+    })
+    this.workerService.getAvailableWorkersForAgency(sessionStorage.getItem('username')).subscribe((workers: Worker[])=>{
+      this.myWorkers = workers
     })
   }
 
@@ -64,6 +80,7 @@ export class AgencyJobComponent implements OnInit {
 
   showSketch(r: Request){
     let property = new Property();
+    this.selectedRequest = r;
     const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
     this.ctx = canvas.getContext('2d');
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -72,7 +89,7 @@ export class AgencyJobComponent implements OnInit {
       this.ctx.strokeStyle = "black";
       //iscrtavanje na canvasu
       for (let i = 0; i < r.rooms_colors.length; i++) {
-        const color = r.rooms_colors[i];
+        const color = this.myWorkers.length >= r.rooms_colors.length || r.rooms_colors[i]!="transparent" ? r.rooms_colors[i] : "yellow";
         this.ctx.fillStyle = color;
         this.ctx.fillRect(property.layout[i].x, property.layout[i].y, property.layout[i].width, property.layout[i].height);
       }
@@ -86,4 +103,25 @@ export class AgencyJobComponent implements OnInit {
     })
   }
 
+  addWorker(){
+    if(!this.selectedRoom || !this.selectedWorker){
+      this.message2 = "Odaberite sve podatke";
+      return;
+    }
+    this.message2 = null;
+    this.workerService.hireWorker(this.selectedWorker, this.selectedRequest.property_id, this.selectedRoom).subscribe((resp=>{
+       this.workerService.getAvailableWorkersForAgency(sessionStorage.getItem('username')).subscribe((workers: Worker[])=>{
+         this.myWorkers = workers
+       })
+      console.log(resp['message'])
+    }))
+    this.requestService.startJob(this.selectedRequest._id, this.selectedRoom).subscribe((resp=>{
+      this.selectedRequest.rooms_colors[this.selectedRoom] = "red"
+      this.showSketch(this.selectedRequest)
+    }))
+  }
+
+  removeWorker(){
+    
+  }
 }

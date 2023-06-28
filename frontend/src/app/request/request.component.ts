@@ -18,15 +18,20 @@ export class RequestComponent implements OnInit {
   date_start: string;
   date_end: string;
   message: string = null;
+  property: Property = new Property()
+  index: number = 0;
 
   ngOnInit(): void {
     this.propertyService.getPropertiesByUsername(sessionStorage.getItem('username')).subscribe((data: Property[])=>{
       this.properties = data
-      this.property_id = this.properties[0]._id
+      //this.property_id = this.properties[0]._id
+      //this.property = this.properties[0]
     })
   }
 
   sendRequest(){
+    this.property = this.properties[this.index]
+    console.log(this.properties[this.index])
     if(!this.date_start || !this.date_end){
       this.message = 'Unesite oba datuma';
       return;
@@ -38,10 +43,17 @@ export class RequestComponent implements OnInit {
     let req = new Request();
     req.date_start = this.date_start;
     req.date_end = this.date_end;
-    req.property_id = this.property_id;
+    req.property_id = this.property._id;
     req.agency_username = sessionStorage.getItem('agency_username');
     req.client_username = sessionStorage.getItem('username');
-
+    req.offer = null;
+    req.status = 0;
+    req.active = false;
+    let colors = new Array<string>(this.property.rooms);
+    for (let i = 0; i < this.property.rooms; i++) {
+      colors[i] = 'transparent'
+    }
+    req.rooms_colors = colors
     this.requestService.addRequest(req).subscribe((resp=>{
       this.message = resp['message'];
       this.date_start = this.date_end = null;

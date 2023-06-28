@@ -44,4 +44,12 @@ export class RequestService {
   acceptOffer(id){
     return this.http.post(`${this.uri}/requests/acceptOffer`, {id: id})
   }
+
+  startJob(id, room){
+    const data = {
+      id: id,
+      room: room
+    }
+    return this.http.post(`${this.uri}/requests/startJob`, data)
+  }
 }

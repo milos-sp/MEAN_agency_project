@@ -67,6 +67,24 @@ class RequestController {
                     res.json({ 'message': 'OK' });
             });
         };
+        this.startJob = (req, res) => {
+            let id = req.body.id;
+            let room = req.body.room;
+            request_1.default.findOne({ '_id': id }, (err, request) => {
+                if (err)
+                    console.log(err);
+                else {
+                    let rooms_colors = request.rooms_colors;
+                    rooms_colors[room] = 'red';
+                    request_1.default.updateOne({ '_id': id }, { $set: { 'rooms_colors': rooms_colors } }, (err, resp) => {
+                        if (err)
+                            console.log(err);
+                        else
+                            res.json({ 'message': 'OK' });
+                    });
+                }
+            });
+        };
     }
 }
 exports.RequestController = RequestController;

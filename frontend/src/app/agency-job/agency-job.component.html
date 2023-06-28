@@ -38,5 +38,30 @@
         <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
     </tr>
 </table>
+</div>
 <canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
+<div class="add-workers">
+    <h3>Dodela posla</h3>
+    Radnik: <select name="worker" id="worker" [(ngModel)]="selectedWorker">
+        <option *ngFor="let w of myWorkers" value="{{w._id}}">{{w.firstname + ' ' + w.lastname + ', ' + w.occupation}}</option>
+    </select>
+    Soba: <select name="room" id="room" *ngIf="selectedRequest!=null" [(ngModel)]="selectedRoom">
+        <option *ngFor="let r of selectedRequest.rooms_colors; let i = index" value="{{i}}">{{'soba '}} {{i+1}}</option>
+    </select>
+    <select *ngIf="selectedRequest==null" [(ngModel)]="selectedRoom">
+        <option value="null">Izaberite posao</option>
+    </select>
+    <button (click)="addWorker()">Dodaj</button>
+    <p class="error">{{message2}}</p>
+</div>
+<div class="remove-workers">
+    <h3>Završetak posla</h3>
+    Soba: <select name="room" id="room" *ngIf="selectedRequest!=null" [(ngModel)]="selectedRoom">
+        <option *ngFor="let r of selectedRequest.rooms_colors; let i = index" value="{{i}}">{{'soba '}} {{i+1}}</option>
+    </select>
+    <select *ngIf="selectedRequest==null" [(ngModel)]="selectedRoom">
+        <option value="null">Izaberite posao</option>
+    </select>
+    <button (click)="removeWorker()">Ukloni</button>
+    <p class="error">{{message3}}</p>
 </div>

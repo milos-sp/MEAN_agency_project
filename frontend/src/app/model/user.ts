@@ -13,4 +13,5 @@ export class User{
     description: string;
     type: string;
     address_string: string;
+    workers_number: number;
 }

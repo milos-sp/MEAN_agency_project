@@ -57,4 +57,21 @@ export class RequestController{
             else res.json({'message': 'OK'})
         })
     }
+
+    startJob = (req: express.Request, res: express.Response)=>{
+        let id = req.body.id;
+        let room = req.body.room;
+
+        RequestModel.findOne({'_id': id}, (err, request)=>{
+            if(err) console.log(err)
+            else{
+                let rooms_colors = request.rooms_colors
+                rooms_colors[room] = 'red'
+                RequestModel.updateOne({'_id': id}, {$set: {'rooms_colors': rooms_colors}}, (err, resp)=>{
+                    if(err) console.log(err)
+                    else res.json({'message': 'OK'})
+                })
+            }
+        })
+    }
 }

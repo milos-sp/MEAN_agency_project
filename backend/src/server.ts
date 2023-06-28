@@ -7,6 +7,7 @@ import imageRouter from './routes/image.routes';
 import propertyRouter from './routes/property.routes';
 import commentRouter from './routes/comment.routes';
 import requestRouter from './routes/request.routes';
+import workerRouter from './routes/worker.routes';
 
 
 
@@ -29,6 +30,7 @@ router.use('/image', imageRouter)
 router.use('/properties', propertyRouter)
 router.use('/comments', commentRouter)
 router.use('/requests', requestRouter)
+router.use('/workers', workerRouter)
 
 const path = require('path')
 router.use('/uploads', express.static(path.join('./src/uploads')))

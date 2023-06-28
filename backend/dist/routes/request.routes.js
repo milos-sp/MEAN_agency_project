@@ -13,5 +13,6 @@ requestRouter.route('/reject').post((req, res) => new request_controller_1.Reque
 requestRouter.route('/sendOffer').post((req, res) => new request_controller_1.RequestController().sendOffer(req, res));
 requestRouter.route('/rejectOffer').post((req, res) => new request_controller_1.RequestController().rejectOffer(req, res));
 requestRouter.route('/acceptOffer').post((req, res) => new request_controller_1.RequestController().acceptOffer(req, res));
+requestRouter.route('/startJob').post((req, res) => new request_controller_1.RequestController().startJob(req, res));
 exports.default = requestRouter;
 //# sourceMappingURL=request.routes.js.map
