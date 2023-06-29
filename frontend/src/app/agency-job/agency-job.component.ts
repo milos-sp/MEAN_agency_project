@@ -32,6 +32,7 @@ export class AgencyJobComponent implements OnInit {
   selectedRequest: Request = null;
   selectedWorker: string = null;
   selectedRoom: number = null;
+  selectedRoom2: number = null;
   //za skicu
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
   private ctx: CanvasRenderingContext2D;
@@ -122,6 +123,19 @@ export class AgencyJobComponent implements OnInit {
   }
 
   removeWorker(){
-    
+    if(!this.selectedRoom2){
+      this.message3 = "Odaberite sobu";
+      return;
+    }
+    this.workerService.dismissWorker(this.selectedRequest.property_id, this.selectedRoom2).subscribe((resp=>{
+      this.workerService.getAvailableWorkersForAgency(sessionStorage.getItem('username')).subscribe((workers: Worker[])=>{
+        this.myWorkers = workers
+      })
+      console.log(resp['message'])
+    }))
+    this.requestService.endJob(this.selectedRequest._id, this.selectedRoom2).subscribe((resp=>{
+      this.selectedRequest.rooms_colors[this.selectedRoom2] = "green"
+      this.showSketch(this.selectedRequest)
+    }))
   }
 }

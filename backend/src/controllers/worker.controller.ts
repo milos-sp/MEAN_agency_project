@@ -29,4 +29,15 @@ export class WorkerController{
             }
         })
     }
+
+    dismissWorker = (req: express.Request, res: express.Response)=>{
+        let property = req.body.property; //moze da ih bude vise
+        let room = req.body.room;
+        WorkerModel.updateMany({'property': property, 'room': room}, {$set: {'property': null, 'room': null}}, (err, resp)=>{
+            if(err) console.log(err)
+            else{
+                res.json({'message': 'OK'})
+            }
+        })
+    }
 }

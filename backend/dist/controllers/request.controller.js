@@ -85,6 +85,33 @@ class RequestController {
                 }
             });
         };
+        this.endJob = (req, res) => {
+            let id = req.body.id;
+            let room = req.body.room;
+            request_1.default.findOne({ '_id': id }, (err, request) => {
+                if (err)
+                    console.log(err);
+                else {
+                    let rooms_colors = request.rooms_colors;
+                    rooms_colors[room] = 'green';
+                    request_1.default.updateOne({ '_id': id }, { $set: { 'rooms_colors': rooms_colors } }, (err, resp) => {
+                        if (err)
+                            console.log(err);
+                        else
+                            res.json({ 'message': 'OK' });
+                    });
+                }
+            });
+        };
+        this.pay = (req, res) => {
+            let id = req.body.id;
+            request_1.default.updateOne({ '_id': id }, { $set: { 'active': false, 'status': 3 } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'OK' });
+            });
+        };
     }
 }
 exports.RequestController = RequestController;

@@ -52,4 +52,16 @@ export class RequestService {
     }
     return this.http.post(`${this.uri}/requests/startJob`, data)
   }
+
+  endJob(id, room){
+    const data = {
+      id: id,
+      room: room
+    }
+    return this.http.post(`${this.uri}/requests/endJob`, data)
+  }
+
+  pay(id){
+    return this.http.post(`${this.uri}/requests/pay`, {id: id})
+  }
 }

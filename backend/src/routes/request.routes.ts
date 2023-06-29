@@ -35,4 +35,12 @@ requestRouter.route('/startJob').post(
     (req, res)=> new RequestController().startJob(req, res)
 )
 
+requestRouter.route('/endJob').post(
+    (req, res)=> new RequestController().endJob(req, res)
+)
+
+requestRouter.route('/pay').post(
+    (req, res)=> new RequestController().pay(req, res)
+)
+
 export default requestRouter;

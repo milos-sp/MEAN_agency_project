@@ -32,12 +32,28 @@
         <td *ngIf="r.active">{{r.date_start}}</td>
         <td *ngIf="r.active">{{r.date_end}}</td>
         <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
+        <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)">Plati</button></td>
     </tr>
 </table>
 
 </div>
 <div class="content" *ngIf="content == 2">
-
+    <h2>Završeni poslovi</h2>
+    <table border="2">
+        <tr>
+            <th>Agencija</th>
+            <th>Objekat</th>
+            <th>Datum početka</th>
+            <th>Datum kraja</th>
+        </tr>
+        <tr *ngFor="let r of myRequests">
+            <td *ngIf="!r.active && r.status==3">{{r.agency_username}}</td>
+            <td *ngIf="!r.active && r.status==3">{{propertyMap.get(r.property_id)}}</td>
+            <td *ngIf="!r.active && r.status==3">{{r.date_start}}</td>
+            <td *ngIf="!r.active && r.status==3">{{r.date_end}}</td>
+            <td *ngIf="!r.active && r.status==3"><button (click)="showSketch(r)">Skica</button></td>
+        </tr>
+    </table>
 </div>
 <div class="content" *ngIf="content == 3">
 <table border="2">
@@ -48,10 +64,10 @@
         <th>Datum kraja</th>
     </tr>
     <tr *ngFor="let r of myRequests" [class.rejected]="r.status==2" [class.accepted]="r.status==1">
-        <td *ngIf="!r.active">{{r.agency_username}}</td>
-        <td *ngIf="!r.active">{{propertyMap.get(r.property_id)}}</td>
-        <td *ngIf="!r.active">{{r.date_start}}</td>
-        <td *ngIf="!r.active">{{r.date_end}}</td>
+        <td *ngIf="!r.active && r.status!=3">{{r.agency_username}}</td>
+        <td *ngIf="!r.active && r.status!=3">{{propertyMap.get(r.property_id)}}</td>
+        <td *ngIf="!r.active && r.status!=3">{{r.date_start}}</td>
+        <td *ngIf="!r.active && r.status!=3">{{r.date_end}}</td>
         <td *ngIf="r.status==1 && !r.active">Ponuda: {{r.offer}}</td>
         <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)">Prihvati</button><button (click)="rejectOffer(r)">Odbij</button></td>
     </tr>

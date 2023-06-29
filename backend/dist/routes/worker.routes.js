@@ -9,5 +9,6 @@ const workerRouter = express_1.default.Router();
 workerRouter.route('/getWorkersForAgency').post((req, res) => new worker_controller_1.WorkerController().getWorkersForAgency(req, res));
 workerRouter.route('/getAvailableWorkersForAgency').post((req, res) => new worker_controller_1.WorkerController().getAvailableWorkersForAgency(req, res));
 workerRouter.route('/hireWorker').post((req, res) => new worker_controller_1.WorkerController().hireWorker(req, res));
+workerRouter.route('/dismissWorker').post((req, res) => new worker_controller_1.WorkerController().dismissWorker(req, res));
 exports.default = workerRouter;
 //# sourceMappingURL=worker.routes.js.map

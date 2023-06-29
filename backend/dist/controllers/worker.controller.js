@@ -29,7 +29,6 @@ class WorkerController {
             let id = req.body.id;
             let property = req.body.property;
             let room = req.body.room;
-            //console.log(req.body) //ok je ovo
             worker_1.default.findOneAndUpdate({ '_id': id }, { $set: { 'property': property, 'room': room } }, (err, resp) => {
                 if (err)
                     console.log(err);
@@ -37,16 +36,17 @@ class WorkerController {
                     res.json({ 'message': 'OK' });
                 }
             });
-            // WorkerModel.findOne({'_id': id}, (err, worker)=>{
-            //     if(err) console.log(err)
-            //     else{
-            //         console.log(property)
-            //         console.log(room)
-            //         worker.property = property
-            //         worker.room = room
-            //         console.log(worker)
-            //     }
-            // })
+        };
+        this.dismissWorker = (req, res) => {
+            let property = req.body.property; //moze da ih bude vise
+            let room = req.body.room;
+            worker_1.default.updateMany({ 'property': property, 'room': room }, { $set: { 'property': null, 'room': null } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else {
+                    res.json({ 'message': 'OK' });
+                }
+            });
         };
     }
 }

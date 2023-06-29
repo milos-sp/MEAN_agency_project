@@ -56,7 +56,7 @@
 </div>
 <div class="remove-workers">
     <h3>Završetak posla</h3>
-    Soba: <select name="room" id="room" *ngIf="selectedRequest!=null" [(ngModel)]="selectedRoom">
+    Soba: <select name="room" id="room" *ngIf="selectedRequest!=null" [(ngModel)]="selectedRoom2">
         <option *ngFor="let r of selectedRequest.rooms_colors; let i = index" value="{{i}}">{{'soba '}} {{i+1}}</option>
     </select>
     <select *ngIf="selectedRequest==null" [(ngModel)]="selectedRoom">

@@ -15,4 +15,8 @@ workerRouter.route('/hireWorker').post(
     (req, res)=> new WorkerController().hireWorker(req, res)
 )
 
+workerRouter.route('/dismissWorker').post(
+    (req, res)=> new WorkerController().dismissWorker(req, res)
+)
+
 export default workerRouter;

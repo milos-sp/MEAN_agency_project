@@ -84,4 +84,24 @@ export class ClientJobComponent implements OnInit {
     })
   }
 
+  checkProgress(r: Request){
+    for (let i = 0; i < r.rooms_colors.length; i++) {
+      if(r.rooms_colors[i]!="green"){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  payJob(r: Request){
+    this.requestService.pay(r._id).subscribe((resp)=>{
+      this.requestService.getRequestsC(sessionStorage.getItem('username')).subscribe((data: Request[])=>{
+        const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
+        this.ctx = canvas.getContext('2d');
+        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        this.myRequests = data
+      })
+    })
+  }
+
 }

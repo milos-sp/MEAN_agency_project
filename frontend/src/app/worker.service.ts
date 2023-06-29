@@ -26,4 +26,12 @@ export class WorkerService {
     }
     return this.http.post(`${this.uri}/workers/hireWorker`, data)
   }
+
+  dismissWorker(property, room){
+    const data = {
+      property: property,
+      room: room
+    }
+    return this.http.post(`${this.uri}/workers/dismissWorker`, data)
+  }
 }
