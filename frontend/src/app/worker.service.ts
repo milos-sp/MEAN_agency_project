@@ -34,4 +34,12 @@ export class WorkerService {
     }
     return this.http.post(`${this.uri}/workers/dismissWorker`, data)
   }
+
+  deleteWorker(id){
+    return this.http.post(`${this.uri}/workers/deleteWorker`, {id: id})
+  }
+
+  insertWorker(w){
+    return this.http.post(`${this.uri}/workers/insertWorker`, {worker: w})
+  }
 }

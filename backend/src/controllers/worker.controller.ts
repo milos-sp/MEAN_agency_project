@@ -1,5 +1,6 @@
 import express from 'express';
 import WorkerModel from '../models/worker';
+import WorkerRequestModel from '../models/worker_request';
 
 export class WorkerController{
     getWorkersForAgency = (req: express.Request, res: express.Response)=>{
@@ -40,4 +41,35 @@ export class WorkerController{
             }
         })
     }
+
+    deleteWorker = (req: express.Request, res: express.Response)=>{
+        let id = req.body.id;
+        WorkerModel.deleteOne({'_id': id}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Radnik je izbrisan'})
+        })
+    }
+
+    insertWorker = (req: express.Request, res: express.Response)=>{
+        let worker = req.body.worker
+        WorkerModel.insertMany(worker).then((resp=>{
+            res.json({'message': 'Radnik je dodat!'})
+        }))
+    }
+
+    getRequest = (req: express.Request, res: express.Response)=>{
+        let agency = req.query.agency;
+        WorkerRequestModel.findOne({'agency': agency}, (err, r)=>{
+            if(err) console.log(err)
+            else res.json(r)
+        })
+    }
+
+    addRequest = (req: express.Request, res: express.Response)=>{
+        let agency = req.body.agency;
+        let increment = req.body.increment;
+
+        WorkerRequestModel.insertMany({'agency': agency, 'increment': increment})
+    }
+
 }

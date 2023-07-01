@@ -19,4 +19,20 @@ workerRouter.route('/dismissWorker').post(
     (req, res)=> new WorkerController().dismissWorker(req, res)
 )
 
+workerRouter.route('/deleteWorker').post(
+    (req, res)=> new WorkerController().deleteWorker(req, res)
+)
+
+workerRouter.route('/insertWorker').post(
+    (req, res)=> new WorkerController().insertWorker(req, res)
+)
+
+workerRouter.route('/getRequest').get(
+    (req, res)=> new WorkerController().getRequest(req, res)
+)
+
+workerRouter.route('/addRequest').post(
+    (req, res)=> new WorkerController().addRequest(req, res)
+)
+
 export default workerRouter;

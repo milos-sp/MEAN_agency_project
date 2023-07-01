@@ -20,6 +20,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RequestComponent } from './request/request.component';
 import { AgencyJobComponent } from './agency-job/agency-job.component';
 import { ClientJobComponent } from './client-job/client-job.component';
+import { WorkerComponent } from './worker/worker.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ClientJobComponent } from './client-job/client-job.component';
     LogoutComponent,
     RequestComponent,
     AgencyJobComponent,
-    ClientJobComponent
+    ClientJobComponent,
+    WorkerComponent
   ],
   imports: [
     BrowserModule,

@@ -79,18 +79,27 @@ export class AgencyJobComponent implements OnInit {
     }))
   }
 
+  redRooms(r: Request){
+    let num = 0;
+    for (let i = 0; i < r.rooms_colors.length; i++) {
+      if(r.rooms_colors[i]=="red") num++;
+    }
+    return num;
+  }
+
   showSketch(r: Request){
     let property = new Property();
     this.selectedRequest = r;
     const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
     this.ctx = canvas.getContext('2d');
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let green_num = this.redRooms(r)
     this.propertyService.getPropertyById(r.property_id).subscribe((data: Property)=>{
       property = data;
       this.ctx.strokeStyle = "black";
       //iscrtavanje na canvasu
       for (let i = 0; i < r.rooms_colors.length; i++) {
-        const color = this.myWorkers.length >= r.rooms_colors.length || r.rooms_colors[i]!="transparent" ? r.rooms_colors[i] : "yellow";
+        const color = this.myWorkers.length >= r.rooms_colors.length - green_num || r.rooms_colors[i]!="transparent" ? r.rooms_colors[i] : "yellow";
         this.ctx.fillStyle = color;
         this.ctx.fillRect(property.layout[i].x, property.layout[i].y, property.layout[i].width, property.layout[i].height);
       }

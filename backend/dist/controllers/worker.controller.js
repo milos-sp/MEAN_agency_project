@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkerController = void 0;
 const worker_1 = __importDefault(require("../models/worker"));
+const worker_request_1 = __importDefault(require("../models/worker_request"));
 class WorkerController {
     constructor() {
         this.getWorkersForAgency = (req, res) => {
@@ -47,6 +48,35 @@ class WorkerController {
                     res.json({ 'message': 'OK' });
                 }
             });
+        };
+        this.deleteWorker = (req, res) => {
+            let id = req.body.id;
+            worker_1.default.deleteOne({ '_id': id }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Radnik je izbrisan' });
+            });
+        };
+        this.insertWorker = (req, res) => {
+            let worker = req.body.worker;
+            worker_1.default.insertMany(worker).then((resp => {
+                res.json({ 'message': 'Radnik je dodat!' });
+            }));
+        };
+        this.getRequest = (req, res) => {
+            let agency = req.query.agency;
+            worker_request_1.default.findOne({ 'agency': agency }, (err, r) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(r);
+            });
+        };
+        this.addRequest = (req, res) => {
+            let agency = req.body.agency;
+            let increment = req.body.increment;
+            worker_request_1.default.insertMany({ 'agency': agency, 'increment': increment });
         };
     }
 }

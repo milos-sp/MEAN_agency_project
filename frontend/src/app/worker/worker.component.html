@@ -1,0 +1,47 @@
+<div class="menu">
+    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <a routerLink="/worker">Radnici</a>
+    <a routerLink="/agency-job">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="more-space" *ngIf="!request_exist && free_space<1">
+    <label for="increment">Broj mesta: </label>
+    <input type="text" name="increment" id="increment" [(ngModel)]="increment">
+    <button (click)="addSpace()">Zatraži povećanje</button>
+    <p style="color:red">{{message}}</p>
+</div>
+<div class="workers">
+    <h2>Moji radnici</h2>
+    <table border="2" *ngIf="workers.length>0">
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Specijalizacija</th>
+        </tr>
+        <tr *ngFor="let w of workers">
+            <td>{{w.firstname}}</td>
+            <td>{{w.lastname}}</td>
+            <td>{{w.occupation}}</td>
+            <td><button>Izmeni</button></td>
+            <td><button (click)="deleteWorker(w)">X</button></td>
+        </tr>
+    </table>
+    <p *ngIf="workers.length>0">Broj slobodnih mesta: {{free_space}}</p>
+    <p *ngIf="workers.length==0">Nemate nijednog radnika</p>
+</div>
+<div class="add-worker" *ngIf="free_space>0">
+    <h2>Dodaj radnika</h2>
+    <label for="firstname">Ime: </label>
+    <input type="text" name="firstname" id="firstname" [(ngModel)]="firstname"><br/>
+    <label for="lastname">Prezime: </label>
+    <input type="text" name="lastname" id="lastname" [(ngModel)]="lastname"><br/>
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" [(ngModel)]="email"><br/>
+    <label for="phone">Broj telefona: </label>
+    <input type="text" name="phone" id="phone" [(ngModel)]="phone"><br/>
+    <label for="occupation">Specijalizacija: </label>
+    <input type="text" name="occupation" id="occupation" [(ngModel)]="occupation"><br/>
+    <button (click)="insertWorker()">Dodaj</button>
+    <p style="color: red">{{message}}</p>
+</div>
