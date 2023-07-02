@@ -1,0 +1,20 @@
+<div class="menu">
+    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/profile">Profil</a>
+    <a routerLink="/worker">Radnici</a>
+    <a routerLink="/agency-job">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="data">
+    <label for="firstname">Ime: </label>
+    <input type="text" name="firstname" id="firstname" [(ngModel)]="worker.firstname" value="{{worker.firstname}}"><br/>
+    <label for="lastname">Prezime: </label>
+    <input type="text" name="lastname" id="lastname" [(ngModel)]="worker.lastname" value="{{worker.lastname}}"><br/>
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" [(ngModel)]="worker.email" value="{{worker.email}}"><br/>
+    <label for="telephone">Broj telefona: </label>
+    <input type="text" name="telephone" id="telephone" [(ngModel)]="worker.phone" value="{{worker.phone}}"><br/>
+    <label for="occupation">Specijalizacija: </label>
+    <input type="text" name="occupation" id="occupation" [(ngModel)]="worker.occupation" value="{{worker.occupation}}"><br/>
+    <button (click)="edit()">Izmeni</button>
+</div>

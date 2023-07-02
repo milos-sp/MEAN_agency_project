@@ -18,6 +18,7 @@ export class UserController{
 
     register = (req: express.Request, res: express.Response)=>{
         let user = new PendingUserModel(req.body);
+        user.rejected = false;
 
         user.save((err, resp)=>{
             if(err){
@@ -44,6 +45,13 @@ export class UserController{
         })
     }
 
+    getAllClients = (req: express.Request, res: express.Response)=>{
+        UserModel.find({'type': 'klijent'}, (err, clients)=>{
+            if(err) console.log(err)
+            else res.json(clients)
+        })
+    }
+
     uploadAvatarImage = (req: express.Request, res: express.Response, next: express.NextFunction)=>{
         if(req.file){
             /*console.log(req.file.originalname)
@@ -67,4 +75,43 @@ export class UserController{
         })
     }
 
+    editClient = (req: express.Request, res: express.Response)=>{
+        let client = req.body.client;
+
+        UserModel.replaceOne({'username': client.username}, new UserModel(client), (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Izmenjen klijent'})
+        })
+    }
+
+    getPendingUsers = (req: express.Request, res: express.Response)=>{
+        PendingUserModel.find({'rejected': false}, (err, users)=>{
+            if(err) console.log(err)
+            else res.json(users)
+        })
+    }
+
+    accept = (req: express.Request, res: express.Response)=>{
+        let user = new UserModel(req.body.user)
+        user.save((err, resp)=>{
+            if(err){
+                console.log(err)
+                res.status(400).json({'message': 'greska'})
+            }else{
+                res.json({'message': 'Prihvaćen zahtev za registraciju!'})
+            }
+        })
+        PendingUserModel.updateOne({'username': user.username}, {$set: {'rejected': true}}, (err, resp)=>{
+            if(err) console.log(err)
+        })
+    }
+
+    reject = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+
+        PendingUserModel.updateOne({'username': username}, {$set: {'rejected': true}}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Zahtev je odbijen'})
+        })
+    }
 }

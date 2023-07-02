@@ -5,6 +5,7 @@ import { User } from '../model/user';
 import { UserService } from '../user.service';
 import { WorkerRequestService } from '../worker-request.service';
 import { WorkerRequest } from '../model/worker-request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-worker',
@@ -13,7 +14,8 @@ import { WorkerRequest } from '../model/worker-request';
 })
 export class WorkerComponent implements OnInit {
 
-  constructor(private workerService: WorkerService, private userService: UserService, private workerRequestService: WorkerRequestService) { }
+  constructor(private workerService: WorkerService, private userService: UserService, private workerRequestService: WorkerRequestService, 
+    private router: Router) { }
 
   workers: Worker[] = [];
   agency: User = new User();
@@ -78,6 +80,10 @@ export class WorkerComponent implements OnInit {
     this.workerService.insertWorker(worker).subscribe((resp=>{
       window.location.reload()
     }))
+  }
+
+  editWorker(w: Worker){
+    this.router.navigate(['workers/' + w._id])
   }
 
 }

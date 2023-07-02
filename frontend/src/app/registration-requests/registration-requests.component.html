@@ -1,0 +1,26 @@
+<div class="menu">
+    <a routerLink="/admin" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/registration-requests">Zahtevi</a>
+    <a routerLink="/admin-jobs">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="requests">
+    <h2>Zahtevi za registraciju</h2>
+    <table border="2" *ngIf="requests.length>0">
+        <tr>
+            <th>Korisničko ime</th>
+            <th>Email</th>
+            <th>Broj telefona</th>
+            <th>Tip</th>
+        </tr>
+        <tr *ngFor="let r of requests">
+            <td>{{r.username}}</td>
+            <td>{{r.email}}</td>
+            <td>{{r.telephone}}</td>
+            <td>{{r.type}}</td>
+            <td><button (click)="accept(r)">Odobri</button></td>
+            <td><button (click)="reject(r)">Odbij</button></td>
+        </tr>
+    </table>
+    <h3 *ngIf="requests.length==0">Nemate nijedan zahtev</h3>
+</div>

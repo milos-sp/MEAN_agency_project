@@ -64,11 +64,35 @@ export class UserService {
     return this.http.get(`${this.uri}/agency/getAllAgencies`)
   }
 
+  getAllClients(){
+    return this.http.get(`${this.uri}/users/getAllClients`)
+  }
+
   searchAgencies(agency, address){
     const data = {
       agency: agency,
       address: address
     }
     return this.http.post(`${this.uri}/agency/searchAgencies`, data)
+  }
+
+  editClient(client){
+    return this.http.post(`${this.uri}/users/editClient`, {client: client})
+  }
+
+  editAgency(agency){
+    return this.http.post(`${this.uri}/agency/editAgency`, {agency: agency})
+  }
+
+  getPendingUsers(){
+    return this.http.get(`${this.uri}/users/getPendingUsers`)
+  }
+
+  acceptRequest(req){
+    return this.http.post(`${this.uri}/users/accept`, {user: req})
+  }
+
+  rejectRequest(req){
+    return this.http.post(`${this.uri}/users/reject`, {username: req.username})
   }
 }

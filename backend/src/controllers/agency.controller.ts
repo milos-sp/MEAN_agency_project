@@ -19,4 +19,13 @@ export class AgencyController{
             else res.json(agencies)
         })
     }
+
+    editAgency = (req: express.Request, res: express.Response)=>{
+        let agency = req.body.agency;
+
+        UserModel.replaceOne({'username': agency.username}, new UserModel(agency), (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Izmenjena agencija'})
+        })
+    }
 }

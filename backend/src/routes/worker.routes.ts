@@ -35,4 +35,12 @@ workerRouter.route('/addRequest').post(
     (req, res)=> new WorkerController().addRequest(req, res)
 )
 
+workerRouter.route('/getWorker').get(
+    (req, res)=> new WorkerController().getWorker(req, res)
+)
+
+workerRouter.route('/editWorker').post(
+    (req, res)=> new WorkerController().editWorker(req, res)
+)
+
 export default workerRouter;

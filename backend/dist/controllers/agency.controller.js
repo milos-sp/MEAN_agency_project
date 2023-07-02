@@ -25,6 +25,15 @@ class AgencyController {
                     res.json(agencies);
             });
         };
+        this.editAgency = (req, res) => {
+            let agency = req.body.agency;
+            user_1.default.replaceOne({ 'username': agency.username }, new user_1.default(agency), (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Izmenjena agencija' });
+            });
+        };
     }
 }
 exports.AgencyController = AgencyController;

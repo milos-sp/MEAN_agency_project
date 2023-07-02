@@ -54,6 +54,9 @@ let PendingUser = new Schema({
     },
     workers_number: {
         type: Number
+    },
+    rejected: {
+        type: Boolean
     }
 })
 

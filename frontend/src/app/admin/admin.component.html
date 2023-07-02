@@ -1,1 +1,44 @@
-<p>admin works!</p>
+<div class="menu">
+    <a routerLink="/admin" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/registration-requests">Zahtevi</a>
+    <a routerLink="/admin-jobs">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="choose">
+    <button (click)="changeType(1)">Klijenti</button>
+    <button (click)="changeType(2)">Agencije</button>
+</div>
+<div class="users" *ngIf="userType==1">
+    <h2>Klijenti</h2>
+<table border="2">
+    <tr>
+        <th>Korisničko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+    </tr>
+    <tr *ngFor="let c of clients" (click)="showProfile(c)">
+        <td>{{c.username}}</td>
+        <td>{{c.firstname}}</td>
+        <td>{{c.lastname}}</td>
+        <td>{{c.email}}</td>
+    </tr>
+</table>
+</div>
+<div class="users" *ngIf="userType==2">
+    <h2>Agencije</h2>
+<table border="2">
+    <tr>
+        <th>Korisničko ime</th>
+        <th>Naziv</th>
+        <th>Adresa</th>
+        <th>Email</th>
+    </tr>
+    <tr *ngFor="let a of agencies" (click)="showProfile(a)">
+        <td>{{a.username}}</td>
+        <td>{{a.agency}}</td>
+        <td>{{a.address_string}}</td>
+        <td>{{a.email}}</td>
+    </tr>
+</table>
+</div>

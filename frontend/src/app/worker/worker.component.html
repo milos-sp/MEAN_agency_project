@@ -19,11 +19,10 @@
             <th>Prezime</th>
             <th>Specijalizacija</th>
         </tr>
-        <tr *ngFor="let w of workers">
+        <tr *ngFor="let w of workers" (click)="editWorker(w)">
             <td>{{w.firstname}}</td>
             <td>{{w.lastname}}</td>
             <td>{{w.occupation}}</td>
-            <td><button>Izmeni</button></td>
             <td><button (click)="deleteWorker(w)">X</button></td>
         </tr>
     </table>

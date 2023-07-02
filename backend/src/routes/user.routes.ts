@@ -38,6 +38,10 @@ userRouter.route('/getUsers').get(
     (req, res)=> new UserController().getUsers(req, res)
 )
 
+userRouter.route('/getAllClients').get(
+  (req, res)=> new UserController().getAllClients(req, res)
+)
+
 userRouter.route('/getUserByUsername').post(
   (req, res)=> new UserController().getUserByUsername(req, res)
 )
@@ -48,6 +52,22 @@ userRouter.route('/:username/uploadAvatarImage').post(upload.single('avatar_imag
 
 userRouter.route('/addDefaulltImage').post(
     (req, res)=> new UserController().addDefaultImage(req, res)
+)
+
+userRouter.route('/editClient').post(
+  (req, res)=> new UserController().editClient(req, res)
+)
+
+userRouter.route('/getPendingUsers').get(
+  (req, res)=> new UserController().getPendingUsers(req, res)
+)
+
+userRouter.route('/accept').post(
+  (req, res)=> new UserController().accept(req, res)
+)
+
+userRouter.route('/reject').post(
+  (req, res)=> new UserController().reject(req, res)
 )
 
 export default userRouter;

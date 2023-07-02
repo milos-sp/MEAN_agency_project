@@ -11,4 +11,8 @@ agencyRouter.route('/searchAgencies').post(
     (req, res)=> new AgencyController().searchAgencies(req, res)
 )
 
+agencyRouter.route('/editAgency').post(
+    (req, res)=> new AgencyController().editAgency(req, res)
+)
+
 export default agencyRouter;

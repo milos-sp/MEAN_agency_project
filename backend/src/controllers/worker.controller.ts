@@ -72,4 +72,23 @@ export class WorkerController{
         WorkerRequestModel.insertMany({'agency': agency, 'increment': increment})
     }
 
+    getWorker = (req: express.Request, res: express.Response)=>{
+        let id = req.query.id;
+
+        WorkerModel.findOne({'_id': id}, (err, worker)=>{
+            if(err) console.log(err)
+            else res.json(worker)
+        })
+    }
+
+    editWorker = (req: express.Request, res: express.Response)=>{
+        let worker = req.body.worker;
+        
+        WorkerModel.updateOne({'_id': worker._id}, {$set: {'firstname': worker.firstname, 'lastname': worker.lastname, 
+        'phone': worker.phone, 'email': worker.email, 'occupation': worker.occupation}}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Radnik je ažuriran'})
+        })
+    }
+
 }

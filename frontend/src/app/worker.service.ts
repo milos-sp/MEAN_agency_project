@@ -42,4 +42,12 @@ export class WorkerService {
   insertWorker(w){
     return this.http.post(`${this.uri}/workers/insertWorker`, {worker: w})
   }
+
+  getWorker(id){
+    return this.http.get(`${this.uri}/workers/getWorker?id=${id}`)
+  }
+
+  editWorker(w){
+    return this.http.post(`${this.uri}/workers/editWorker`, {worker: w})
+  }
 }

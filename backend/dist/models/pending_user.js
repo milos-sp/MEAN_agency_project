@@ -57,6 +57,9 @@ let PendingUser = new Schema({
     },
     workers_number: {
         type: Number
+    },
+    rejected: {
+        type: Boolean
     }
 });
 exports.default = mongoose_1.default.model('PendingUserModel', PendingUser, 'pending_users');
