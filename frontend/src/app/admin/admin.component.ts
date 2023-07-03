@@ -34,4 +34,19 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['profiles/'+u.username])
   }
 
+  deleteUser(u: User){
+    this.userService.deleteUser(u.username).subscribe((resp=>{
+      console.log(resp['message'])
+      if(u.type=='klijent'){
+        this.userService.getAllClients().subscribe((data: User[])=>{
+          this.clients = data
+        })
+      }else{
+        this.userService.getAllAgencies().subscribe((data: User[])=>{
+          this.agencies = data
+        })
+      }
+    }))
+  }
+
 }

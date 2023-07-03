@@ -112,6 +112,14 @@ class RequestController {
                     res.json({ 'message': 'OK' });
             });
         };
+        this.getAllJobs = (req, res) => {
+            request_1.default.find({ $or: [{ 'active': true }, { 'status': 3 }] }, (err, jobs) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(jobs);
+            });
+        };
     }
 }
 exports.RequestController = RequestController;

@@ -24,6 +24,14 @@ class ImageController {
                     res.json(image);
             });
         };
+        this.deleteImage = (req, res) => {
+            image_1.default.deleteOne({ 'username': req.body.username }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Deleted' });
+            });
+        };
     }
 }
 exports.ImageController = ImageController;

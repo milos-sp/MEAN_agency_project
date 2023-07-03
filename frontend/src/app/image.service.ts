@@ -17,4 +17,8 @@ export class ImageService {
   getImageByUsername(username){
     return this.http.post(`${this.uri}/image/getImageByUsername`, {username: username})
   }
+
+  deleteImage(username){
+    return this.http.post(`${this.uri}/image/deleteImage`, {username: username})
+  }
 }

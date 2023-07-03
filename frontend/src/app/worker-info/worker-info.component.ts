@@ -14,8 +14,10 @@ export class WorkerInfoComponent implements OnInit {
 
   id: string;
   worker: Worker = new Worker();
+  admin: boolean;
 
   ngOnInit(): void {
+    this.admin = sessionStorage.getItem('username') == null;
     this.id = this.activeRouter.snapshot.paramMap.get('id')
     this.workerService.getWorker(this.id).subscribe((data: Worker)=>{
       this.worker = data

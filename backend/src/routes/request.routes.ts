@@ -43,4 +43,8 @@ requestRouter.route('/pay').post(
     (req, res)=> new RequestController().pay(req, res)
 )
 
+requestRouter.route('/getAllJobs').get(
+    (req, res)=> new RequestController().getAllJobs(req, res)
+)
+
 export default requestRouter;

@@ -18,6 +18,7 @@ import { ClientJobComponent } from './client-job/client-job.component';
 import { WorkerComponent } from './worker/worker.component';
 import { WorkerInfoComponent } from './worker-info/worker-info.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
+import { AdminJobsComponent } from './admin-jobs/admin-jobs.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -38,7 +39,8 @@ const routes: Routes = [
   {path: "worker", component: WorkerComponent},
   {path: "workers/:id", component: WorkerInfoComponent},
   {path: "profiles/:username", component: ProfileComponent},
-  {path: "registration-requests", component: RegistrationRequestsComponent}
+  {path: "registration-requests", component: RegistrationRequestsComponent},
+  {path: "admin-jobs", component: AdminJobsComponent}
 ];
 
 @NgModule({

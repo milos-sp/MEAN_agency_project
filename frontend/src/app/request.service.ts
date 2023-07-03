@@ -64,4 +64,8 @@ export class RequestService {
   pay(id){
     return this.http.post(`${this.uri}/requests/pay`, {id: id})
   }
+
+  getAllJobs(){
+    return this.http.get(`${this.uri}/requests/getAllJobs`)
+  }
 }

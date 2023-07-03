@@ -22,7 +22,8 @@
 <h1>Profil</h1>
 <div class="image-div">
 <img src="{{image.imageUrl}}" height="100px" width="100px">
-<button>Izmeni</button>
+<input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)">
+<button (click)="editImage()" *ngIf="selectedImage">Izmeni</button>
 </div>
 <div class="data" *ngIf="user.type=='klijent'">
     <label for="firstname">Ime: </label>
@@ -47,4 +48,38 @@
     <label for="telephone">Broj telefona: </label>
     <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
     <button (click)="editUser(true)">Izmeni</button>
+</div>
+<div class="workers" *ngIf="user.type=='agencija' && admin">
+    <table border="2">
+        <h2>Radnici</h2>
+        <tr>
+            <th>Ime i prezime</th>
+            <th>Specijalizacija</th>
+        </tr>
+        <tr *ngFor="let w of workers">
+            <td>{{w.firstname}} {{w.lastname}}</td>
+            <td>{{w.occupation}}</td>
+            <td><button (click)="editWorker(w)">Izmeni</button></td>
+            <td><button (click)="deleteWorker(w)">X</button></td>
+        </tr>
+    </table>
+    <div class="req" *ngIf="workerReq!=null">
+        <h2>Zahtev za proširenjem</h2>
+        <p>Broj mesta: {{workerReq.increment}} <button (click)="accept()">Odobri</button>&nbsp;<button (click)="reject()">Odbij</button></p>
+    </div>
+</div>
+<div class="add-worker" style="width: 60%;" *ngIf="user.type=='agencija' && admin">
+    <h2>Dodaj radnika</h2>
+    <label for="firstname">Ime: </label>
+    <input type="text" name="firstname" id="firstname" [(ngModel)]="workernew.firstname"><br/>
+    <label for="lastname">Prezime: </label>
+    <input type="text" name="lastname" id="lastname" [(ngModel)]="workernew.lastname"><br/>
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email" [(ngModel)]="workernew.email"><br/>
+    <label for="phone">Broj telefona: </label>
+    <input type="text" name="phone" id="phone" [(ngModel)]="workernew.phone"><br/>
+    <label for="occupation">Specijalizacija: </label>
+    <input type="text" name="occupation" id="occupation" [(ngModel)]="workernew.occupation"><br/>
+    <button (click)="insertWorker()">Dodaj</button>
+    <p style="color: red">{{message}}</p>
 </div>

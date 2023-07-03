@@ -8,5 +8,6 @@ const image_controller_1 = require("../controllers/image.controller");
 const imageRouter = express_1.default.Router();
 imageRouter.route('/getImages').get((req, res) => new image_controller_1.ImageController().getImages(req, res));
 imageRouter.route('/getImageByUsername').post((req, res) => new image_controller_1.ImageController().getImageByUsername(req, res));
+imageRouter.route('/deleteImage').post((req, res) => new image_controller_1.ImageController().deleteImage(req, res));
 exports.default = imageRouter;
 //# sourceMappingURL=image.routes.js.map

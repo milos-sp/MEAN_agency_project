@@ -60,10 +60,8 @@ class UserController {
         };
         this.uploadAvatarImage = (req, res, next) => {
             if (req.file) {
-                /*console.log(req.file.originalname)
-                console.log(req.file.filename)
-                console.log(req.params.username)*/
-                let imageDB = new image_1.default({ 'username': req.params.username, 'imageUrl': 'http://127.0.0.1:4000/uploads/' + req.file.originalname });
+                let imageDB = new image_1.default({ 'username': req.params.username, 'imageUrl': 'http://127.0.0.1:4000/uploads/' +
+                        Math.floor(new Date().getTime() / 1000) + '-' + req.file.originalname });
                 imageDB.save((err, resp) => {
                     if (err)
                         console.log(err);
@@ -124,6 +122,25 @@ class UserController {
                     console.log(err);
                 else
                     res.json({ 'message': 'Zahtev je odbijen' });
+            });
+        };
+        this.deleteUser = (req, res) => {
+            let username = req.body.username;
+            user_1.default.deleteOne({ 'username': username }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Uspelo je brisanje!' });
+            });
+        };
+        this.acceptExpansionRequest = (req, res) => {
+            let agency = req.body.agency;
+            let increment = req.body.increment;
+            user_1.default.findOneAndUpdate({ 'username': agency }, { $inc: { 'workers_number': increment } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Dodata nova mesta za radnike!' });
             });
         };
     }

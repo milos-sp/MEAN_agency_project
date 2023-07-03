@@ -95,4 +95,8 @@ export class UserService {
   rejectRequest(req){
     return this.http.post(`${this.uri}/users/reject`, {username: req.username})
   }
+
+  deleteUser(username){
+    return this.http.post(`${this.uri}/users/deleteUser`, {username: username})
+  }
 }

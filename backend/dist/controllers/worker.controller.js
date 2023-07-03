@@ -97,6 +97,15 @@ class WorkerController {
                     res.json({ 'message': 'Radnik je ažuriran' });
             });
         };
+        this.deleteRequest = (req, res) => {
+            let agency = req.body.agency;
+            worker_request_1.default.deleteOne({ 'agency': agency }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Zahtev je odbijen' });
+            });
+        };
     }
 }
 exports.WorkerController = WorkerController;

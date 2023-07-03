@@ -1,0 +1,28 @@
+<div class="menu">
+    <a routerLink="/admin" style="font-weight: bold; width: 5%;">⌂</a>
+    <a routerLink="/registration-requests">Zahtevi</a>
+    <a routerLink="/admin-jobs">Poslovi</a>
+    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+</div>
+<div class="jobs">
+    <table border="2">
+        <tr>
+            <th>Agencija</th>
+            <th>Klijent</th>
+            <th>Objekat</th>
+            <th>Datum početka</th>
+            <th>Datum kraja</th>
+        </tr>
+        <tr *ngFor="let j of allJobs">
+            <td>{{j.agency_username}}</td>
+            <td>{{j.client_username}}</td>
+            <td>{{propertyMap.get(j.property_id)}}</td>
+            <td>{{j.date_start}}</td>
+            <td>{{j.date_end}}</td>
+            <td><button (click)="showSketch(j)">Skica</button></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
+</div>

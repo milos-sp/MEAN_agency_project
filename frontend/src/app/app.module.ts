@@ -23,6 +23,7 @@ import { ClientJobComponent } from './client-job/client-job.component';
 import { WorkerComponent } from './worker/worker.component';
 import { WorkerInfoComponent } from './worker-info/worker-info.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
+import { AdminJobsComponent } from './admin-jobs/admin-jobs.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RegistrationRequestsComponent } from './registration-requests/registrat
     ClientJobComponent,
     WorkerComponent,
     WorkerInfoComponent,
-    RegistrationRequestsComponent
+    RegistrationRequestsComponent,
+    AdminJobsComponent
   ],
   imports: [
     BrowserModule,

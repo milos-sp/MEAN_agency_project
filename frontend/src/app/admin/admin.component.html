@@ -22,6 +22,7 @@
         <td>{{c.firstname}}</td>
         <td>{{c.lastname}}</td>
         <td>{{c.email}}</td>
+        <td><button (click)="deleteUser(c)">X</button></td>
     </tr>
 </table>
 </div>
@@ -34,11 +35,12 @@
         <th>Adresa</th>
         <th>Email</th>
     </tr>
-    <tr *ngFor="let a of agencies" (click)="showProfile(a)">
-        <td>{{a.username}}</td>
-        <td>{{a.agency}}</td>
-        <td>{{a.address_string}}</td>
-        <td>{{a.email}}</td>
+    <tr *ngFor="let a of agencies">
+        <td (click)="showProfile(a)">{{a.username}}</td>
+        <td (click)="showProfile(a)">{{a.agency}}</td>
+        <td (click)="showProfile(a)">{{a.address_string}}</td>
+        <td (click)="showProfile(a)">{{a.email}}</td>
+        <td><button (click)="deleteUser(a)">X</button></td>
     </tr>
 </table>
 </div>

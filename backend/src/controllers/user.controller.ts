@@ -54,10 +54,8 @@ export class UserController{
 
     uploadAvatarImage = (req: express.Request, res: express.Response, next: express.NextFunction)=>{
         if(req.file){
-            /*console.log(req.file.originalname)
-            console.log(req.file.filename)
-            console.log(req.params.username)*/
-            let imageDB = new ImageModel({'username': req.params.username, 'imageUrl': 'http://127.0.0.1:4000/uploads/' + req.file.originalname})
+            let imageDB = new ImageModel({'username': req.params.username, 'imageUrl': 'http://127.0.0.1:4000/uploads/' + 
+            Math.floor(new Date().getTime()/1000) + '-' + req.file.originalname})
             imageDB.save((err, resp)=>{
                 if(err) console.log(err)
                 else res.json({'message': 'Uspeo je upload'})
@@ -112,6 +110,25 @@ export class UserController{
         PendingUserModel.updateOne({'username': username}, {$set: {'rejected': true}}, (err, resp)=>{
             if(err) console.log(err)
             else res.json({'message': 'Zahtev je odbijen'})
+        })
+    }
+
+    deleteUser = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+
+        UserModel.deleteOne({'username': username}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Uspelo je brisanje!'})
+        })
+    }
+
+    acceptExpansionRequest = (req: express.Request, res: express.Response)=>{
+        let agency = req.body.agency;
+        let increment = req.body.increment;
+
+        UserModel.findOneAndUpdate({'username': agency}, {$inc: {'workers_number': increment}}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Dodata nova mesta za radnike!'})
         })
     }
 }

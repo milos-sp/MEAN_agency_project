@@ -91,4 +91,13 @@ export class WorkerController{
         })
     }
 
+    deleteRequest = (req: express.Request, res: express.Response)=>{
+        let agency = req.body.agency;
+
+        WorkerRequestModel.deleteOne({'agency': agency}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Zahtev je odbijen'})
+        })
+    }
+
 }

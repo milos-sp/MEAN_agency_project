@@ -43,4 +43,8 @@ workerRouter.route('/editWorker').post(
     (req, res)=> new WorkerController().editWorker(req, res)
 )
 
+workerRouter.route('/deleteRequest').post(
+    (req, res)=> new WorkerController().deleteRequest(req, res)
+)
+
 export default workerRouter;

@@ -19,4 +19,11 @@ export class ImageController{
             else res.json(image)
         })
     }
+
+    deleteImage = (req: express.Request, res: express.Response)=>{
+        ImageModel.deleteOne({'username': req.body.username}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Deleted'})
+        })
+    }
 }

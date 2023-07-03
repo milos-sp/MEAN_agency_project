@@ -16,5 +16,6 @@ workerRouter.route('/getRequest').get((req, res) => new worker_controller_1.Work
 workerRouter.route('/addRequest').post((req, res) => new worker_controller_1.WorkerController().addRequest(req, res));
 workerRouter.route('/getWorker').get((req, res) => new worker_controller_1.WorkerController().getWorker(req, res));
 workerRouter.route('/editWorker').post((req, res) => new worker_controller_1.WorkerController().editWorker(req, res));
+workerRouter.route('/deleteRequest').post((req, res) => new worker_controller_1.WorkerController().deleteRequest(req, res));
 exports.default = workerRouter;
 //# sourceMappingURL=worker.routes.js.map

@@ -100,4 +100,11 @@ export class RequestController{
                     else res.json({'message': 'OK'})
         })
     }
+
+    getAllJobs = (req: express.Request, res: express.Response)=>{
+        RequestModel.find({$or: [{'active': true}, {'status': 3}]}, (err, jobs)=>{
+            if(err) console.log(err)
+            else res.json(jobs)
+        })
+    }
 }

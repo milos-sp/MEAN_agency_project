@@ -21,4 +21,12 @@ export class WorkerRequestService {
     }
     return this.http.post(`${this.uri}/workers/addRequest`, data)
   }
+
+  deleteRequest(agency){
+    return this.http.post(`${this.uri}/workers/deleteRequest`, {agency: agency})
+  }
+
+  acceptExpansionRequest(agency, increment){
+    return this.http.post(`${this.uri}/users/acceptExpansionRequest`, {agency: agency, increment: increment})
+  }
 }
