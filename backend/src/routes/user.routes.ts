@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
       cb(null, 'src/uploads/');
     },
     filename: function(req, file, cb) {
-      cb(null, Math.floor(new Date().getTime()/1000) + '-' + file.originalname); //new Date().toISOString().slice()
+      cb(null, Math.floor(new Date().getTime()/1000) + '-' + file.originalname);
     }
   });
   
@@ -72,6 +72,10 @@ userRouter.route('/reject').post(
 
 userRouter.route('/deleteUser').post(
   (req, res)=> new UserController().deleteUser(req, res)
+)
+
+userRouter.route('/addUser').post(
+  (req, res)=> new UserController().addUser(req, res)
 )
 
 userRouter.route('/acceptExpansionRequest').post(

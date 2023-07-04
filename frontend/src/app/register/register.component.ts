@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   telephone: string;
   type: string = "";
   message: string = "";
+  admin: boolean;
   //picture: Image;
   //za klijenta
   firstname: string = null;
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
   image: File;
 
   ngOnInit(): void {
+    this.admin = sessionStorage.getItem("logged") == "admin"
   }
 
   register(){
@@ -66,14 +68,23 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.address_string = this.address.country + ' ' + this.address.city + ' ' + this.address.street + ' ' + this.address.street_n;
-    this.userService.register(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
-      this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
-        if(!this.selectedImage){
-          this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
-        }
-        alert(resp['message'])
-        this.router.navigate([''])
-      })
+    if(this.admin){
+      this.userService.addUser(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
+        this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
+          if(!this.selectedImage){
+            this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
+          }
+          this.router.navigate(['admin'])
+        })
+    }else{
+      this.userService.register(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
+        this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
+          if(!this.selectedImage){
+            this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
+          }
+          this.router.navigate([''])
+        })
+    }
   }
 
   imageSelected(event){

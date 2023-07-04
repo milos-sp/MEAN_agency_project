@@ -133,6 +133,18 @@ class UserController {
                     res.json({ 'message': 'Uspelo je brisanje!' });
             });
         };
+        this.addUser = (req, res) => {
+            let user = new user_1.default(req.body);
+            user.save((err, resp) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).json({ 'message': 'greska' });
+                }
+                else {
+                    res.json({ 'message': 'Uspešno poslat zahtev za registraciju!' });
+                }
+            });
+        };
         this.acceptExpansionRequest = (req, res) => {
             let agency = req.body.agency;
             let increment = req.body.increment;

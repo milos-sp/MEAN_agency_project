@@ -99,4 +99,24 @@ export class UserService {
   deleteUser(username){
     return this.http.post(`${this.uri}/users/deleteUser`, {username: username})
   }
+
+  addUser(username, password, email, telephone, type, firstname, lastname, agency, address, agencyID, description, address_string){
+    const data = { //dodati address_string
+      username: username,
+      password: password,
+      email: email,
+      telephone: telephone,
+      type: type,
+      firstname: firstname,
+      lastname: lastname,
+      agency: agency,
+      address: address,
+      agencyID: agencyID,
+      description: description,
+      address_string: address_string,
+      workers_number: 0
+    }
+    return this.http.post(`${this.uri}/users/addUser`, data)
+  }
+
 }

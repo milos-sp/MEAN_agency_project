@@ -7,6 +7,7 @@
 <div class="choose">
     <button (click)="changeType(1)">Klijenti</button>
     <button (click)="changeType(2)">Agencije</button>
+    <a routerLink="/add-user">Dodaj korisnika</a>
 </div>
 <div class="users" *ngIf="userType==1">
     <h2>Klijenti</h2>

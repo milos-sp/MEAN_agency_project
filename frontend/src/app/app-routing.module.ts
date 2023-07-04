@@ -40,7 +40,8 @@ const routes: Routes = [
   {path: "workers/:id", component: WorkerInfoComponent},
   {path: "profiles/:username", component: ProfileComponent},
   {path: "registration-requests", component: RegistrationRequestsComponent},
-  {path: "admin-jobs", component: AdminJobsComponent}
+  {path: "admin-jobs", component: AdminJobsComponent},
+  {path: "add-user", component: RegisterComponent}
 ];
 
 @NgModule({

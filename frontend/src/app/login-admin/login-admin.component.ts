@@ -27,6 +27,7 @@ export class LoginAdminComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe((user: User)=>{
       if(user != null){
         if(user.type == 'admin'){
+          sessionStorage.setItem("logged", user.type)
           this.router.navigate(['admin'])
         }else{
           this.message = "Nepostojeće korisničko ime ili pogrešna lozinka"

@@ -12,7 +12,7 @@ const storage = multer_1.default.diskStorage({
         cb(null, 'src/uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, Math.floor(new Date().getTime() / 1000) + '-' + file.originalname); //new Date().toISOString().slice()
+        cb(null, Math.floor(new Date().getTime() / 1000) + '-' + file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -41,6 +41,7 @@ userRouter.route('/getPendingUsers').get((req, res) => new user_controller_1.Use
 userRouter.route('/accept').post((req, res) => new user_controller_1.UserController().accept(req, res));
 userRouter.route('/reject').post((req, res) => new user_controller_1.UserController().reject(req, res));
 userRouter.route('/deleteUser').post((req, res) => new user_controller_1.UserController().deleteUser(req, res));
+userRouter.route('/addUser').post((req, res) => new user_controller_1.UserController().addUser(req, res));
 userRouter.route('/acceptExpansionRequest').post((req, res) => new user_controller_1.UserController().acceptExpansionRequest(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

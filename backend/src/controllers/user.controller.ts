@@ -122,6 +122,19 @@ export class UserController{
         })
     }
 
+    addUser = (req: express.Request, res: express.Response)=>{
+        let user = new UserModel(req.body);
+
+        user.save((err, resp)=>{
+            if(err){
+                console.log(err)
+                res.status(400).json({'message': 'greska'})
+            }else{
+                res.json({'message': 'Uspešno poslat zahtev za registraciju!'})
+            }
+        })
+    }
+
     acceptExpansionRequest = (req: express.Request, res: express.Response)=>{
         let agency = req.body.agency;
         let increment = req.body.increment;
