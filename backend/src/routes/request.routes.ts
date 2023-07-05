@@ -47,4 +47,8 @@ requestRouter.route('/getAllJobs').get(
     (req, res)=> new RequestController().getAllJobs(req, res)
 )
 
+requestRouter.route('/deleteRequests').post(
+    (req, res)=> new RequestController().deleteRequests(req, res)
+)
+
 export default requestRouter;

@@ -119,4 +119,12 @@ export class UserService {
     return this.http.post(`${this.uri}/users/addUser`, data)
   }
 
+  changePassword(username, password){
+    const data = {
+      username: username,
+      password: password
+    }
+    return this.http.post(`${this.uri}/users/changePassword`, data)
+  }
+
 }

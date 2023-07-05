@@ -155,6 +155,16 @@ class UserController {
                     res.json({ 'message': 'Dodata nova mesta za radnike!' });
             });
         };
+        this.changePassword = (req, res) => {
+            let username = req.body.username;
+            let password = req.body.password;
+            user_1.default.updateOne({ 'username': username }, { $set: { 'password': password } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Lozinka je promenjena' });
+            });
+        };
     }
 }
 exports.UserController = UserController;

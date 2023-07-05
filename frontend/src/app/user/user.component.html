@@ -12,4 +12,14 @@
     <a routerLink="/client-job">Poslovi</a>
     <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
-<h1>{{username}}</h1>
+<div class="password-change">
+    <h2>Promena lozinke</h2>
+    <label for="old">Stara lozinka: </label>
+    <input type="password" name="old" id="old" [(ngModel)]="oldPassword"><br/>
+    <label for="new1">Nova lozinka: </label>
+    <input type="password" name="new1" id="new1" [(ngModel)]="newPassword1"><br/>
+    <label for="new2">Ponovite novu lozniku: </label>
+    <input type="password" name="new2" id="new2" [(ngModel)]="newPassword2"><br/>
+    <button (click)="changePassword()">Promeni</button>
+    <p style="color: red;">{{message}}</p>
+</div>

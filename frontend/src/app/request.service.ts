@@ -68,4 +68,8 @@ export class RequestService {
   getAllJobs(){
     return this.http.get(`${this.uri}/requests/getAllJobs`)
   }
+
+  deleteRequestsWithProperty(property_id){
+    return this.http.post(`${this.uri}/requests/deleteRequests`, {property_id: property_id})
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from '../model/address';
-import { ActivatedRoute } from '@angular/router';
+import { User } from '../model/user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-agency',
@@ -9,14 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AgencyComponent implements OnInit {
 
-  constructor(private activeRouter: ActivatedRoute) { }
+  constructor(private userService: UserService) { }
 
   address: Address;
   country: string;
   name: string;
+  loggedUser: User = new User();
+  oldPassword: string = null;
+  newPassword1: string = null;
+  newPassword2: string = null;
 
   ngOnInit(): void {
-    //this.country = sessionStorage.getItem('country')
+    this.userService.getUserByUsername(sessionStorage.getItem('username')).subscribe((data: User)=>{
+      this.loggedUser = data
+    })
+  }
+
+  changePassword(){
     
   }
 

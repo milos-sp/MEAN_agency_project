@@ -17,5 +17,6 @@ requestRouter.route('/startJob').post((req, res) => new request_controller_1.Req
 requestRouter.route('/endJob').post((req, res) => new request_controller_1.RequestController().endJob(req, res));
 requestRouter.route('/pay').post((req, res) => new request_controller_1.RequestController().pay(req, res));
 requestRouter.route('/getAllJobs').get((req, res) => new request_controller_1.RequestController().getAllJobs(req, res));
+requestRouter.route('/deleteRequests').post((req, res) => new request_controller_1.RequestController().deleteRequests(req, res));
 exports.default = requestRouter;
 //# sourceMappingURL=request.routes.js.map

@@ -30,9 +30,8 @@ class ImageController {
                     console.log(err);
                 else {
                     if (image.imageUrl.slice(30) != "avatar_default.png") {
+                        //ako nije ona default slika onda je briše
                         let path = 'src//' + image.imageUrl.slice(22);
-                        console.log(path);
-                        console.log(image.imageUrl.slice(30));
                         fs_1.default.unlink(path, (err) => {
                             if (err) {
                                 console.log(err);

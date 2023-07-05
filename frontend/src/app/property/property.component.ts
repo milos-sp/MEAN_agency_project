@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Property } from '../model/property';
 import { PropertyService } from '../property.service';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-property',
@@ -11,7 +12,7 @@ import { PropertyService } from '../property.service';
 
 export class PropertyComponent implements OnInit {
 
-  constructor(private propertyService: PropertyService) { }
+  constructor(private propertyService: PropertyService, private requestService: RequestService) { }
 
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
 
@@ -45,9 +46,11 @@ export class PropertyComponent implements OnInit {
 
   delete(property: Property){
     this.propertyService.deleteProperty(property._id).subscribe((resp=>{
-      alert(resp['message'])
+      console.log(resp['message'])
+      this.requestService.deleteRequestsWithProperty(property._id).subscribe((resp=>{
+        window.location.reload()
+      }))
     }))
-    window.location.reload()
   }
 
 }
