@@ -14,7 +14,7 @@ export class LoginAdminComponent implements OnInit {
 
   username: string;
   password: string;
-  message: string = "";
+  message: string = null;
 
   ngOnInit(): void {
   }

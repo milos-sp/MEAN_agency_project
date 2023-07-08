@@ -24,14 +24,11 @@ export class RequestComponent implements OnInit {
   ngOnInit(): void {
     this.propertyService.getPropertiesByUsername(sessionStorage.getItem('username')).subscribe((data: Property[])=>{
       this.properties = data
-      //this.property_id = this.properties[0]._id
-      //this.property = this.properties[0]
     })
   }
 
   sendRequest(){
     this.property = this.properties[this.index]
-    console.log(this.properties[this.index])
     if(!this.date_start || !this.date_end){
       this.message = 'Unesite oba datuma';
       return;

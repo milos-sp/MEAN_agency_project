@@ -1,36 +1,70 @@
-<div class="menu">
-    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/profile">Profil</a>
-    <div class="dropdown">
-        <button class="drop-button">Objekti</button>
-        <div class="dropdown-list">
-            <a routerLink="/property">Moji objekti</a>
-            <a routerLink="/add-property">Dodavanje objekata</a>
+<nav class="p-0 navbar navbar-expand-xl">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/client" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/profile" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Objekti</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/property">Moji objekti</a>
+                <a class="dropdown-item" routerLink="/add-property">Dodavanje objekata</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/guest" class="nav-link">Agencije</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/client-job" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container">
+    <h5>Dodavanje objekta: </h5>
+    <div class="form-inline">
+        <div class="input-group">
+            <div class="form-group">
+                <label for="type">Tip objekta: </label>
+                <select id="type" [(ngModel)]="type" class="form-select">
+                    <option value="kuća">Kuća</option>
+                    <option value="stan">Stan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Adresa: </label>
+                <input type="text" id="address" [(ngModel)]="address" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="area">Kvadratura: </label>
+                <input type="text" id="area" [(ngModel)]="area" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="rooms">Broj prostorija: </label>
+                <input type="text" id="rooms" (input)="roomsChanged($event)" [(ngModel)]="rooms" class="form-control">
+            </div>
         </div>
     </div>
-    <a routerLink="/guest">Agencije</a>
-    <a routerLink="/client-job">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+    <button (click)="addProperty()" type="button" class="btn btn-warning">Dodaj</button>
 </div>
-<div>
-    <p>Dodavanje objekta: </p>
-    <label for="type">Tip objekta: </label>
-    <select id="type" [(ngModel)]="type">
-        <option value="kuća">Kuća</option>
-        <option value="stan">Stan</option>
-    </select>
-    <label for="address">Adresa: </label>
-    <input type="text" id="address" [(ngModel)]="address">
-    <label for="area">Kvadratura: </label>
-    <input type="text" id="area" [(ngModel)]="area">
-    <label for="rooms">Broj prostorija: </label>
-    <input type="text" id="rooms" (input)="roomsChanged($event)" [(ngModel)]="rooms">
-    <button (click)="addProperty()">Dodaj</button>
+<div class="container ml-1 mt-1">
+    <canvas #canvas height="300" style="border: 1px solid black"></canvas>
 </div>
-<canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
-<div>
-    <p>Dodavanje objekta preko JSON fajla: </p>
-    <input type="file" (change)="fileChanged($event)">
-    <button (click)="addPropertyJSON()">Dodaj</button>
+<div class="container">
+    <h5>Dodavanje objekta preko JSON fajla: </h5>
+    <input type="file" (change)="fileChanged($event)" class="form-control form-control-sm" style="width: 200px;">
+    <button (click)="addPropertyJSON()" type="button" class="btn btn-warning mt-1">Dodaj</button>
     <p style="color: red">{{message}}</p>
 </div>

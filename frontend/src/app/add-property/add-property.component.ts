@@ -40,7 +40,8 @@ export class AddPropertyComponent implements OnInit {
   doors3: Rectangle[] = [
     {x: 50, y: 100, width: 10, height: 10},
     {x: 180, y: 80, width: 10, height: 10},
-    {x: 80, y: 150, width: 10, height: 10}
+    {x: 80, y: 150, width: 10, height: 10},
+    {x: 110, y: 70, width: 10, height: 10}
   ]
   doors2: Rectangle[] = [
     {x: 80, y: 100, width: 10, height: 10},

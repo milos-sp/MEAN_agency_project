@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Address } from '../model/address';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   email: string;
   telephone: string;
   type: string = "";
-  message: string = "";
+  message: string = null;
   admin: boolean;
   //picture: Image;
   //za klijenta
@@ -33,13 +34,33 @@ export class RegisterComponent implements OnInit {
   //za upload slike
   selectedImage: boolean = false;
   image: File;
+  //jedinstveni podaci
+  emails: Set<string> = new Set<string>();
+  usernames: Set<string> = new Set<string>();
+  agencyIDs: Set<number> = new Set<number>();
 
   ngOnInit(): void {
     this.admin = sessionStorage.getItem("logged") == "admin"
+    this.userService.getUsers().subscribe((data: User[])=>{
+      data.forEach(user => {
+        this.emails.add(user.email)
+        this.usernames.add(user.username)
+        if(user.agencyID) this.agencyIDs.add(user.agencyID)
+      });
+    })
+    this.userService.getPendingUsers().subscribe((data: User[])=>{
+      data.forEach(pending => {
+        this.emails.add(pending.email)
+        this.usernames.add(pending.username)
+        if(pending.agencyID) this.agencyIDs.add(pending.agencyID)
+      });
+    })
   }
 
   register(){
     let regPassword = new RegExp(/^(?=[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])(?=.*[A-Z]).{7,12}$/)
+    const regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if(!this.username || !this.password || !this.email || !this.telephone){
       this.message = "Sva polja su obavezna";
       return;
@@ -48,18 +69,36 @@ export class RegisterComponent implements OnInit {
       this.message = "Morate odabrati tip";
       return;
     }else{
+      if(this.usernames.has(this.username)){
+        this.message = "Korisničko ime mora biti jedinstveno"
+        return;
+      }
+      if(this.emails.has(this.email)){
+        this.message = "Email adresa mora biti jedinstvena"
+        return;
+      }
       if(!regPassword.test(this.password)){
         this.message = "Lozinka nije u ispravnom formatu";
+        return;
+      }
+      if(!regEmail.test(this.email)){
+        this.message = "Email adresa nije u ispravnom formatu";
         return;
       }
       this.message = "";
       if(this.type=='klijent'){
         if(!this.firstname || !this.lastname){
           this.message = "Unesite ime i prezime";
+          return;
         }
       }else{
         if(!this.address){
           this.message = "Popunite sva polja vezana za adresu";
+          return;
+        }
+        if(this.agencyIDs.has(this.agencyID)){
+          this.message = "ID agencije mora biti jedinstven";
+          return;
         }
       }
     }
@@ -73,6 +112,8 @@ export class RegisterComponent implements OnInit {
         this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
           if(!this.selectedImage){
             this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
+          }else{
+            this.submitImage()
           }
           this.router.navigate(['admin'])
         })
@@ -81,6 +122,8 @@ export class RegisterComponent implements OnInit {
         this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
           if(!this.selectedImage){
             this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
+          }else{
+            this.submitImage()
           }
           this.router.navigate([''])
         })

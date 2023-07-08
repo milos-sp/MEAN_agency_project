@@ -28,12 +28,7 @@ th{
     background-color: rgb(51, 51, 51);
 }
 
-.search{
-    border-color: rgb(215, 251, 251);
-    padding-top: 50px;
-}
-
-.button-search{
+/* .button-search{
   background-color: burlywood;
   color: rgb(215, 251, 251);
   padding: 14px 20px;
@@ -41,11 +36,7 @@ th{
   border: none;
   cursor: pointer;
   width: 100%;
-}
-
-input{
-    width: 80%;
-}
+} */
 
 .button-sort{
     background-color: burlywood;
@@ -59,4 +50,59 @@ input{
 .navigate:hover{
     cursor: pointer;
     background-color: cadetblue;
+}
+
+.search {
+    background-color: white;
+    padding: 3px;
+}
+
+.search-name {
+    position: relative;
+    width: 100%
+}
+
+.search-name input {
+    height: 40px;
+    border: none;
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 10px;
+    border-right: 2px solid rgb(215, 251, 251);
+}
+
+.search-address {
+    position: relative;
+    width: 100%
+}
+
+.search-address input {
+    height: 40px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-address button {
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 40px;
+    background-color: burlywood;
+    color: rgb(51, 51, 51);
+    width: 100px;
+    border-radius: 4px
+}
+
+@media (max-width:700px) {
+    .search-name input {
+        border-right: none;
+        border-bottom: 1px solid rgb(215, 251, 251);
+    }
+
+    .search-address input {
+        padding-left: 34px
+    }
 }

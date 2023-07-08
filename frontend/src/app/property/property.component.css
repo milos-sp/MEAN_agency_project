@@ -1,6 +1,7 @@
 th, td{
     border: 1px salmon solid;
     font-family: monospace;
+    background-color: transparent;
 }
 
 table{
@@ -14,11 +15,6 @@ table{
 h2{
     text-align: center;
     font-family: 'Courier New', Courier, monospace;   
-}
-
-canvas{
-    margin-left: 15%;
-    margin-top: 5%;
 }
 
 #sketch{
@@ -41,4 +37,20 @@ canvas{
 #delete-button:hover{
     cursor: pointer;
     opacity: 0.8;
+}
+
+td:hover{
+    cursor: pointer;
+}
+
+canvas{
+    width: 100%;
+    object-fit: contain;
+}
+
+@media (min-width:600px) {
+    canvas{
+        width: 500px;
+        height: 300px;
+    }
 }

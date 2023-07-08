@@ -1,0 +1,11 @@
+canvas{
+    width: 100%;
+    object-fit: contain;
+}
+
+@media (min-width:600px) {
+    canvas{
+        width: 500px;
+        height: 300px;
+    }
+}

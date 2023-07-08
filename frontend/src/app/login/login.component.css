@@ -21,19 +21,16 @@ button {
     width: 100%;
 }
   
-button:hover {
+.btn button:hover {
     opacity: 0.8;
 }
 
 
-#forma{
-    width: 50%;
-    padding: 120px;
-    margin: auto;
-    border: 2px solid burlywood;
-}
-
 label{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
+}
+
+p{
+    text-align: center;
 }

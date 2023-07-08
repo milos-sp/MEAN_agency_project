@@ -38,6 +38,7 @@ export class AdminJobsComponent implements OnInit {
     this.ctx = canvas.getContext('2d');
     this.ctx.fillStyle = "brown";
     this.ctx.strokeStyle = "black";
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.propertyService.getPropertyById(r.property_id).subscribe((data: Property)=>{
       property = data;
       this.ctx.strokeStyle = "black";

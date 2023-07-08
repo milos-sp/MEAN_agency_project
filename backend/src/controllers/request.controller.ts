@@ -110,8 +110,7 @@ export class RequestController{
 
     deleteRequests = (req: express.Request, res: express.Response)=>{
         let property_id = req.body.property_id;
-
-        console.log(property_id);
+        
         RequestModel.deleteMany({'property_id': property_id}, (err, resp)=>{
             if(err) console.log(err)
             else res.json({'message': 'OK'})

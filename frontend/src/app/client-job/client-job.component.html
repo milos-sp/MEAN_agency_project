@@ -1,78 +1,115 @@
-<div class="menu">
-    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/profile">Profil</a>
-    <div class="dropdown">
-        <button class="drop-button">Objekti</button>
-        <div class="dropdown-list">
-            <a routerLink="/property">Moji objekti</a>
-            <a routerLink="/add-property">Dodavanje objekata</a>
+<nav class="p-0 navbar navbar-expand-xl">
+<div class="container-fluid menu">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="/client" class="nav-link" style="font-weight: bold;">⌂</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/profile" class="nav-link">Profil</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Objekti</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/property">Moji objekti</a>
+            <a class="dropdown-item" routerLink="/add-property">Dodavanje objekata</a>
         </div>
-    </div>
-    <a routerLink="/guest">Agencije</a>
-    <a routerLink="/client-job">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/guest" class="nav-link">Agencije</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/client-job" class="nav-link">Poslovi</a>
+      </li>
+      <li class="nav-item ms-auto">
+        <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+      </li>
+    </ul>
 </div>
-<div>
-    <button (click)="changeContent(1)">Aktivni poslovi</button><br/>
-    <button (click)="changeContent(2)">Završeni poslovi</button><br/>
-    <button (click)="changeContent(3)">Zahtevi za saradnju</button>
+</div>
+</nav>
+<div class="btn-group-vertical">
+    <button type="button" class="btn btn-warning" (click)="changeContent(1)">Aktivni poslovi</button>
+    <button (click)="changeContent(2)" type="button" class="btn btn-warning">Završeni poslovi</button>
+    <button (click)="changeContent(3)" type="button" class="btn btn-warning">Zahtevi za saradnju</button>
 </div>
 <div class="content" *ngIf="content == 1">
     <h2>Aktivni poslovi</h2>
-<table border="2">
-    <tr>
-        <th>Agencija</th>
-        <th>Objekat</th>
-        <th>Datum početka</th>
-        <th>Datum kraja</th>
-    </tr>
-    <tr *ngFor="let r of myRequests">
-        <td *ngIf="r.active">{{r.agency_username}}</td>
-        <td *ngIf="r.active">{{propertyMap.get(r.property_id)}}</td>
-        <td *ngIf="r.active">{{r.date_start}}</td>
-        <td *ngIf="r.active">{{r.date_end}}</td>
-        <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
-        <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)">Plati</button></td>
-    </tr>
-</table>
-
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Agencija</th>
+                    <th>Objekat</th>
+                    <th>Datum početka</th>
+                    <th>Datum kraja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of myRequests">
+                    <td *ngIf="r.active">{{r.agency_username}}</td>
+                    <td *ngIf="r.active">{{propertyMap.get(r.property_id)}}</td>
+                    <td *ngIf="r.active">{{r.date_start}}</td>
+                    <td *ngIf="r.active">{{r.date_end}}</td>
+                    <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
+                    <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)">Plati</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="content" *ngIf="content == 2">
     <h2>Završeni poslovi</h2>
-    <table border="2">
-        <tr>
-            <th>Agencija</th>
-            <th>Objekat</th>
-            <th>Datum početka</th>
-            <th>Datum kraja</th>
-        </tr>
-        <tr *ngFor="let r of myRequests">
-            <td *ngIf="!r.active && r.status==3">{{r.agency_username}}</td>
-            <td *ngIf="!r.active && r.status==3">{{propertyMap.get(r.property_id)}}</td>
-            <td *ngIf="!r.active && r.status==3">{{r.date_start}}</td>
-            <td *ngIf="!r.active && r.status==3">{{r.date_end}}</td>
-            <td *ngIf="!r.active && r.status==3"><button (click)="showSketch(r)">Skica</button></td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Agencija</th>
+                    <th>Objekat</th>
+                    <th>Datum početka</th>
+                    <th>Datum kraja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of myRequests">
+                    <td *ngIf="!r.active && r.status==3">{{r.agency_username}}</td>
+                    <td *ngIf="!r.active && r.status==3">{{propertyMap.get(r.property_id)}}</td>
+                    <td *ngIf="!r.active && r.status==3">{{r.date_start}}</td>
+                    <td *ngIf="!r.active && r.status==3">{{r.date_end}}</td>
+                    <td *ngIf="!r.active && r.status==3"><button (click)="showSketch(r)">Skica</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="content" *ngIf="content == 3">
-<table border="2">
-    <tr>
-        <th>Agencija</th>
-        <th>Objekat</th>
-        <th>Datum početka</th>
-        <th>Datum kraja</th>
-    </tr>
-    <tr *ngFor="let r of myRequests" [class.rejected]="r.status==2" [class.accepted]="r.status==1">
-        <td *ngIf="!r.active && r.status!=3">{{r.agency_username}}</td>
-        <td *ngIf="!r.active && r.status!=3">{{propertyMap.get(r.property_id)}}</td>
-        <td *ngIf="!r.active && r.status!=3">{{r.date_start}}</td>
-        <td *ngIf="!r.active && r.status!=3">{{r.date_end}}</td>
-        <td *ngIf="r.status==1 && !r.active">Ponuda: {{r.offer}}</td>
-        <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)">Prihvati</button><button (click)="rejectOffer(r)">Odbij</button></td>
-    </tr>
-</table>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Agencija</th>
+                    <th>Objekat</th>
+                    <th>Datum početka</th>
+                    <th>Datum kraja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of myRequests" [class.table-danger]="r.status==2" [class.table-success]="r.status==1">
+                    <td *ngIf="!r.active && r.status!=3">{{r.agency_username}}</td>
+                    <td *ngIf="!r.active && r.status!=3">{{propertyMap.get(r.property_id)}}</td>
+                    <td *ngIf="!r.active && r.status!=3">{{r.date_start}}</td>
+                    <td *ngIf="!r.active && r.status!=3">{{r.date_end}}</td>
+                    <td *ngIf="r.status==1 && !r.active">Ponuda: {{r.offer}}</td>
+                    <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)">Prihvati</button><button (click)="rejectOffer(r)">Odbij</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<div>
-<canvas #canvas width="500px" height="300px" [ngStyle]="{'border': content!=3?'1px solid black':'none'}"></canvas>
+<div class="container ml-1">
+<canvas #canvas height="300px" [ngStyle]="{'border': content!=3?'1px solid black':'none'}"></canvas>
 </div>

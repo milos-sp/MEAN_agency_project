@@ -1,28 +1,50 @@
-<div class="menu">
-    <a routerLink="/admin" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/registration-requests">Zahtevi</a>
-    <a routerLink="/admin-jobs">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+<nav class="p-0 navbar navbar-expand-xl">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/admin" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/registration-requests" class="nav-link">Zahtevi</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin-jobs" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
 </div>
-<div class="jobs">
-    <table border="2">
+</nav>
+<div class="table-responsive mt-1">
+    <table class="table table-hover">
+      <thead>
         <tr>
-            <th>Agencija</th>
-            <th>Klijent</th>
-            <th>Objekat</th>
-            <th>Datum početka</th>
-            <th>Datum kraja</th>
-        </tr>
-        <tr *ngFor="let j of allJobs">
-            <td>{{j.agency_username}}</td>
-            <td>{{j.client_username}}</td>
-            <td>{{propertyMap.get(j.property_id)}}</td>
-            <td>{{j.date_start}}</td>
-            <td>{{j.date_end}}</td>
-            <td><button (click)="showSketch(j)">Skica</button></td>
-        </tr>
+          <th>Agencija</th>
+          <th>Klijent</th>
+          <th>Objekat</th>
+          <th>Datum početka</th>
+          <th>Datum kraja</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let j of allJobs" class="table-info">
+          <td>{{j.agency_username}}</td>
+          <td>{{j.client_username}}</td>
+          <td>{{propertyMap.get(j.property_id)}}</td>
+          <td>{{j.date_start}}</td>
+          <td>{{j.date_end}}</td>
+          <td><button (click)="showSketch(j)" class="btn btn-warning">Skica</button></td>
+      </tr>
+      </tbody>
     </table>
 </div>
-<div>
-    <canvas #canvas width="500px" height="300px" style="border: 1px solid black;"></canvas>
+<div class="container ml-1 mt-1">
+    <canvas #canvas height="300px" style="border: 1px solid black;"></canvas>
 </div>

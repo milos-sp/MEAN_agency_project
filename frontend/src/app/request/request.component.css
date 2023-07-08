@@ -1,15 +1,5 @@
-.data{
-    float: left;
-    margin-left: 5%;
-    margin-top: 5%;
-    display: block;
-    width: 50%;
-    font-family: 'Courier New', Courier, monospace;
-    justify-content: center;
-}
-
 input{
-    /* width: 70%; */
+    width: 60%;
     padding: 5px 10px;
     margin: 8px 0;
     display: inline-block;
@@ -24,17 +14,17 @@ label{
     margin-right: 1%;
 }
 
-.data button{
+.button-send{
     background-color: rgb(40, 189, 149);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
 }
 
-.data button:hover{
+.button-send:hover{
     opacity: 0.8;
 }
 

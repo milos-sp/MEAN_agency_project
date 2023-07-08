@@ -1,20 +1,81 @@
-<div class="menu" *ngIf="!admin">
-    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/profile">Profil</a>
-    <a routerLink="/worker">Radnici</a>
-    <a routerLink="/agency-job">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+<nav class="p-0 navbar navbar-expand-xl" *ngIf="!admin">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/agency" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/profile" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/worker" class="nav-link">Radnici</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/agency-job" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
 </div>
-<div class="data">
-    <label for="firstname">Ime: </label>
-    <input type="text" name="firstname" id="firstname" [(ngModel)]="worker.firstname" value="{{worker.firstname}}"><br/>
-    <label for="lastname">Prezime: </label>
-    <input type="text" name="lastname" id="lastname" [(ngModel)]="worker.lastname" value="{{worker.lastname}}"><br/>
-    <label for="email">Email: </label>
-    <input type="text" name="email" id="email" [(ngModel)]="worker.email" value="{{worker.email}}"><br/>
-    <label for="telephone">Broj telefona: </label>
-    <input type="text" name="telephone" id="telephone" [(ngModel)]="worker.phone" value="{{worker.phone}}"><br/>
-    <label for="occupation">Specijalizacija: </label>
-    <input type="text" name="occupation" id="occupation" [(ngModel)]="worker.occupation" value="{{worker.occupation}}"><br/>
-    <button (click)="edit()">Izmeni</button>
+</nav>
+<nav class="p-0 navbar navbar-expand-xl">
+  <div class="container-fluid menu" *ngIf="admin">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/admin" class="nav-link" style="font-weight: bold;">⌂</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/registration-requests" class="nav-link">Zahtevi</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin-jobs" class="nav-link">Poslovi</a>
+        </li>
+        <li class="nav-item ms-auto">
+          <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+        </li>
+      </ul>
+  </div>
+</div>
+</nav>
+<div class="container mt-5">
+  <h2>Izmena radnika</h2>
+  <div class="row">
+    <div class="col-ms-4">
+      <div class="form-group">
+        <label for="firstname">Ime: </label>
+        <input type="text" name="firstname" id="firstname" [(ngModel)]="worker.firstname" value="{{worker.firstname}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Prezime: </label>
+        <input type="text" name="lastname" id="lastname" [(ngModel)]="worker.lastname" value="{{worker.lastname}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email" [(ngModel)]="worker.email" value="{{worker.email}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="telephone">Broj telefona: </label>
+        <input type="text" name="telephone" id="telephone" [(ngModel)]="worker.phone" value="{{worker.phone}}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="occupation">Specijalizacija: </label>
+        <input type="text" name="occupation" id="occupation" [(ngModel)]="worker.occupation" value="{{worker.occupation}}" class="form-control">
+      </div>
+      <div class="mx-auto mt-3" style="width: 200px;">
+        <button (click)="edit()" type="button" class="btn btn-warning" style="width: 100%;">Izmeni</button>
+      </div>
+    </div>
+  </div>
 </div>

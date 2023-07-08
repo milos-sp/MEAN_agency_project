@@ -1,85 +1,184 @@
-<div class="menu" *ngIf="user.type=='klijent' && !admin">
-    <a routerLink="/client" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/profile">Profil</a>
-    <div class="dropdown">
-        <button class="drop-button">Objekti</button>
-        <div class="dropdown-list">
-            <a routerLink="/property">Moji objekti</a>
-            <a href="/add-property">Dodavanje objekata</a>
+<nav class="p-0 navbar navbar-expand-xl" *ngIf="user.type=='klijent' && !admin">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/client" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/profile" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Objekti</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/property">Moji objekti</a>
+                <a class="dropdown-item" routerLink="/add-property">Dodavanje objekata</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/guest" class="nav-link">Agencije</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/client-job" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+<nav class="p-0 navbar navbar-expand-xl" *ngIf="user.type=='agencija' && !admin">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/agency" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/profile" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/worker" class="nav-link">Radnici</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/agency-job" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<nav class="p-0 navbar navbar-expand-xl" *ngIf="admin">
+  <div class="container-fluid menu">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/admin" class="nav-link" style="font-weight: bold;">⌂</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/registration-requests" class="nav-link">Zahtevi</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin-jobs" class="nav-link">Poslovi</a>
+        </li>
+        <li class="nav-item ms-auto">
+          <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+        </li>
+      </ul>
+  </div>
+</div>
+</nav>
+<h1>Profil</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{{image.imageUrl}}" class="image-rounded img" height="150px" width="150px">
+                <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)" class="form-control form-control-sm">
+            <button (click)="editImage()" *ngIf="selectedImage" type="button" class="btn btn-warning">Izmeni</button>
+        </div>
+        <div class="col-sm-8" *ngIf="user.type=='klijent'">
+            <label for="firstname">Ime: </label>
+            <input type="text" name="firstname" id="firstname" [(ngModel)]="user.firstname" value="{{user.firstname}}"><br/> 
+            <label for="lastname">Prezime: </label>
+            <input type="text" name="lastname" id="lastname" [(ngModel)]="user.lastname" value="{{user.lastname}}"><br/>
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
+            <label for="telephone">Broj telefona: </label>
+            <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
+            <div class="mx-auto" style="width: 200px;">
+                <button (click)="editUser(true)" type="button" class="btn btn-warning" style="width: 100%;">Izmeni</button>
+            </div>
+        </div>
+        <div class="col-sm-8" *ngIf="user.type=='agencija'">
+            <label for="agency">Naziv: </label>
+            <input type="text" name="agency" id="agency" [(ngModel)]="user.agency" value="{{user.agency}}"><br/> 
+            <label for="address">Adresa: </label>
+            <input type="text" name="address" id="address" [(ngModel)]="user.address_string" value="{{user.address_string}}"><br/>
+            <label for="description">Opis: </label>
+            <input type="text" name="description" id="description" [(ngModel)]="user.description" value="{{user.description}}"><br/>
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
+            <label for="telephone">Broj telefona: </label>
+            <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
+            <div class="mx-auto" style="width: 200px;">
+                <button (click)="editUser(true)" type="button" class="btn btn-warning" style="width: 100%;">Izmeni</button>
+            </div>
         </div>
     </div>
-    <a href="/guest">Agencije</a>
-    <a routerLink="/client-job">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
 </div>
-<div class="menu" *ngIf="user.type=='agencija' && !admin">
-    <a routerLink="/agency" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/profile">Profil</a>
-    <a routerLink="/worker">Radnici</a>
-    <a routerLink="/agency-job">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
-</div>
-<h1>Profil</h1>
-<div class="image-div">
-<img src="{{image.imageUrl}}" height="100px" width="100px">
-<input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)">
-<button (click)="editImage()" *ngIf="selectedImage">Izmeni</button>
-</div>
-<div class="data" *ngIf="user.type=='klijent'">
-    <label for="firstname">Ime: </label>
-    <input type="text" name="firstname" id="firstname" [(ngModel)]="user.firstname" value="{{user.firstname}}"><br/> 
-    <label for="lastname">Prezime: </label>
-    <input type="text" name="lastname" id="lastname" [(ngModel)]="user.lastname" value="{{user.lastname}}"><br/>
-    <label for="email">Email: </label>
-    <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
-    <label for="telephone">Broj telefona: </label>
-    <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
-    <button (click)="editUser(true)">Izmeni</button>
-</div>
-<div class="data" *ngIf="user.type=='agencija'">
-    <label for="agency">Naziv agencije: </label>
-    <input type="text" name="agency" id="agency" [(ngModel)]="user.agency" value="{{user.agency}}"><br/> 
-    <label for="address">Adresa: </label>
-    <input type="text" name="address" id="address" [(ngModel)]="user.address_string" value="{{user.address_string}}"><br/>
-    <label for="description">Opis: </label>
-    <input type="text" name="description" id="description" [(ngModel)]="user.description" value="{{user.description}}"><br/>
-    <label for="email">Email: </label>
-    <input type="text" name="email" id="email" [(ngModel)]="user.email" value="{{user.email}}"><br/>
-    <label for="telephone">Broj telefona: </label>
-    <input type="text" name="telephone" id="telephone" [(ngModel)]="user.telephone" value="{{user.telephone}}"><br/>
-    <button (click)="editUser(true)">Izmeni</button>
-</div>
-<div class="workers" *ngIf="user.type=='agencija' && admin">
-    <table border="2">
-        <h2>Radnici</h2>
-        <tr>
-            <th>Ime i prezime</th>
-            <th>Specijalizacija</th>
-        </tr>
-        <tr *ngFor="let w of workers">
-            <td>{{w.firstname}} {{w.lastname}}</td>
-            <td>{{w.occupation}}</td>
-            <td><button (click)="editWorker(w)">Izmeni</button></td>
-            <td><button (click)="deleteWorker(w)">X</button></td>
-        </tr>
-    </table>
-    <div class="req" *ngIf="workerReq!=null">
-        <h2>Zahtev za proširenjem</h2>
-        <p>Broj mesta: {{workerReq.increment}} <button (click)="accept()">Odobri</button>&nbsp;<button (click)="reject()">Odbij</button></p>
+<div class="container mt-3">
+  <div class="row" *ngIf="user.type=='agencija' && admin">
+    <div class="col-sm-6 mr-3">
+      <h2>Radnici</h2>
+      <p *ngIf="workers.length==0">Agencija nema radnike</p>
+      <div class="table-responsive" *ngIf="workers.length>0">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Ime i prezime</th>
+              <th>Specijalizacija</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let w of workers">
+              <td>{{w.firstname}} {{w.lastname}}</td>
+              <td>{{w.occupation}}</td>
+              <td><button (click)="editWorker(w)" type="button" class="btn btn-warning">Izmeni</button></td>
+              <td><button (click)="deleteWorker(w)" type="button" class="btn btn-danger">X</button></td>
+          </tr>
+          </tbody>
+      </table>
+      </div>
     </div>
-</div>
-<div class="add-worker" style="width: 60%;" *ngIf="user.type=='agencija' && admin">
-    <h2>Dodaj radnika</h2>
-    <label for="firstname">Ime: </label>
-    <input type="text" name="firstname" id="firstname" [(ngModel)]="workernew.firstname"><br/>
-    <label for="lastname">Prezime: </label>
-    <input type="text" name="lastname" id="lastname" [(ngModel)]="workernew.lastname"><br/>
-    <label for="email">Email: </label>
-    <input type="text" name="email" id="email" [(ngModel)]="workernew.email"><br/>
-    <label for="phone">Broj telefona: </label>
-    <input type="text" name="phone" id="phone" [(ngModel)]="workernew.phone"><br/>
-    <label for="occupation">Specijalizacija: </label>
-    <input type="text" name="occupation" id="occupation" [(ngModel)]="workernew.occupation"><br/>
-    <button (click)="insertWorker()">Dodaj</button>
-    <p style="color: red">{{message}}</p>
+    <div class="col-sm-2">
+      <h2>Zahtev za proširenjem</h2>
+        <p *ngIf="workerReq==null">Nema zahteva za proširenjem</p>
+        <p *ngIf="workerReq!=null">Broj mesta: {{workerReq.increment}}</p>
+        <p *ngIf="workerReq!=null"><button (click)="accept()" type="button" class="btn btn-success">Odobri</button>&nbsp;<button (click)="reject()" type="button" class="btn btn-danger">Odbij</button></p>
+    </div>
+  </div>
+  <div class="row" *ngIf="user.type=='agencija' && admin">
+    <div class="col-sm-6 add-worker">
+      <h2>Dodaj radnika</h2>
+      <div class="form-group">
+        <label for="firstname">Ime: </label>
+        <input type="text" name="firstname" id="firstname" [(ngModel)]="workernew.firstname" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Prezime: </label>
+        <input type="text" name="lastname" id="lastname" [(ngModel)]="workernew.lastname" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email" [(ngModel)]="workernew.email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="phone">Broj telefona: </label>
+        <input type="text" name="phone" id="phone" [(ngModel)]="workernew.phone" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="occupation">Zanimanje: </label>
+        <input type="text" name="occupation" id="occupation" [(ngModel)]="workernew.occupation" class="form-control">
+      </div>
+      <div class="mx-auto" style="width: 200px;">
+        <button (click)="insertWorker()" type="button" class="btn btn-warning" style="width: 100%;">Dodaj</button>
+      </div>
+      <p style="color: red">{{message}}</p>
+    </div>
+  </div>
 </div>

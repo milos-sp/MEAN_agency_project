@@ -1,47 +1,77 @@
-<div class="menu">
-    <a routerLink="/admin" style="font-weight: bold; width: 5%;">⌂</a>
-    <a routerLink="/registration-requests">Zahtevi</a>
-    <a routerLink="/admin-jobs">Poslovi</a>
-    <a id="logout" routerLink="/logout" style="float: right;">Logout</a>
+<nav class="p-0 navbar navbar-expand-xl">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/admin" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/registration-requests" class="nav-link">Zahtevi</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin-jobs" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
 </div>
-<div class="choose">
-    <button (click)="changeType(1)">Klijenti</button>
-    <button (click)="changeType(2)">Agencije</button>
-    <a routerLink="/add-user">Dodaj korisnika</a>
+</nav>
+<div class="btn-group">
+    <button type="button" class="btn btn-warning" (click)="changeType(1)">Klijenti</button>
+    <button type="button" class="btn btn-warning" (click)="changeType(2)">Agencije</button>
+    <a routerLink="/add-user" class="btn btn-warning" role="button">Dodaj korisnika</a>
 </div>
-<div class="users" *ngIf="userType==1">
+<div class="container" *ngIf="userType==1">
     <h2>Klijenti</h2>
-<table border="2">
-    <tr>
-        <th>Korisničko ime</th>
-        <th>Ime</th>
-        <th>Prezime</th>
-        <th>Email</th>
-    </tr>
-    <tr *ngFor="let c of clients" (click)="showProfile(c)">
-        <td>{{c.username}}</td>
-        <td>{{c.firstname}}</td>
-        <td>{{c.lastname}}</td>
-        <td>{{c.email}}</td>
-        <td><button (click)="deleteUser(c)">X</button></td>
-    </tr>
-</table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Korisničko ime</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of clients" class="table-info">
+                    <td (click)="showProfile(c)">{{c.username}}</td>
+                    <td (click)="showProfile(c)">{{c.firstname}}</td>
+                    <td (click)="showProfile(c)">{{c.lastname}}</td>
+                    <td (click)="showProfile(c)">{{c.email}}</td>
+                    <td><button (click)="deleteUser(c)" class="btn btn-danger">X</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="users" *ngIf="userType==2">
+<div class="container" *ngIf="userType==2">
     <h2>Agencije</h2>
-<table border="2">
-    <tr>
-        <th>Korisničko ime</th>
-        <th>Naziv</th>
-        <th>Adresa</th>
-        <th>Email</th>
-    </tr>
-    <tr *ngFor="let a of agencies">
-        <td (click)="showProfile(a)">{{a.username}}</td>
-        <td (click)="showProfile(a)">{{a.agency}}</td>
-        <td (click)="showProfile(a)">{{a.address_string}}</td>
-        <td (click)="showProfile(a)">{{a.email}}</td>
-        <td><button (click)="deleteUser(a)">X</button></td>
-    </tr>
-</table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Korisničko ime</th>
+                    <th>Naziv</th>
+                    <th>Adresa</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of agencies" class="table-info">
+                    <td (click)="showProfile(a)">{{a.username}}</td>
+                    <td (click)="showProfile(a)">{{a.agency}}</td>
+                    <td (click)="showProfile(a)">{{a.address_string}}</td>
+                    <td (click)="showProfile(a)">{{a.email}}</td>
+                    <td><button (click)="deleteUser(a)" class="btn btn-danger">X</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="forma">
+<div class="forma container mt-3 mb-3">
 <h2 *ngIf="!admin">Forma za registraciju</h2>
 <h2 *ngIf="admin">Dodavanje novog korisnika</h2>
 <label for="username">Korisničko ime: </label>
@@ -19,8 +19,7 @@ Registrujete se kao:
 <br/>
 <div>
     <label for="avatar">Izaberite profilnu sliku: </label>
-    <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)">
-    <button id="upload-btn" (click)="submitImage()" *ngIf="selectedImage">Potvrdi</button>
+    <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)" class="form-control form-control-lg">
 </div><br/>
 <div id="klijent" *ngIf="type=='klijent'">
     <label for="firstname">Ime: </label>
@@ -44,7 +43,7 @@ Registrujete se kao:
     <label for="desc">Opis agencije: </label>
     <textarea name="desc" cols="30" rows="10" [(ngModel)]="description"></textarea>
 </div>
-<button *ngIf="!admin" id="register-btn" (click)="register()">Registracija</button>
+<p style="color: red;" *ngIf="message!=null">*{{message}}</p>
+<button *ngIf="!admin" id="register-btn" (click)="register()" class="mb-5">Registracija</button>
 <button *ngIf="admin" id="register-btn" (click)="register()">Dodaj</button>
 </div>
-<p style="color: red">{{message}}</p>

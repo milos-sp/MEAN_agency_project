@@ -29,17 +29,18 @@ button:hover{
     color: rgb(215, 251, 251);
     cursor: pointer;
     border: none;
-    
 }
 
 #avatar{
     margin-right: 0;
 }
 
-.forma{
-    width: 50%;
-    margin: auto;
-    font-family: 'Courier New', Courier, monospace;
+@media all and (min-width: 850px) {
+	.forma{
+        width: 50%;
+        margin: auto;
+        /* font-family: 'Courier New', Courier, monospace; */
+    }
 }
 
 input[type=text], input[type=password], textarea {

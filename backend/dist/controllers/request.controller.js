@@ -122,7 +122,6 @@ class RequestController {
         };
         this.deleteRequests = (req, res) => {
             let property_id = req.body.property_id;
-            console.log(property_id);
             request_1.default.deleteMany({ 'property_id': property_id }, (err, resp) => {
                 if (err)
                     console.log(err);
