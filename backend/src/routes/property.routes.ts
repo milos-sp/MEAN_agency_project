@@ -23,4 +23,8 @@ propertyRouter.route('/getPropertyById').post(
     (req, res)=> new PropertyController().getPropertyById(req, res)
 )
 
+propertyRouter.route('/editProperty').post(
+    (req, res)=> new PropertyController().editProperty(req, res)
+)
+
 export default propertyRouter;

@@ -45,10 +45,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let property of properties">
-                <td>{{property.type}}</td>
-                <td>{{property.address}}</td>
-                <td>{{property.rooms}}</td>
-                <td>{{property.area}}</td>
+                <td (click)="changeProperty(property)">{{property.type}}</td>
+                <td (click)="changeProperty(property)">{{property.address}}</td>
+                <td (click)="changeProperty(property)">{{property.rooms}}</td>
+                <td (click)="changeProperty(property)">{{property.area}}</td>
                 <td><button id="sketch" (click)="showSketch(property)">Skica</button></td>
                 <td style="border: none;" (click)="delete(property)"><button id="delete-button">X</button></td>
             </tr>

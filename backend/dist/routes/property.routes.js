@@ -11,5 +11,6 @@ propertyRouter.route('/getAllProperties').get((req, res) => new property_control
 propertyRouter.route('/deleteProperty').post((req, res) => new property_controller_1.PropertyController().deleteProperty(req, res));
 propertyRouter.route('/addProperty').post((req, res) => new property_controller_1.PropertyController().addProperty(req, res));
 propertyRouter.route('/getPropertyById').post((req, res) => new property_controller_1.PropertyController().getPropertyById(req, res));
+propertyRouter.route('/editProperty').post((req, res) => new property_controller_1.PropertyController().editProperty(req, res));
 exports.default = propertyRouter;
 //# sourceMappingURL=property.routes.js.map

@@ -1,0 +1,65 @@
+<nav class="p-0 navbar navbar-expand-xl">
+    <div class="container-fluid menu">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-label="Show navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/client" class="nav-link" style="font-weight: bold;">⌂</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/profile" class="nav-link">Profil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Objekti</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/property">Moji objekti</a>
+                <a class="dropdown-item" routerLink="/add-property">Dodavanje objekata</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/guest" class="nav-link">Agencije</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/client-job" class="nav-link">Poslovi</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a routerLink="/logout" class="nav-link" id="logout">Logout</a>
+          </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container mt-5">
+    <h2>Izmena objekta</h2>
+    <div class="row">
+      <div class="col-ms-4">
+        <div class="form-group">
+          <label for="type">Tip: </label>
+          <select name="type" id="type" [(ngModel)]="property.type" class="form-select">
+            <option value="stan">Stan</option>
+            <option value="kuća">Kuća</option>
+          </select>
+          <!-- <input type="text" name="type" id="type" [(ngModel)]="property.type" value="{{property.type}}" class="form-control"> -->
+        </div>
+        <div class="form-group">
+          <label for="address">Adresa: </label>
+          <input type="text" name="address" id="address" [(ngModel)]="property.address" value="{{property.address}}" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="area">Kvadratura: </label>
+          <input type="text" name="area" id="area" [(ngModel)]="property.area" value="{{property.area}}" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="rooms">Broj soba: </label>
+          <input type="text" name="rooms" id="rooms" [(ngModel)]="property.rooms" value="{{property.rooms}}" class="form-control">
+        </div>
+        <p class="error">{{message}}</p>
+        <div class="mx-auto mt-3" style="width: 200px;">
+          <button (click)="edit()" type="button" class="btn btn-warning" style="width: 100%;">Izmeni</button>
+        </div>
+      </div>
+    </div>
+  </div>

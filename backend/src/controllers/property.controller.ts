@@ -37,4 +37,12 @@ export class PropertyController{
             else res.json(property)
         })
     }
+
+    editProperty = (req: express.Request, res: express.Response)=>{
+       let property = req.body;
+       PropertyModel.replaceOne({'_id': property._id}, new PropertyModel(property), (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Izmena uspela'})
+       })
+    }
 }

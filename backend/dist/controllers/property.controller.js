@@ -46,6 +46,15 @@ class PropertyController {
                     res.json(property);
             });
         };
+        this.editProperty = (req, res) => {
+            let property = req.body;
+            property_1.default.replaceOne({ '_id': property._id }, new property_1.default(property), (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Izmena uspela' });
+            });
+        };
     }
 }
 exports.PropertyController = PropertyController;

@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Property } from '../model/property';
 import { PropertyService } from '../property.service';
 import { RequestService } from '../request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property',
@@ -12,7 +13,7 @@ import { RequestService } from '../request.service';
 
 export class PropertyComponent implements OnInit {
 
-  constructor(private propertyService: PropertyService, private requestService: RequestService) { }
+  constructor(private propertyService: PropertyService, private requestService: RequestService, private router: Router) { }
 
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
 
@@ -53,4 +54,7 @@ export class PropertyComponent implements OnInit {
     }))
   }
 
+  changeProperty(p: Property){
+    this.router.navigate(['property-info/' + p._id])
+  }
 }

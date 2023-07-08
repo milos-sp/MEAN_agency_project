@@ -36,4 +36,8 @@ export class PropertyService {
   getPropertyById(id){
     return this.http.post(`${this.uri}/properties/getPropertyById`, {id: id})
   }
+
+  editProperty(property){
+    return this.http.post(`${this.uri}/properties/editProperty`, property)
+  }
 }
