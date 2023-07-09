@@ -48,3 +48,26 @@
 <div class="container ml-1 mt-1">
     <canvas #canvas height="300px" style="border: 1px solid black;"></canvas>
 </div>
+<div class="container mt-3">
+  <h2>Zahtevi za otkazivanjem posla</h2>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Klijent</th>
+          <th>Agencija</th>
+          <th>Razlog</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-info" *ngFor="let r of cRequests">
+          <td>{{r.client}}</td>
+          <td>{{r.agency}}</td>
+          <td>{{r.reason}}</td>
+          <td><button (click)="accept(r)" type="button" class="btn btn-success">Prihvati</button></td>
+          <td><button (click)="reject(r)" type="button" class="btn btn-danger">Odbij</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

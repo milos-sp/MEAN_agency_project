@@ -51,4 +51,20 @@ requestRouter.route('/deleteRequests').post(
     (req, res)=> new RequestController().deleteRequests(req, res)
 )
 
+requestRouter.route('/stopJob').post(
+    (req, res)=> new RequestController().stopJob(req, res)
+)
+
+requestRouter.route('/getCancelRequests').get(
+    (req, res)=> new RequestController().getCancelRequests(req, res)
+)
+
+requestRouter.route('/rejectStopRequest').get(
+    (req, res)=> new RequestController().rejectStopRequest(req, res)
+)
+
+requestRouter.route('/deleteJob').get(
+    (req, res)=> new RequestController().deleteJob(req, res)
+)
+
 export default requestRouter;

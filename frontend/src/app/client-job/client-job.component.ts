@@ -5,6 +5,7 @@ import { Property } from '../model/property';
 import { PropertyService } from '../property.service';
 import { CommentService } from '../comment.service';
 import { Comment } from '../model/comment';
+import { CancelJob } from '../model/cancel-job';
 
 @Component({
   selector: 'app-client-job',
@@ -26,6 +27,9 @@ export class ClientJobComponent implements OnInit {
   comment: Comment = new Comment();
   hasComment: boolean;
   message: string = null;
+
+  reason: string = null;
+  selectedR: Request = new Request();
 
   ngOnInit(): void {
     this.content = 1;
@@ -111,6 +115,27 @@ export class ClientJobComponent implements OnInit {
         this.myRequests = data
       })
     })
+  }
+
+  stopJob(r: Request){
+    this.selectedJob = true
+    this.selectedR = r
+  }
+
+  cancel(){
+    if(this.reason == null){
+      this.message = "Unesite razlog za otkazivanje";
+      return;
+    }
+    let stopJobR = new CancelJob()
+    stopJobR.job_id = this.selectedR._id
+    stopJobR.client = this.selectedR.client_username
+    stopJobR.agency = this.selectedR.agency_username
+    stopJobR.reason = this.reason
+
+    this.requestService.stopJob(stopJobR).subscribe((resp=>{
+      window.location.reload()
+    }))
   }
 
   showComment(r: Request){

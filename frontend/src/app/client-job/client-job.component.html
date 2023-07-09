@@ -57,10 +57,18 @@
                     <td *ngIf="r.active">{{r.date_end}}</td>
                     <td *ngIf="r.active"><button (click)="showSketch(r)" class="btn btn-warning">Skica</button></td>
                     <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)" class="btn btn-success">Plati</button></td>
+                    <td *ngIf="r.active && !checkProgress(r)"><button (click)="stopJob(r)" class="btn btn-danger">Otkaži</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
+<div class="container mt-3" *ngIf="selectedJob && content == 1">
+    <h2>Otkazivanje posla</h2>
+    <label for="reason">Razlog otkazivanja: </label>
+    <textarea name="reason" id="reason" [(ngModel)]="reason" class="form-control"></textarea>
+    <button (click)="cancel()" type="button" class="btn btn-warning">Pošalji</button>
+    <p class="error">{{message}}</p>
 </div>
 <div class="content" *ngIf="content == 2">
     <h2>Završeni poslovi</h2>

@@ -72,4 +72,20 @@ export class RequestService {
   deleteRequestsWithProperty(property_id){
     return this.http.post(`${this.uri}/requests/deleteRequests`, {property_id: property_id})
   }
+
+  stopJob(request){
+    return this.http.post(`${this.uri}/requests/stopJob`, request)
+  }
+
+  getCancelRequests(){
+    return this.http.get(`${this.uri}/requests/getCancelRequests`)
+  }
+
+  rejectStopRequest(id){
+    return this.http.get(`${this.uri}/requests/rejectStopRequest?id=${id}`)
+  }
+
+  deleteJob(id){
+    return this.http.get(`${this.uri}/requests/deleteJob?id=${id}`)
+  }
 }

@@ -3,6 +3,7 @@ import { RequestService } from '../request.service';
 import { Request } from '../model/request';
 import { PropertyService } from '../property.service';
 import { Property } from '../model/property';
+import { CancelJob } from '../model/cancel-job';
 
 @Component({
   selector: 'app-admin-jobs',
@@ -18,6 +19,8 @@ export class AdminJobsComponent implements OnInit {
   //za skicu
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
   private ctx: CanvasRenderingContext2D;
+  //za zahteve za otkazivanjem
+  cRequests: CancelJob[] = [];
 
   ngOnInit(): void {
     let property = new Property()
@@ -29,6 +32,9 @@ export class AdminJobsComponent implements OnInit {
           this.propertyMap.set(el.property_id, 'Adresa: ' + property.address + ', kvadratura: ' + property.area + ', broj soba: ' + property.rooms)
         })
       });
+    })
+    this.requestService.getCancelRequests().subscribe((data: CancelJob[])=>{
+      this.cRequests = data
     })
   }
 
@@ -56,6 +62,18 @@ export class AdminJobsComponent implements OnInit {
         this.ctx.fillRect(elem.x, elem.y, elem.width, elem.height)
       })
     })
+  }
+
+  accept(r: CancelJob){
+    this.requestService.deleteJob(r.job_id).subscribe((resp=>{
+      window.location.reload()
+    }))
+  }
+
+  reject(r: CancelJob){
+    this.requestService.rejectStopRequest(r._id).subscribe((resp=>{
+      window.location.reload()
+    }))
   }
 
 }

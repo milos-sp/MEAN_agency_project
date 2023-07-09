@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RequestController = void 0;
 const request_1 = __importDefault(require("../models/request"));
+const cancel_job_1 = __importDefault(require("../models/cancel_job"));
 class RequestController {
     constructor() {
         this.addRequest = (req, res) => {
@@ -127,6 +128,35 @@ class RequestController {
                     console.log(err);
                 else
                     res.json({ 'message': 'OK' });
+            });
+        };
+        this.stopJob = (req, res) => {
+            let stopRequest = req.body;
+            cancel_job_1.default.insertMany(stopRequest);
+            res.json({ 'message': 'Dodat zahtev za otkazivanje' });
+        };
+        this.getCancelRequests = (req, res) => {
+            cancel_job_1.default.find({}, (err, requests) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json(requests);
+            });
+        };
+        this.rejectStopRequest = (req, res) => {
+            cancel_job_1.default.deleteOne({ '_id': req.query.id }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Odbijen' });
+            });
+        };
+        this.deleteJob = (req, res) => {
+            cancel_job_1.default.deleteOne({ '_id': req.query.id }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Otkazan posao' });
             });
         };
     }

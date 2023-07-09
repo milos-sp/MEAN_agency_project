@@ -1,5 +1,6 @@
 import express from 'express';
 import RequestModel from '../models/request';
+import CancelJobModel from '../models/cancel_job';
 
 export class RequestController{
     
@@ -114,6 +115,34 @@ export class RequestController{
         RequestModel.deleteMany({'property_id': property_id}, (err, resp)=>{
             if(err) console.log(err)
             else res.json({'message': 'OK'})
+        })
+    }
+
+    stopJob = (req: express.Request, res: express.Response)=>{
+        let stopRequest = req.body
+
+        CancelJobModel.insertMany(stopRequest)
+        res.json({'message': 'Dodat zahtev za otkazivanje'})
+    }
+
+    getCancelRequests = (req: express.Request, res: express.Response)=>{
+        CancelJobModel.find({}, (err, requests)=>{
+            if(err) console.log(err)
+            else res.json(requests)
+        })
+    }
+
+    rejectStopRequest = (req: express.Request, res: express.Response)=>{
+        CancelJobModel.deleteOne({'_id': req.query.id}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Odbijen'})
+        })
+    }
+
+    deleteJob = (req: express.Request, res: express.Response)=>{
+        CancelJobModel.deleteOne({'_id': req.query.id}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Otkazan posao'})
         })
     }
 }
