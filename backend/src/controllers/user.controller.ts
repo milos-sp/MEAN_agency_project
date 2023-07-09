@@ -51,7 +51,7 @@ export class UserController{
             else res.json(clients)
         })
     }
-
+    
     uploadAvatarImage = (req: express.Request, res: express.Response, next: express.NextFunction)=>{
         if(req.file){
             let imageDB = new ImageModel({'username': req.params.username, 'imageUrl': 'http://127.0.0.1:4000/uploads/' + 

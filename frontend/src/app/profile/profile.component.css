@@ -3,11 +3,9 @@ img{
     display: block;
 }
 
-/* .data{
-    float: left;
-    display: block;
-    width: 50%;
-} */
+.error{
+    color: red;
+}
 
 #avatar{
     margin: auto;

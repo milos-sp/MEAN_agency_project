@@ -126,5 +126,4 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/users/changePassword`, data)
   }
-
 }

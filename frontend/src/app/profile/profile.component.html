@@ -90,6 +90,7 @@
             <img src="{{image.imageUrl}}" class="image-rounded img" height="150px" width="150px">
                 <input type="file" name="avatar" id="avatar" accept="image/jpg, image/png" (input)="imageSelected($event)" class="form-control form-control-sm">
             <button (click)="editImage()" *ngIf="selectedImage" type="button" class="btn btn-warning">Izmeni</button>
+            <p class="error">{{messageImage}}</p>
         </div>
         <div class="col-sm-8" *ngIf="user.type=='klijent'">
             <label for="firstname">Ime: </label>
@@ -178,7 +179,7 @@
       <div class="mx-auto" style="width: 200px;">
         <button (click)="insertWorker()" type="button" class="btn btn-warning" style="width: 100%;">Dodaj</button>
       </div>
-      <p style="color: red">{{message}}</p>
+      <p class="error">{{message}}</p>
     </div>
   </div>
 </div>

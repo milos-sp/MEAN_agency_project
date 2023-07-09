@@ -73,6 +73,14 @@ class UserController {
                 res.status(500).json({ 'message': 'Nije uspeo upload' });
             }
         };
+        // checkImageSize = (req: express.Request, res: express.Response)=>{
+        //     var sizeOf = require('image-size');
+        //     let url = req.body.url
+        //     sizeOf(url, (err, dimensions)=>{
+        //         if(err) console.log(err)
+        //         else console.log(dimensions.width, dimensions.height)
+        //     })
+        // }
         this.addDefaultImage = (req, res) => {
             let imageDB = new image_1.default(req.body);
             imageDB.save((err, resp) => {

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserService } from '../user.service';
 import { ImageService } from '../image.service';
-import { Image } from '../model/image';
+import { ImageDb } from '../model/image';
 
 @Component({
   selector: 'app-guest',
@@ -17,7 +17,7 @@ export class GuestComponent implements OnInit {
   }
 
   agencies: Array<User>;
-  images: Array<Image>;
+  images: Array<ImageDb>;
   imagesMap: Map<String, String> = new Map<String, String>();
   //za pretragu
   agency: string = "";
@@ -28,7 +28,7 @@ export class GuestComponent implements OnInit {
     this.userService.getAllAgencies().subscribe((data: User[])=>{
       this.agencies = data;
     })
-    this.imageService.getImages().subscribe((data: Image[])=>{
+    this.imageService.getImages().subscribe((data: ImageDb[])=>{
       this.images = data;
       this.images.forEach(element => {
         this.imagesMap.set(element['username'], element['imageUrl'])

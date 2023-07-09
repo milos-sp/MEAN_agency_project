@@ -34,6 +34,9 @@ export class RegisterComponent implements OnInit {
   //za upload slike
   selectedImage: boolean = false;
   image: File;
+  isWrongSize: boolean;
+  messageImage: string = null;
+
   //jedinstveni podaci
   emails: Set<string> = new Set<string>();
   usernames: Set<string> = new Set<string>();
@@ -106,6 +109,10 @@ export class RegisterComponent implements OnInit {
       this.message = "Lozinke se ne poklapaju";
       return;
     }
+    if(!this.isWrongSize){
+      this.message = "Postavite sliku ispravnih dimenzija";
+      return;
+    }
     this.address_string = this.address.country + ' ' + this.address.city + ' ' + this.address.street + ' ' + this.address.street_n;
     if(this.admin){
       this.userService.addUser(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
@@ -120,7 +127,7 @@ export class RegisterComponent implements OnInit {
     }else{
       this.userService.register(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
         this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
-          if(!this.selectedImage){
+          if(!this.selectedImage || this.isWrongSize){
             this.userService.addDefaultImage(this.username, 'http://127.0.0.1:4000/uploads/avatar_default.png')
           }else{
             this.submitImage()
@@ -131,10 +138,28 @@ export class RegisterComponent implements OnInit {
   }
 
   imageSelected(event){
-    if(event.target.value){
-      this.selectedImage = true;
-      this.image = <File>event.target.files[0];
-    }
+    const URL = window.webkitURL;
+      let img = new Image();
+      img.src = URL.createObjectURL(event.target.files[0]);
+      this.messageImage = null;
+      img.onload = (evt) => {
+        let height = img.height
+        let width = img.width
+        //console.log(height,width)
+        if(height<100 || width<100){
+          this.isWrongSize = true
+          this.selectedImage = false
+          this.messageImage = "Slika je manja od 100x100px";
+          return;
+        }
+        if(height>300 || width>300){
+          this.isWrongSize = true
+          this.selectedImage = false
+          this.messageImage = "Slika je veća od 300x300px";
+          return;
+        }
+        this.isWrongSize = false;
+      }
   }
 
   submitImage(){

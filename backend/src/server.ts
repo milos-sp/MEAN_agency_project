@@ -35,6 +35,5 @@ router.use('/workers', workerRouter)
 const path = require('path')
 router.use('/uploads', express.static(path.join('./src/uploads')))
 
-
 app.use('/', router);
 app.listen(4000, () => console.log(`Express server running on port 4000`));

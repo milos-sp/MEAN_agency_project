@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../model/user';
-import { Image } from '../model/image';
+import { ImageDb } from '../model/image';
 import { ImageService } from '../image.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Worker } from '../model/worker';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     private workerReqService: WorkerRequestService, private activatedRouter: ActivatedRoute, private router: Router) { }
 
   user: User = new User();
-  image: Image = new Image();
+  image: ImageDb = new ImageDb();
   admin: boolean;
   workers: Worker[] = [];
   workernew: Worker = new Worker();
@@ -28,6 +28,8 @@ export class ProfileComponent implements OnInit {
   workerReq: WorkerRequest = new WorkerRequest();
   selectedImage: boolean = false;
   imageUpdate: File;
+  isWrongSize: boolean;
+  messageImage: string = null;
 
   ngOnInit(): void {
     if(this.activatedRouter.snapshot.paramMap.get('username')==null){
@@ -35,7 +37,7 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserByUsername(sessionStorage.getItem('username')).subscribe((data: User)=>{
         this.user = data
       })
-      this.imageService.getImageByUsername(sessionStorage.getItem('username')).subscribe((data: Image)=>{
+      this.imageService.getImageByUsername(sessionStorage.getItem('username')).subscribe((data: ImageDb)=>{
         this.image = data
       })
     }else{
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserByUsername(this.activatedRouter.snapshot.paramMap.get('username')).subscribe((data: User)=>{
         this.user = data
       })
-      this.imageService.getImageByUsername(this.activatedRouter.snapshot.paramMap.get('username')).subscribe((data: Image)=>{
+      this.imageService.getImageByUsername(this.activatedRouter.snapshot.paramMap.get('username')).subscribe((data: ImageDb)=>{
         this.image = data
       })
       this.workerService.getWorkersForAgency(this.activatedRouter.snapshot.paramMap.get('username')).subscribe((data: Worker[])=>{
@@ -71,9 +73,32 @@ export class ProfileComponent implements OnInit {
     if(event.target.value){
       this.selectedImage = true;
       this.imageUpdate = <File>event.target.files[0];
+      //provera dimenzija
+      const URL = window.webkitURL;
+      let img = new Image();
+      img.src = URL.createObjectURL(event.target.files[0]); //sa blob
+      this.messageImage = null;
+      img.onload = (evt) => {
+        let height = img.height
+        let width = img.width
+        //console.log(height,width)
+        if(height<100 || width<100){
+          this.isWrongSize = true
+          this.selectedImage = false
+          this.messageImage = "Slika je manja od 100x100px";
+          return;
+        }
+        if(height>300 || width>300){
+          this.isWrongSize = true
+          this.selectedImage = false
+          this.messageImage = "Slika je veća od 300x300px";
+          return;
+        }
+
+      }
     }
   }
-
+  
   editImage(){
     const formData = new FormData();
     if(this.imageUpdate){
