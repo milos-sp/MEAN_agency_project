@@ -50,13 +50,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let r of myRequests">
+                <tr *ngFor="let r of myRequests" class="table-info">
                     <td *ngIf="r.active">{{r.agency_username}}</td>
                     <td *ngIf="r.active">{{propertyMap.get(r.property_id)}}</td>
                     <td *ngIf="r.active">{{r.date_start}}</td>
                     <td *ngIf="r.active">{{r.date_end}}</td>
-                    <td *ngIf="r.active"><button (click)="showSketch(r)">Skica</button></td>
-                    <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)">Plati</button></td>
+                    <td *ngIf="r.active"><button (click)="showSketch(r)" class="btn btn-warning">Skica</button></td>
+                    <td *ngIf="r.active && checkProgress(r)"><button (click)="payJob(r)" class="btn btn-success">Plati</button></td>
                 </tr>
             </tbody>
         </table>
@@ -75,16 +75,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let r of myRequests">
+                <tr *ngFor="let r of myRequests" class="table-info">
                     <td *ngIf="!r.active && r.status==3">{{r.agency_username}}</td>
                     <td *ngIf="!r.active && r.status==3">{{propertyMap.get(r.property_id)}}</td>
                     <td *ngIf="!r.active && r.status==3">{{r.date_start}}</td>
                     <td *ngIf="!r.active && r.status==3">{{r.date_end}}</td>
-                    <td *ngIf="!r.active && r.status==3"><button (click)="showSketch(r)">Skica</button></td>
+                    <td *ngIf="!r.active && r.status==3"><button (click)="showSketch(r)" class="btn btn-warning">Skica</button></td>
+                    <td *ngIf="!r.active && r.status==3"><button (click)="showComment(r)" class="btn btn-primary">Komentar</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
+<div class="container mt-3" *ngIf="selectedJob && content == 2">
+    <h2>Komentar</h2>
+    <label for="comment">Komentar: </label>
+    <textarea name="comment" id="comment" value="{{comment.comment}}" [(ngModel)]="comment.comment" class="form-control"></textarea>
+    <label for="rating">Ocena: </label>
+    <select name="rating" id="rating" [(ngModel)]="comment.rating" class="form-select" style="width: 50%;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <button (click)="editComment()" *ngIf="hasComment" type="button" class="btn btn-warning">Izmeni</button>
+    <button (click)="addComment()" *ngIf="!hasComment" type="button" class="btn btn-warning">Dodaj</button>
+    <p class="error">{{message}}</p>
 </div>
 <div class="content" *ngIf="content == 3">
     <div class="table-responsive">
@@ -104,7 +121,8 @@
                     <td *ngIf="!r.active && r.status!=3">{{r.date_start}}</td>
                     <td *ngIf="!r.active && r.status!=3">{{r.date_end}}</td>
                     <td *ngIf="r.status==1 && !r.active">Ponuda: {{r.offer}}</td>
-                    <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)">Prihvati</button><button (click)="rejectOffer(r)">Odbij</button></td>
+                    <td *ngIf="r.status==1 && !r.active"><button (click)="acceptOffer(r)" class="btn btn-success">Prihvati</button>
+                        <button (click)="rejectOffer(r)" class="btn btn-danger">Odbij</button></td>
                 </tr>
             </tbody>
         </table>

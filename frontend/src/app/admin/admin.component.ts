@@ -16,6 +16,12 @@ export class AdminComponent implements OnInit {
   userType: number;
   clients: User[] = [];
   agencies: User[] = [];
+  //za promenu lozinke
+  loggedUser: User = new User();
+  oldPassword: string = null;
+  newPassword1: string = null;
+  newPassword2: string = null;
+  message: string = null;
 
   ngOnInit(): void {
     this.userType = 1;
@@ -24,6 +30,9 @@ export class AdminComponent implements OnInit {
     })
     this.userService.getAllAgencies().subscribe((data: User[])=>{
       this.agencies = data
+    })
+    this.userService.getUserByUsername(sessionStorage.getItem('admin_username')).subscribe((data: User)=>{
+      this.loggedUser = data
     })
   }
 
@@ -48,6 +57,31 @@ export class AdminComponent implements OnInit {
           this.agencies = data
         })
       }
+    }))
+  }
+
+  changePassword(){
+    this.message = null
+    let regPassword = new RegExp(/^(?=[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])(?=.*[A-Z]).{7,12}$/)
+    if(!this.oldPassword || !this.newPassword1 || !this.newPassword2){
+      this.message = 'Popunite sva polja';
+      return;
+    }
+    if(this.oldPassword != this.loggedUser.password){
+      this.message = 'Stara loznika nije ispravna';
+      return;
+    }
+    if(!regPassword.test(this.newPassword1)){
+      this.message = 'Nova lozinka nije u ispravnom formatu';
+      return;
+    }
+    if(this.newPassword1 != this.newPassword2){
+      this.message = 'Loznike se ne poklapaju';
+      return;
+    }
+    this.userService.changePassword(this.loggedUser.username, this.newPassword1).subscribe((resp=>{
+      sessionStorage.clear()
+      this.router.navigate(['admin/login'])
     }))
   }
 

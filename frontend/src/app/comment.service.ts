@@ -13,4 +13,20 @@ export class CommentService {
   getCommentsForAgency(agency){
     return this.http.post(`${this.uri}/comments/getCommentsForAgency`, {agency: agency})
   }
+
+  getComment(agency, user){
+    const data = {
+      agency: agency,
+      user: user
+    }
+    return this.http.post(`${this.uri}/comments/getComment`, data)
+  }
+
+  addComment(comment){
+    return this.http.post(`${this.uri}/comments/addComment`, comment)
+  }
+
+  editComment(comment){
+    return this.http.post(`${this.uri}/comments/editComment`, comment)
+  }
 }

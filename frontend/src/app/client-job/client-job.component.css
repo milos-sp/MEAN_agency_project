@@ -1,9 +1,5 @@
-.rejected{
-    background-color: red;
-}
-
-.accepted{
-    background-color: green;
+.error{
+    color: red;
 }
 
 canvas{

@@ -25,6 +25,7 @@
 <div class="btn-group">
     <button type="button" class="btn btn-warning" (click)="changeType(1)">Klijenti</button>
     <button type="button" class="btn btn-warning" (click)="changeType(2)">Agencije</button>
+    <button type="button" class="btn btn-warning" (click)="changeType(3)">Promena lozinke</button>
     <a routerLink="/add-user" class="btn btn-warning" role="button">Dodaj korisnika</a>
 </div>
 <div class="container" *ngIf="userType==1">
@@ -75,3 +76,26 @@
         </table>
     </div>
 </div>
+<div class="container mt-5" *ngIf="userType==3">
+    <h2>Promena lozinke</h2>
+      <div class="row">
+          <div class="col-sm-4">
+        <label for="old">Stara lozinka: </label>
+            <div class="form-group"> 
+          <input type="password" name="old" id="old" class="form-control" [(ngModel)]="oldPassword"> 
+        </div> 
+            <label for="new1">Nova lozinka: </label>
+        <div class="form-group"> 
+          <input type="password" name="new1" id="new1" class="form-control" [(ngModel)]="newPassword1">
+        </div> 
+        <label for="new2">Ponovite novu lozniku: </label>
+        <div class="form-group"> 
+          <input type="password" name="new2" id="new2" class="form-control" [(ngModel)]="newPassword2"> 
+        </div>
+        <div>
+          <button (click)="changePassword()" class="btn btn-success mt-1">Promeni</button>
+          <p style="color: red;">{{message}}</p>
+        </div> 
+          </div>
+      </div>
+  </div>

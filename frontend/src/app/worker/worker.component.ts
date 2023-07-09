@@ -51,8 +51,9 @@ export class WorkerComponent implements OnInit {
     }
     this.message = null;
     this.workerRequestService.addRequest(this.agency.username, this.increment).subscribe((resp=>{
-      window.location.reload()
+      
     }))
+    window.location.reload()
   }
 
   deleteWorker(w: Worker){

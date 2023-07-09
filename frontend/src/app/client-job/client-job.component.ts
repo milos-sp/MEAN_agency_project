@@ -3,6 +3,8 @@ import { Request } from '../model/request';
 import { RequestService } from '../request.service';
 import { Property } from '../model/property';
 import { PropertyService } from '../property.service';
+import { CommentService } from '../comment.service';
+import { Comment } from '../model/comment';
 
 @Component({
   selector: 'app-client-job',
@@ -11,7 +13,7 @@ import { PropertyService } from '../property.service';
 })
 export class ClientJobComponent implements OnInit {
 
-  constructor(private requestService: RequestService, private propertyService: PropertyService) { }
+  constructor(private requestService: RequestService, private propertyService: PropertyService, private commentService: CommentService) { }
 
   content: number;
   myRequests: Request[] = [];
@@ -19,9 +21,15 @@ export class ClientJobComponent implements OnInit {
   //za skicu
   @ViewChild('canvas', {static: true}) myCanvas!: ElementRef;
   private ctx: CanvasRenderingContext2D;
+  //za komentar
+  selectedJob: boolean;
+  comment: Comment = new Comment();
+  hasComment: boolean;
+  message: string = null;
 
   ngOnInit(): void {
     this.content = 1;
+    this.selectedJob = false;
     let property = new Property();
     const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
     this.ctx = canvas.getContext('2d');
@@ -40,6 +48,7 @@ export class ClientJobComponent implements OnInit {
 
   changeContent(content){
     this.content = content;
+    this.selectedJob = false;
     const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
@@ -102,6 +111,39 @@ export class ClientJobComponent implements OnInit {
         this.myRequests = data
       })
     })
+  }
+
+  showComment(r: Request){
+    this.commentService.getComment(r.agency_username, sessionStorage.getItem('username')).subscribe((data: Comment)=>{
+      this.selectedJob = true
+      if(data == null){
+        this.comment.agency_username = r.agency_username
+        this.comment.comment = null
+        this.comment.rating = 1
+        this.hasComment = false
+      }else{
+        this.hasComment = true
+        this.comment = data
+      }
+    })
+  }
+
+  editComment(){
+    this.commentService.editComment(this.comment).subscribe((resp=>{
+      window.location.reload()
+    }))
+  }
+
+  addComment(){
+    this.message = null;
+    if(this.comment.comment == null){
+      this.message = "Unesite tekst komentara";
+      return;
+    }
+    this.comment.username = sessionStorage.getItem('username')
+    this.commentService.addComment(this.comment).subscribe((resp=>{
+      window.location.reload()
+    }))
   }
 
 }
