@@ -67,6 +67,7 @@ export class UserController{
 
     addDefaultImage = (req: express.Request, res: express.Response)=>{
         let imageDB = new ImageModel(req.body)
+        
         imageDB.save((err, resp)=>{
             if(err) console.log(err)
             else res.json({'message': 'ok'})

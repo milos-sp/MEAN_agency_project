@@ -35,7 +35,7 @@ userRouter.route('/getUserByUsername').post((req, res) => new user_controller_1.
 userRouter.route('/:username/uploadAvatarImage').post(upload.single('avatar_image'), (req, res, next) => {
     new user_controller_1.UserController().uploadAvatarImage(req, res, next);
 });
-userRouter.route('/addDefaulltImage').post((req, res) => new user_controller_1.UserController().addDefaultImage(req, res));
+userRouter.route('/addDefaultImage').post((req, res) => new user_controller_1.UserController().addDefaultImage(req, res));
 userRouter.route('/editClient').post((req, res) => new user_controller_1.UserController().editClient(req, res));
 userRouter.route('/getPendingUsers').get((req, res) => new user_controller_1.UserController().getPendingUsers(req, res));
 userRouter.route('/accept').post((req, res) => new user_controller_1.UserController().accept(req, res));

@@ -50,7 +50,7 @@ userRouter.route('/:username/uploadAvatarImage').post(upload.single('avatar_imag
     new UserController().uploadAvatarImage(req, res, next)
 })
 
-userRouter.route('/addDefaulltImage').post(
+userRouter.route('/addDefaultImage').post(
     (req, res)=> new UserController().addDefaultImage(req, res)
 )
 
