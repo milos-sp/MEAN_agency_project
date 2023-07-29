@@ -86,4 +86,12 @@ userRouter.route('/changePassword').post(
   (req, res)=> new UserController().changePassword(req, res)
 )
 
+userRouter.route('/reset').post(
+  (req, res)=> new UserController().reset(req, res)
+)
+
+userRouter.route('/resetLink').get(
+  (req, res)=> new UserController().resetLink(req, res)
+)
+
 export default userRouter;

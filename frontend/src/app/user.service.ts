@@ -126,4 +126,20 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/users/changePassword`, data)
   }
+
+  reset(email){
+    const data = {
+      email: email
+    }
+    return this.http.post(`${this.uri}/users/reset`, data)
+  }
+
+  changePasswordEmail(email, password){
+    const data = {
+      username: email,
+      password: password
+    }
+    return this.http.post(`${this.uri}/users/changePasswordEmail`, data)
+  }
+  
 }

@@ -44,5 +44,7 @@ userRouter.route('/deleteUser').post((req, res) => new user_controller_1.UserCon
 userRouter.route('/addUser').post((req, res) => new user_controller_1.UserController().addUser(req, res));
 userRouter.route('/acceptExpansionRequest').post((req, res) => new user_controller_1.UserController().acceptExpansionRequest(req, res));
 userRouter.route('/changePassword').post((req, res) => new user_controller_1.UserController().changePassword(req, res));
+userRouter.route('/reset').post((req, res) => new user_controller_1.UserController().reset(req, res));
+userRouter.route('/resetLink').get((req, res) => new user_controller_1.UserController().resetLink(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

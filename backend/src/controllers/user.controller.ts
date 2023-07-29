@@ -4,6 +4,8 @@ import PendingUserModel from '../models/pending_user';
 import ImageModel from '../models/image';
 
 const multer = require('multer');
+"use strict";
+const nodemailer = require("nodemailer");
 
 export class UserController{
     login = (req: express.Request, res: express.Response)=>{
@@ -154,5 +156,84 @@ export class UserController{
             if(err) console.log(err)
             else res.json({'message': 'Lozinka je promenjena'})
         })
+    }
+
+    changePasswordEmail = (req: express.Request, res: express.Response)=>{
+        let email = req.body.email;
+        let password = req.body.password;
+
+        UserModel.updateOne({'email': email}, {$set: {'password': password}}, (err, resp)=>{
+            if(err) console.log(err)
+            else res.json({'message': 'Lozinka je promenjena'})
+        })
+    }
+
+    reset = (req: express.Request, res: express.Response)=>{
+        UserModel.findOne({'email': req.body.email}, (err, user)=>{
+            if(err) console.log(err)
+            else{
+                if(user){
+
+                    const hash = new UserModel(user).generatePasswordResetHash()
+                    const resetLink = `http://localhost:4000/resetLink?email=${user.email}?&hash=${hash}`
+                    
+                    res.status(200).json({
+                        resetLink
+                    })
+                    //poslati link
+
+                    var transporter = nodemailer.createTransport({
+                        host: 'smtp.ethereal.email',
+                        port: 587,
+                        auth: {
+                            user: 'monty.wilkinson89@ethereal.email',
+                            pass: 'cZrkznAAC1n6rCsxe5'
+                        },
+                        tls: {
+                            rejectUnauthorized: false
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: '"Monty Wilkinson" <monty.wilkinson89@ethereal.email>',
+                        to: req.body.email,
+                        subject: "Reset lozinke",
+                        text: resetLink
+                    }
+
+                    transporter.sendMail(mailOptions, function(err, info){
+                        if(err) console.log(err)
+                        else console.log('Poslat email: ' + info.response)
+                    })
+                }else{
+                    return res.status(400).json({
+                        'message': 'Neispravan email'
+                    })
+                }
+            }
+        })
+    }
+    
+    resetLink = (req: express.Request, res: express.Response)=>{
+        if (req.query && req.query.email && req.query.hash){
+            UserModel.findOne({'email': req.query.email}, (err, user)=>{
+                if(err) console.log(err)
+                else{
+                    if(user){
+                        if(new UserModel(user).verifyPasswordResetHash(req.query.hash)){
+                            return res.sendFile('localhost:4200/new-password/' + req.query.email)
+                        }else{
+                            return res.status(400).json({
+                                'message': 'Los link za reset lozinke'
+                         })
+                        }
+                        }else{
+                        return res.status(400).json({
+                            'message': 'Los link za reset lozinke'
+                        })
+                    }
+                }
+            })
+        }
     }
 }

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import crypto from 'crypto';
 
 const Schema = mongoose.Schema;
 
@@ -56,5 +57,16 @@ let User = new Schema({
         type: Number
     }
 })
+
+
+
+User.methods.generatePasswordResetHash = function(){
+    const resetHash = crypto.createHash('sha512').update(this.password).digest('hex')
+    return resetHash
+}
+
+User.methods.verifyPasswordResetHash = function(resetHash = undefined){
+    return resetHash === this.generatePasswordResetHash()
+}
 
 export default mongoose.model('UserModel', User, 'users');

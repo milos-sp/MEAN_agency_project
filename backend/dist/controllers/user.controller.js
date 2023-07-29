@@ -8,6 +8,8 @@ const user_1 = __importDefault(require("../models/user"));
 const pending_user_1 = __importDefault(require("../models/pending_user"));
 const image_1 = __importDefault(require("../models/image"));
 const multer = require('multer');
+"use strict";
+const nodemailer = require("nodemailer");
 class UserController {
     constructor() {
         this.login = (req, res) => {
@@ -164,6 +166,85 @@ class UserController {
                 else
                     res.json({ 'message': 'Lozinka je promenjena' });
             });
+        };
+        this.changePasswordEmail = (req, res) => {
+            let email = req.body.email;
+            let password = req.body.password;
+            user_1.default.updateOne({ 'email': email }, { $set: { 'password': password } }, (err, resp) => {
+                if (err)
+                    console.log(err);
+                else
+                    res.json({ 'message': 'Lozinka je promenjena' });
+            });
+        };
+        this.reset = (req, res) => {
+            user_1.default.findOne({ 'email': req.body.email }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else {
+                    if (user) {
+                        const hash = new user_1.default(user).generatePasswordResetHash();
+                        const resetLink = `http://localhost:4000/resetLink?email=${user.email}?&hash=${hash}`;
+                        res.status(200).json({
+                            resetLink
+                        });
+                        //poslati link
+                        var transporter = nodemailer.createTransport({
+                            host: 'smtp.ethereal.email',
+                            port: 587,
+                            auth: {
+                                user: 'monty.wilkinson89@ethereal.email',
+                                pass: 'cZrkznAAC1n6rCsxe5'
+                            },
+                            tls: {
+                                rejectUnauthorized: false
+                            }
+                        });
+                        var mailOptions = {
+                            from: '"Monty Wilkinson" <monty.wilkinson89@ethereal.email>',
+                            to: req.body.email,
+                            subject: "Reset lozinke",
+                            text: resetLink
+                        };
+                        transporter.sendMail(mailOptions, function (err, info) {
+                            if (err)
+                                console.log(err);
+                            else
+                                console.log('Poslat email: ' + info.response);
+                        });
+                    }
+                    else {
+                        return res.status(400).json({
+                            'message': 'Neispravan email'
+                        });
+                    }
+                }
+            });
+        };
+        this.resetLink = (req, res) => {
+            if (req.query && req.query.email && req.query.hash) {
+                user_1.default.findOne({ 'email': req.query.email }, (err, user) => {
+                    if (err)
+                        console.log(err);
+                    else {
+                        if (user) {
+                            if (new user_1.default(user).verifyPasswordResetHash(req.query.hash)) {
+                                return res.sendFile('localhost:4200/new-password/' + req.query.email);
+                            }
+                            else {
+                                return res.status(400).json({
+                                    'message': 'Los link za reset lozinke'
+                                });
+                            }
+                        }
+                        else {
+                            return res.status(400).json({
+                                'message': 'Los link za reset lozinke'
+                            });
+                        }
+                    }
+                });
+            }
         };
     }
 }

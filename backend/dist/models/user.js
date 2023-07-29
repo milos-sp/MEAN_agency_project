@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const crypto_1 = __importDefault(require("crypto"));
 const Schema = mongoose_1.default.Schema;
 let User = new Schema({
     username: {
@@ -59,5 +60,12 @@ let User = new Schema({
         type: Number
     }
 });
+User.methods.generatePasswordResetHash = function () {
+    const resetHash = crypto_1.default.createHash('sha512').update(this.password).digest('hex');
+    return resetHash;
+};
+User.methods.verifyPasswordResetHash = function (resetHash = undefined) {
+    return resetHash === this.generatePasswordResetHash();
+};
 exports.default = mongoose_1.default.model('UserModel', User, 'users');
 //# sourceMappingURL=user.js.map

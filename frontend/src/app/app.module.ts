@@ -25,6 +25,8 @@ import { WorkerInfoComponent } from './worker-info/worker-info.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
 import { AdminJobsComponent } from './admin-jobs/admin-jobs.component';
 import { PropertyInfoComponent } from './property-info/property-info.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { PropertyInfoComponent } from './property-info/property-info.component';
     WorkerInfoComponent,
     RegistrationRequestsComponent,
     AdminJobsComponent,
-    PropertyInfoComponent
+    PropertyInfoComponent,
+    ResetPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,8 @@ import { WorkerInfoComponent } from './worker-info/worker-info.component';
 import { RegistrationRequestsComponent } from './registration-requests/registration-requests.component';
 import { AdminJobsComponent } from './admin-jobs/admin-jobs.component';
 import { PropertyInfoComponent } from './property-info/property-info.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -43,7 +45,9 @@ const routes: Routes = [
   {path: "registration-requests", component: RegistrationRequestsComponent},
   {path: "admin-jobs", component: AdminJobsComponent},
   {path: "add-user", component: RegisterComponent},
-  {path: "property-info/:id", component: PropertyInfoComponent}
+  {path: "property-info/:id", component: PropertyInfoComponent},
+  {path: "reset-password", component: ResetPasswordComponent},
+  {path: "new-password/:email", component: NewPasswordComponent}
 ];
 
 @NgModule({
