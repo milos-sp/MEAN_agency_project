@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
+var bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
@@ -58,7 +59,13 @@ let User = new Schema({
     }
 })
 
+User.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
+}
 
+User.methods.verifyPassword = function(password){
+    return bcrypt.compareSync(password, this.password)
+}
 
 User.methods.generatePasswordResetHash = function(){
     const resetHash = crypto.createHash('sha512').update(this.password).digest('hex')

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+var bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 
@@ -59,5 +60,13 @@ let PendingUser = new Schema({
         type: Boolean
     }
 })
+
+PendingUser.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
+}
+
+PendingUser.methods.verifyPassword = function(password){
+    return bcrypt.compareSync(password, this.password)
+}
 
 export default mongoose.model('PendingUserModel', PendingUser, 'pending_users');

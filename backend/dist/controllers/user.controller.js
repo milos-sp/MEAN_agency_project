@@ -15,16 +15,23 @@ class UserController {
         this.login = (req, res) => {
             let username = req.body.username;
             let password = req.body.password;
-            user_1.default.findOne({ 'username': username, 'password': password }, (err, user) => {
+            user_1.default.findOne({ 'username': username }, (err, user) => {
                 if (err)
                     console.log(err);
-                else
-                    res.json(user);
+                if (user) {
+                    if (!user.verifyPassword(password)) {
+                        res.json(null);
+                    }
+                    else {
+                        res.json(user);
+                    }
+                }
             });
         };
         this.register = (req, res) => {
             let user = new pending_user_1.default(req.body);
             user.rejected = false;
+            console.log(req.body.password);
             user.save((err, resp) => {
                 if (err) {
                     console.log(err);
@@ -160,11 +167,29 @@ class UserController {
         this.changePassword = (req, res) => {
             let username = req.body.username;
             let password = req.body.password;
-            user_1.default.updateOne({ 'username': username }, { $set: { 'password': password } }, (err, resp) => {
+            user_1.default.findOne({ 'username': username }, (err, user) => {
                 if (err)
                     console.log(err);
-                else
-                    res.json({ 'message': 'Lozinka je promenjena' });
+                if (user) {
+                    user_1.default.updateOne({ 'username': username }, { $set: { 'password': user.generateHash(password) } }, (err, resp) => {
+                        if (err)
+                            console.log(err);
+                        else
+                            res.json({ 'message': 'Lozinka je promenjena' });
+                    });
+                }
+            });
+        };
+        this.comparePasswords = (req, res) => {
+            let username = req.body.username;
+            let oldPassword = req.body.password;
+            user_1.default.findOne({ 'username': username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                if (user) {
+                    let test = user.verifyPassword(oldPassword);
+                    res.json(test);
+                }
             });
         };
         this.changePasswordEmail = (req, res) => {

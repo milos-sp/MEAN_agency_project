@@ -63,10 +63,12 @@ export class AdminComponent implements OnInit {
   changePassword(){
     this.message = null
     let regPassword = new RegExp(/^(?=[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])(?=.*[A-Z]).{7,12}$/)
-    if(!this.oldPassword || !this.newPassword1 || !this.newPassword2){
-      this.message = 'Popunite sva polja';
-      return;
-    }
+    this.userService.comparePasswords(this.loggedUser.username, this.oldPassword).subscribe(resp=>{
+      if(!resp){
+        this.message = 'Stara loznika nije ispravna';
+        return;
+      }
+    })
     if(this.oldPassword != this.loggedUser.password){
       this.message = 'Stara loznika nije ispravna';
       return;

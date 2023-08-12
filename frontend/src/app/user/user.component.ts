@@ -33,10 +33,12 @@ export class UserComponent implements OnInit {
       this.message = 'Popunite sva polja';
       return;
     }
-    if(this.oldPassword != this.loggedUser.password){
-      this.message = 'Stara loznika nije ispravna';
-      return;
-    }
+    this.userService.comparePasswords(this.loggedUser.username, this.oldPassword).subscribe(resp=>{
+      if(!resp){
+        this.message = 'Stara loznika nije ispravna';
+        return;
+      }
+    })
     if(!regPassword.test(this.newPassword1)){
       this.message = 'Nova lozinka nije u ispravnom formatu';
       return;

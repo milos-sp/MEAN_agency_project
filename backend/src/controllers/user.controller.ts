@@ -12,9 +12,15 @@ export class UserController{
         let username = req.body.username;
         let password = req.body.password;
 
-        UserModel.findOne({'username': username, 'password': password}, (err, user)=>{
+        UserModel.findOne({'username': username}, (err, user)=>{
             if(err) console.log(err)
-            else res.json(user)
+            if(user){
+                if(!user.verifyPassword(password)){
+                    res.json(null)
+                }else{
+                    res.json(user)
+                }
+            }
         })
     }
 
@@ -22,6 +28,7 @@ export class UserController{
         let user = new PendingUserModel(req.body);
         user.rejected = false;
 
+        console.log(req.body.password)
         user.save((err, resp)=>{
             if(err){
                 console.log(err)
@@ -152,9 +159,28 @@ export class UserController{
         let username = req.body.username;
         let password = req.body.password;
 
-        UserModel.updateOne({'username': username}, {$set: {'password': password}}, (err, resp)=>{
+        UserModel.findOne({'username': username}, (err, user)=>{
             if(err) console.log(err)
-            else res.json({'message': 'Lozinka je promenjena'})
+            if(user){
+                UserModel.updateOne({'username': username}, {$set: {'password': user.generateHash(password)}}, (err, resp)=>{
+                    if(err) console.log(err)
+                    else res.json({'message': 'Lozinka je promenjena'})
+                })
+            }
+        })
+
+    }
+
+    comparePasswords = (req: express.Request, res: express.Response)=>{
+        let username = req.body.username;
+        let oldPassword = req.body.password;
+
+        UserModel.findOne({'username': username}, (err, user)=>{
+            if(err) console.log(err)
+            if(user){
+                let test = user.verifyPassword(oldPassword)
+                res.json(test)
+            }
         })
     }
 

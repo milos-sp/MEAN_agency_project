@@ -127,6 +127,14 @@ export class UserService {
     return this.http.post(`${this.uri}/users/changePassword`, data)
   }
 
+  comparePasswords(username, password){
+    const data = {
+      username: username,
+      password: password
+    }
+    return this.http.post(`${this.uri}/users/comparePasswords`, data)
+  }
+
   reset(email){
     const data = {
       email: email
