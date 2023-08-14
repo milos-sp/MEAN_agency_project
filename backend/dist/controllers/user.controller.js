@@ -19,11 +19,21 @@ class UserController {
                 if (err)
                     console.log(err);
                 if (user) {
-                    if (!user.verifyPassword(password)) {
-                        res.json(null);
+                    if (user.password.length > 12) { //da radi i za stare lozinke bez hasha
+                        if (!user.verifyPassword(password)) {
+                            res.json(null);
+                        }
+                        else {
+                            res.json(user);
+                        }
                     }
                     else {
-                        res.json(user);
+                        if (user.password == password) {
+                            res.json(user);
+                        }
+                        else {
+                            res.json(null);
+                        }
                     }
                 }
             });
@@ -31,7 +41,6 @@ class UserController {
         this.register = (req, res) => {
             let user = new pending_user_1.default(req.body);
             user.rejected = false;
-            console.log(req.body.password);
             user.save((err, resp) => {
                 if (err) {
                     console.log(err);

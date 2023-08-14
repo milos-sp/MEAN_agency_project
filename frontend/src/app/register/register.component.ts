@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
   type: string = "";
   message: string = null;
   admin: boolean;
-  //picture: Image;
   //za klijenta
   firstname: string = null;
   lastname: string = null;
@@ -113,7 +112,12 @@ export class RegisterComponent implements OnInit {
       this.message = "Postavite sliku ispravnih dimenzija";
       return;
     }
-    this.address_string = this.address.country + ' ' + this.address.city + ' ' + this.address.street + ' ' + this.address.street_n;
+    if(this.type == "agencija"){
+      this.address_string = this.address.country + ' ' + this.address.city + ' ' + this.address.street + ' ' + this.address.street_n;
+    }else{
+      this.address_string = null;
+    }
+
     if(this.admin){
       this.userService.addUser(this.username, this.password, this.email, this.telephone, this.type, this.firstname, this.lastname,
         this.agency, this.address, this.agencyID, this.description, this.address_string).subscribe(resp=>{
@@ -153,16 +157,14 @@ export class RegisterComponent implements OnInit {
       img.onload = (evt) => {
         let height = img.height
         let width = img.width
-        //console.log(height,width)
+
         if(height<100 || width<100){
           this.isWrongSize = true
-         // this.selectedImage = false
           this.messageImage = "Slika je manja od 100x100px";
           return;
         }
         if(height>300 || width>300){
           this.isWrongSize = true
-         // this.selectedImage = false
           this.messageImage = "Slika je veća od 300x300px";
           return;
         }

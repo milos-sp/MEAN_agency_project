@@ -15,11 +15,19 @@ export class UserController{
         UserModel.findOne({'username': username}, (err, user)=>{
             if(err) console.log(err)
             if(user){
-                if(!user.verifyPassword(password)){
-                    res.json(null)
+                if(user.password.length>12){ //da radi i za stare lozinke bez hasha
+                    if(!user.verifyPassword(password)){
+                        res.json(null)
+                    }else{
+                        res.json(user)
+                    }
                 }else{
-                    res.json(user)
-                }
+                    if(user.password == password){
+                        res.json(user)
+                    }else{
+                        res.json(null)
+                    }
+                }   
             }
         })
     }
@@ -28,7 +36,6 @@ export class UserController{
         let user = new PendingUserModel(req.body);
         user.rejected = false;
 
-        console.log(req.body.password)
         user.save((err, resp)=>{
             if(err){
                 console.log(err)
