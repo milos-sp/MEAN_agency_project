@@ -1,0 +1,187 @@
+[{
+  "_id": {
+    "$oid": "6484dd5f3e3ee9bc3a070ec7"
+  },
+  "property_id": "647f5d545c7ac0d357cf2116",
+  "date_start": "2023-07-01",
+  "date_end": "2023-11-01",
+  "agency_username": "trougao",
+  "__v": 0,
+  "client_username": "pera",
+  "status": 3,
+  "offer": 30000,
+  "active": false,
+  "rooms_colors": [
+    "green"
+  ]
+},{
+  "_id": {
+    "$oid": "64996d2094f3e6561cbdd399"
+  },
+  "property_id": "647f5d545c7ac0d357cf2116",
+  "date_start": "2023-07-01",
+  "date_end": "2023-11-01",
+  "agency_username": "trougao",
+  "__v": 0,
+  "client_username": "pera",
+  "status": 2,
+  "offer": 0,
+  "active": false
+},{
+  "_id": {
+    "$oid": "649c62e03165f2b40cd34e30"
+  },
+  "property_id": "647b3e2fed11c88419c9e880",
+  "date_start": "2023-07-07",
+  "date_end": "2023-10-10",
+  "agency_username": "trougao",
+  "client_username": "pera",
+  "status": 1,
+  "offer": 50000,
+  "active": true,
+  "rooms_colors": [
+    "green",
+    "green",
+    "green"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a9af34d00a9c345cce54bf"
+  },
+  "property_id": "64a9af02d00a9c345cce54b2",
+  "date_start": "2023-07-10",
+  "date_end": "2023-10-14",
+  "agency_username": "trougao",
+  "client_username": "ana",
+  "status": 3,
+  "offer": 20000,
+  "active": false,
+  "rooms_colors": [
+    "green",
+    "green"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a9b001d00a9c345cce54ed"
+  },
+  "property_id": "64a9afe0d00a9c345cce54e0",
+  "date_start": "2023-08-10",
+  "date_end": "2023-12-12",
+  "agency_username": "trougao",
+  "client_username": "ana",
+  "status": 1,
+  "offer": 12000,
+  "active": true,
+  "rooms_colors": [
+    "red",
+    "red",
+    "green"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aa6d7804250547d4457042"
+  },
+  "property_id": "647f5d545c7ac0d357cf2116",
+  "date_start": "2023-07-20",
+  "date_end": "2023-08-08",
+  "agency_username": "ruza",
+  "client_username": "pera",
+  "status": 3,
+  "offer": 8000,
+  "active": false,
+  "rooms_colors": [
+    "green"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aab1f66ca5b280068b6f29"
+  },
+  "property_id": "64aab1aa6ca5b280068b6f19",
+  "date_start": "2023-08-10",
+  "date_end": "2023-10-20",
+  "agency_username": "ruza",
+  "client_username": "ivan",
+  "status": 1,
+  "offer": 13000,
+  "active": true,
+  "rooms_colors": [
+    "green",
+    "red",
+    "red"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aacae63457c27c04cb63c5"
+  },
+  "property_id": "64aacac93457c27c04cb63b9",
+  "date_start": "2023-08-10",
+  "date_end": "2023-12-15",
+  "agency_username": "lotus",
+  "client_username": "ivan",
+  "status": 2,
+  "offer": null,
+  "active": false,
+  "rooms_colors": [
+    "transparent",
+    "transparent"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aad1688345d743e60e18af"
+  },
+  "property_id": "647b3e2fed11c88419c9e880",
+  "date_start": "2023-07-20",
+  "date_end": "2023-10-30",
+  "agency_username": "lotus",
+  "client_username": "pera",
+  "status": 0,
+  "offer": null,
+  "active": false,
+  "rooms_colors": [
+    "transparent",
+    "transparent",
+    "transparent"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aae5e682969a231aa492f2"
+  },
+  "property_id": "64aacac93457c27c04cb63b9",
+  "date_start": "2023-09-20",
+  "date_end": "2023-09-30",
+  "agency_username": "trougao",
+  "client_username": "ivan",
+  "status": 0,
+  "offer": null,
+  "active": false,
+  "rooms_colors": [
+    "transparent",
+    "transparent"
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aae8ff82969a231aa49380"
+  },
+  "property_id": "64aae89c82969a231aa4936b",
+  "date_start": "2023-09-20",
+  "date_end": "2023-10-30",
+  "agency_username": "lotus",
+  "client_username": "ana",
+  "status": 0,
+  "offer": null,
+  "active": false,
+  "rooms_colors": [
+    "transparent",
+    "transparent",
+    "transparent"
+  ],
+  "__v": 0
+}]

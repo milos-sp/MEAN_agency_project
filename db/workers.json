@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "649999ae94f3e6561cbdd3a1"
+  },
+  "firstname": "Jovan",
+  "lastname": "Jovanović",
+  "email": "jovanjov5@gmail.com",
+  "phone": "0609148998",
+  "occupation": "keramičar",
+  "agency": "trougao",
+  "property": "64a9afe0d00a9c345cce54e0",
+  "room": 0
+},{
+  "_id": {
+    "$oid": "649999ae94f3e6561cbdd3a3"
+  },
+  "firstname": "Mitar",
+  "lastname": "Mitrović",
+  "email": "mitarmit@gmail.com",
+  "phone": "0611239900",
+  "occupation": "stolar",
+  "agency": "trougao",
+  "property": null,
+  "room": null
+},{
+  "_id": {
+    "$oid": "649999ae94f3e6561cbdd3a4"
+  },
+  "firstname": "Milan",
+  "lastname": "Perić",
+  "email": "milanp@gmail.com",
+  "phone": "0600032829",
+  "occupation": "keramičar",
+  "agency": "trougao",
+  "property": null,
+  "room": null
+},{
+  "_id": {
+    "$oid": "649ed43d8839f40d8c651314"
+  },
+  "firstname": "Ivan",
+  "lastname": "Majstorović",
+  "email": "ivanmajstor@gmail.com",
+  "phone": "0643438990",
+  "occupation": "moler",
+  "agency": "trougao",
+  "property": "64a9afe0d00a9c345cce54e0",
+  "room": 1,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a29b6c1219d18a8701493d"
+  },
+  "firstname": "Dragan",
+  "lastname": "Mitrović",
+  "email": "draganm@gmail.com",
+  "phone": "0655534789",
+  "occupation": "stolar",
+  "agency": "trougao",
+  "property": null,
+  "room": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aa6f9a04250547d44570ce"
+  },
+  "firstname": "Mina",
+  "lastname": "Minić",
+  "email": "minam@gmail.com",
+  "phone": "0644322123",
+  "occupation": "dekorater",
+  "agency": "ruza",
+  "property": null,
+  "room": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aa6fd404250547d44570d4"
+  },
+  "firstname": "Jovan",
+  "lastname": "Petrović",
+  "email": "jovanj123@gmail.com",
+  "phone": "0603234555",
+  "occupation": "keramičar",
+  "agency": "ruza",
+  "property": null,
+  "room": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aab2626ca5b280068b6f55"
+  },
+  "firstname": "Veljko",
+  "lastname": "Jovanović",
+  "email": "veljkoj@gmail.com",
+  "phone": "0699090231",
+  "occupation": "moler",
+  "agency": "ruza",
+  "property": "64aab1aa6ca5b280068b6f19",
+  "room": 1,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aab2906ca5b280068b6f5b"
+  },
+  "firstname": "Petar",
+  "lastname": "Veljković",
+  "email": "petarveljk@gmail.com",
+  "phone": "0632324123",
+  "occupation": "stolar",
+  "agency": "ruza",
+  "property": "64aab1aa6ca5b280068b6f19",
+  "room": 2,
+  "__v": 0
+}]

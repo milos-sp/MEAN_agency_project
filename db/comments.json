@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "6480dc40ed11c88419c9e883"
+  },
+  "rating": 5,
+  "comment": "Odlično odrađen posao",
+  "username": "pera",
+  "agency_username": "trougao",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6480dc40ed11c88419c9e884"
+  },
+  "rating": 4,
+  "comment": "Jako dobar posao!",
+  "username": "ana",
+  "agency_username": "trougao",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aa731604250547d4457162"
+  },
+  "rating": 4,
+  "comment": "Brzo i dobro odrađen posao",
+  "username": "pera",
+  "agency_username": "ruza",
+  "__v": 0
+}]

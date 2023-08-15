@@ -1,0 +1,167 @@
+[{
+  "_id": {
+    "$oid": "6474964003ea24bde087026d"
+  },
+  "username": "pera",
+  "password": "Pet@r123",
+  "telephone": "0632120908",
+  "email": "peraj@gmail.com",
+  "type": "klijent",
+  "firstname": "Petar",
+  "lastname": "Jović",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": null,
+  "address_string": null,
+  "workers_number": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6474964003ea24bde087026e"
+  },
+  "username": "ana",
+  "password": "An@p123",
+  "telephone": "0642189928",
+  "email": "anap@gmail.com",
+  "type": "klijent",
+  "firstname": "Ana",
+  "lastname": "Petrovic",
+  "agency": null,
+  "address": null,
+  "agencyID": null,
+  "description": null,
+  "address_string": null,
+  "workers_number": null
+},{
+  "_id": {
+    "$oid": "6474964003ea24bde087026f"
+  },
+  "username": "trougao",
+  "password": "Troug@o123",
+  "telephone": "011589090",
+  "email": "agencijatrougao@gmail.com",
+  "type": "agencija",
+  "firstname": null,
+  "lastname": null,
+  "agency": "Agencija Trougao",
+  "address": {
+    "country": "Srbija",
+    "city": "Beograd",
+    "street": "Takovska",
+    "street_n": "55"
+  },
+  "agencyID": 134588909,
+  "description": "Agencija za uredjivanje prostora od 1999.",
+  "address_string": "Srbija Beograd Takovska 55",
+  "workers_number": 8
+},{
+  "_id": {
+    "$oid": "6474964003ea24bde0870270"
+  },
+  "username": "ruza",
+  "password": "ruza123",
+  "telephone": "021353931",
+  "email": "agencijaruza@gmail.com",
+  "type": "agencija",
+  "firstname": null,
+  "lastname": null,
+  "agency": "Agencija Ruza",
+  "agencyID": 345788909,
+  "description": "Agencija za uredjivanje prostora broj 1",
+  "address": {
+    "country": "Srbija",
+    "city": "Novi Sad",
+    "street": "Karadjordjeva",
+    "street_n": "108",
+    "_id": {
+      "$oid": "64a1dac3a8414e3aff511b0e"
+    }
+  },
+  "address_string": "Srbija Novi Sad Karadjordjeva 108",
+  "workers_number": 5,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6474964003ea24bde0870271"
+  },
+  "username": "admin",
+  "password": "Adm!n123",
+  "telephone": "069899099",
+  "email": "admin1@gmail.com",
+  "type": "admin",
+  "firstname": null,
+  "lastname": null,
+  "agency": null,
+  "address": null,
+  "agencyID": null,
+  "description": null,
+  "address_string": null,
+  "workers_number": null
+},{
+  "_id": {
+    "$oid": "6475dcd8d5c68fa73149c3a0"
+  },
+  "username": "peraj",
+  "password": "Pet@R12",
+  "telephone": "061232456",
+  "email": "petarj123@gmail.com",
+  "type": "klijent",
+  "firstname": "Petar",
+  "lastname": "Jovanović",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": null,
+  "address_string": null,
+  "workers_number": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a3dee7fe4ab4b3ddfdd36e"
+  },
+  "username": "lotus",
+  "password": "Lotu$123",
+  "telephone": "011788900",
+  "email": "agencijalotus@gmail.com",
+  "type": "agencija",
+  "firstname": null,
+  "lastname": null,
+  "agency": "Agencija Lotus",
+  "agencyID": 898123343,
+  "description": "Agencija sa dugogodišnjim iskustvom",
+  "address": {
+    "country": "Srbija",
+    "city": "Beograd",
+    "street": "Beogradska",
+    "street_n": "77",
+    "_id": {
+      "$oid": "64a3dee7fe4ab4b3ddfdd36f"
+    }
+  },
+  "address_string": "Srbija Beograd Beogradska 77",
+  "workers_number": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a86e0c75b24e483caef144"
+  },
+  "username": "ivan",
+  "password": "Iv@n123",
+  "telephone": "0655433225",
+  "email": "ivanf@gmail.com",
+  "type": "klijent",
+  "firstname": "Ivan",
+  "lastname": "Filipović",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": {
+    "_id": {
+      "$oid": "64a86e0c75b24e483caef145"
+    }
+  },
+  "address_string": null,
+  "workers_number": 0,
+  "__v": 0
+}]

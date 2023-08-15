@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "64773d67594a00c01fd89242"
+  },
+  "username": "trougao",
+  "imageUrl": "http://127.0.0.1:4000/uploads/avatar_default.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647788469e66b39512a5916a"
+  },
+  "username": "ruza",
+  "imageUrl": "http://127.0.0.1:4000/uploads/avatar2.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a2e27b412ee361f4df523c"
+  },
+  "username": "ana",
+  "imageUrl": "http://127.0.0.1:4000/uploads/1688396411-ninja_avatar.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a3e8354918c74eb8d3184c"
+  },
+  "username": "lotus",
+  "imageUrl": "http://127.0.0.1:4000/uploads/1688463413-avatar2.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a3e8c14918c74eb8d31866"
+  },
+  "username": "peraj",
+  "imageUrl": "http://127.0.0.1:4000/uploads/avatar1.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a9c215d00a9c345cce59ca"
+  },
+  "username": "pedja",
+  "imageUrl": "http://127.0.0.1:4000/uploads/1688846869-ninja_avatar.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aaab3a6ca5b280068b6e9f"
+  },
+  "username": "pera",
+  "imageUrl": "http://127.0.0.1:4000/uploads/1688906554-color-avatar.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aaaf5c6ca5b280068b6ee5"
+  },
+  "username": "ivan",
+  "imageUrl": "http://127.0.0.1:4000/uploads/1688907612-avatar0.png",
+  "__v": 0
+}]

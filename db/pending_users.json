@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "6475e79a694543c893c0c57f"
+  },
+  "username": "beta",
+  "password": "Bet@123",
+  "telephone": "032585789",
+  "email": "betaagencija@gmail.com",
+  "type": "agencija",
+  "firstname": null,
+  "lastname": null,
+  "agency": "Agencija Beta",
+  "agencyID": 123324567,
+  "description": "Opis agencije",
+  "address": {
+    "country": "Srbija",
+    "city": "Čačak",
+    "street": "Nemanjina",
+    "street_n": "90",
+    "_id": {
+      "$oid": "6475e79a694543c893c0c580"
+    }
+  },
+  "__v": 0,
+  "workers_number": 0,
+  "rejected": true
+},{
+  "_id": {
+    "$oid": "64764f04bfd8981a730030f3"
+  },
+  "username": "maja",
+  "password": "Maj@123",
+  "telephone": "064534456",
+  "email": "maja@gmail.com",
+  "type": "klijent",
+  "firstname": "Maja",
+  "lastname": "Majic",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": {
+    "_id": {
+      "$oid": "64764f04bfd8981a730030f4"
+    }
+  },
+  "__v": 0,
+  "workers_number": null,
+  "rejected": true
+},{
+  "_id": {
+    "$oid": "64a86e0c75b24e483caef144"
+  },
+  "username": "ivan",
+  "password": "Iv@n123",
+  "telephone": "0655433221",
+  "email": "ivanf@gmail.com",
+  "type": "klijent",
+  "firstname": "Ivan",
+  "lastname": "Filipović",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": {
+    "_id": {
+      "$oid": "64a86e0c75b24e483caef145"
+    }
+  },
+  "address_string": "undefined undefined undefined undefined",
+  "workers_number": 0,
+  "rejected": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a9c215d00a9c345cce59c7"
+  },
+  "username": "pedja",
+  "password": "Predr@g123",
+  "telephone": "061090889",
+  "email": "predrag@gmail.com",
+  "type": "klijent",
+  "firstname": "Predrag",
+  "lastname": "Jokić",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": {
+    "_id": {
+      "$oid": "64a9c215d00a9c345cce59c8"
+    }
+  },
+  "address_string": "undefined undefined undefined undefined",
+  "workers_number": 0,
+  "rejected": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64aab56e6ca5b280068b6fe0"
+  },
+  "username": "dragan",
+  "password": "Dr@g@n123",
+  "telephone": "0653434210",
+  "email": "dragan@gmail.com",
+  "type": "klijent",
+  "firstname": "Dragan",
+  "lastname": "Cvetić",
+  "agency": null,
+  "agencyID": null,
+  "description": null,
+  "address": {
+    "_id": {
+      "$oid": "64aab56e6ca5b280068b6fe1"
+    }
+  },
+  "address_string": "undefined undefined undefined undefined",
+  "workers_number": 0,
+  "rejected": false,
+  "__v": 0
+}]
